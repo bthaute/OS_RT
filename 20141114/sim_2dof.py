@@ -15,6 +15,16 @@ import matplotlib.pyplot as plt
 
 
 from model_2dof import q1_dd_expr, q2_dd_expr, mod1
+traj=np.load('traj_01.npy')
+
+
+params_values = {"m1":2550, "m2":1700, "I1":53.125 ,"I2":17.354, "a1":9,
+                 "l1": 4.5, "l2": 8, "k1":0, "k2":0, "d1":100, "d2":100, "g":9.81 }
+# <codecell>                 
+sol = sp.solve(mod1.eq_list,mod1.extforce_list)
+
+F1 = sol[mod1.extforce_list[0]].subs(params_values)
+F2 = sol[mod1.extforce_list[1]].subs(params_values)
 
 # <codecell>
 
@@ -25,6 +35,15 @@ q2_dd_fnc = sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qds[0],mod1.qds[1],\
                          mod1.extforce_list[0],mod1.extforce_list[1]],q2_dd_expr,'numpy')
 
 # <codecell>
+def calc_F_traj(t):
+       
+    sub=zip(['q1'],[traj[t,0]])+zip(['q2'],[traj[t,1]])+zip(['q1_d'],[traj[t,2]])+zip(['q2_d'],\
+    [traj[t,3]])+zip(['q1_dd'],[traj[t,4]])+zip(['q2_dd'],[traj[t,5]])
+    
+    f1=F1.subs(sub)
+    f2=F2.subs(sub)
+    
+    return f1, f2
 
 def pd_controller(z):
     q1, q2, q1_d, q2_d = z
@@ -41,7 +60,8 @@ def get_zd(z,t):
     q1, q2, q1_d, q2_d = z
     f1 = 0 #force1(q1)
     f2 = 0 #force2(q1,q2)
-    f1, f2 = pd_controller(z)
+#    f1, f2 = pd_controller(z)
+    f1, f2 = calc_F_traj(t)
     q1_dd = q1_dd_fnc(q1, q2, q1_d, q2_d,f1,f2)
     q2_dd = q2_dd_fnc(q1, q2, q1_d, q2_d,f1,f2)
     #print q1_dd
@@ -52,7 +72,7 @@ def get_zd(z,t):
 
 tt = np.linspace(1,30,10000)
 
-z0 = r_[-0.45*pi, 0, 0, 0]
+z0 = r_[-0.25*pi, 0, 0, 0]
 
 # <codecell>
 

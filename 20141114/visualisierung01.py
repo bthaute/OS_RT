@@ -8,6 +8,7 @@ import time
 # <codecell>
 #from main01_20141110 import lsg
 lsg=np.load('lsg_outfile.npy')
+#lsg=np.load('traj_01.npy')
 
 # <codecell>
 
@@ -122,6 +123,12 @@ L=500
 #qq2 = np.linspace(0, 5*pi, L)
 #qq3 = np.sin(np.linspace(0, 2*pi, L)) * pi
 #tt=np.linspace(1, 500, L)
+
+#tt = np.linspace(-5, 15, 1e3)
+#qq1=lsg[:,0]
+#qq2=lsg[:,1]
+#qq3=tt*0
+
 tt=lsg[:,0]
 qq1=lsg[:,1]
 qq2=lsg[:,2]

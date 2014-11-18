@@ -16,7 +16,7 @@ import pickle
 
 pfilepath = "model2dof.pcl"
 
-flag_new_model_generation = False
+flag_new_model_generation = True
 
 params_values = {"m1":2550, "m2":1700, "I1":53.125 ,"I2":17.354, "a1":9,
                  "l1": 4.5, "l2": 8, "k1":0, "k2":0, "d1":100, "d2":100, "g":9.81 }
