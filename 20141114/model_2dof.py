@@ -4,6 +4,7 @@
 import sympy as sp
 import model_tools as mt
 import pickle
+from parameter import para_g, para_m, para_l, para_a, para_k, para_d, para_I
 #import symb_tools as st
 #import numpy as np
 #from numpy import r_,pi
@@ -14,11 +15,9 @@ import pickle
 
 pfilepath = "model2dof.pcl"
 
-flag_new_model_generation = True
-
-params_values = {"m1":2550, "m2":1700, "I1":53.125 ,"I2":17.354, "a1":9,
-                 "l1": 4.5, "l2": 8, "k1":0, "k2":0, "d1":100, "d2":100, "g":9.81 }
-
+flag_new_model_generation = False
+params_values = {"m1":para_m[0], "m2":para_m[1], "I1":para_I[0] ,"I2":para_m[1], "a1":para_a[0],
+                 "l1": para_l[0], "l2": para_l[1], "k1":para_k[0], "k2":para_k[1], "d1":para_d[0], "d2":para_d[1], "g":para_g }
 
 if flag_new_model_generation:
     print "create new model"
@@ -68,8 +67,9 @@ if flag_new_model_generation:
     #Loese nach q_dot_dot auf
     print "solving equation system"
     M_temp = mod1.eq_list.jacobian(mod1.qdds)
-    sol = M_temp.inv()*(-mod1.eq_list + M_temp*mod1.qdds)    
-#    sol.simplify();
+    temp = -mod1.eq_list + M_temp*mod1.qdds
+    temp.simplify()
+    sol = M_temp.inv()*(temp)       
     #dictionary verwenden um Parameter durch Werte zu ersetzen
     q1_dd_expr = sol[0].subs(params_values)
     q2_dd_expr = sol[1].subs(params_values)
@@ -92,4 +92,4 @@ else:  # flag_new_model_generation == False
     q2_dd_expr = pdict["q2_dd_expr"]
     mod1 = pdict["mod1"]
 
-print "done"
+print "read model"
