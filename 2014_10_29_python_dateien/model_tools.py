@@ -186,6 +186,9 @@ def generate_model(T, U, qq, F):
     model1.qds = qds
     model1.qdds = qdds
 
+    model1.T = T
+    model1.U = U
+
     # analyse the model
 
     return model1
