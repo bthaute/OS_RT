@@ -2,6 +2,7 @@
 # <nbformat>3.0</nbformat>
 
 import sympy as sp
+import numpy as np
 import model_tools as mt
 import pickle
 from parameter_springs import para_g, para_m, para_l, para_a, para_k, para_d, para_I
@@ -63,21 +64,27 @@ if flag_new_model_generation:
     # Enzelne Modell-Gleichungen auslesen
     eq1 = mod1.eq_list[0]#.subs(sublistF)
     eq2 = mod1.eq_list[1]#.subs(sublistF)
-
+    eq_list_temp = mod1.eq_list.subs(params_values)
+    MM_temp = mod1.MM.subs(params_values)
+    MM_temp.simplify()
     #Loese nach q_dot_dot auf
     print "solving equation system"
-    M_temp = mod1.eq_list.jacobian(mod1.qdds)
-    temp = -mod1.eq_list + M_temp*mod1.qdds
-#    temp.simplify()
-    sol = M_temp.inv()*(temp)       
+    subslist = zip(mod1.qdds, [0,0,0,0])
+    temp = eq_list_temp.subs(subslist)
+    sol = MM_temp.inv() *(-temp)       
     #dictionary verwenden um Parameter durch Werte zu ersetzen
-    q1_dd_expr = sol[0].subs(params_values)
-    q2_dd_expr = sol[1].subs(params_values)
-#    q1_dd_expr.simplify()
-#    q2_dd_expr.simplify()
+    print "craete system q_dd_expr"
+    q11_dd_expr = sol[0]
+    q12_dd_expr = sol[1]
+    q21_dd_expr = sol[2]
+    q22_dd_expr = sol[3]
+    q11_dd_expr.simplify()
+    q12_dd_expr.simplify()
+    q21_dd_expr.simplify()
+    q22_dd_expr.simplify()
     # Speichere Modell in Datei ab.
     print "saving model"
-    pdict = {"q1_dd_expr": q1_dd_expr, "q2_dd_expr": q2_dd_expr, "mod1": mod1}
+    pdict = {"q11_dd_expr": q11_dd_expr, "q12_dd_expr": q12_dd_expr, "q21_dd_expr": q21_dd_expr, "q22_dd_expr": q22_dd_expr, "mod1": mod1}
 
     with  open(pfilepath, "w") as pfile:
         pickle.dump(pdict, pfile)
@@ -88,8 +95,10 @@ else:  # flag_new_model_generation == False
     with  open(pfilepath, "r") as pfile:
         pdict = pickle.load(pfile)
 
-    q1_dd_expr = pdict["q1_dd_expr"]
-    q2_dd_expr = pdict["q2_dd_expr"]
+    q11_dd_expr = pdict["q11_dd_expr"]
+    q12_dd_expr = pdict["q12_dd_expr"]
+    q21_dd_expr = pdict["q21_dd_expr"]
+    q22_dd_expr = pdict["q22_dd_expr"]
     mod1 = pdict["mod1"]
 
 print "read model"
