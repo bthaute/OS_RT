@@ -15,7 +15,7 @@ from parameter import para_g, para_m, para_l, para_a, para_k, para_d, para_I
 
 pfilepath = "model2dof.pcl"
 
-flag_new_model_generation = False
+flag_new_model_generation = True
 params_values = {"m1":para_m[0], "m2":para_m[1], "I1":para_I[0] ,"I2":para_m[1], "a1":para_a[0],
                  "l1": para_l[0], "l2": para_l[1], "k1":para_k[0], "k2":para_k[1], "d1":para_d[0], "d2":para_d[1], "g":para_g }
 
@@ -55,21 +55,17 @@ if flag_new_model_generation:
     print "create model by model_tools"
     mod1 = mt.generate_model(T, V, qq, FF)
     mod1.eq_list.simplify()
-    mod1.eq_list
+
     
     # Dissipative Kräfte einbeziehen
     q1_d, q2_d =sp.symbols("q1_d,q2_d")
     mod1.eq_list=mod1.eq_list+sp.Matrix([[d1*q1_d],[d2*q2_d]])
-    # Enzelne Modell-Gleichungen auslesen
-    eq1 = mod1.eq_list[0]#.subs(sublistF)
-    eq2 = mod1.eq_list[1]#.subs(sublistF)
-    eq1
+ 
     #Loese nach q_dot_dot auf
     print "solving equation system"
-    M_temp = mod1.eq_list.jacobian(mod1.qdds)
-    temp = -mod1.eq_list + M_temp*mod1.qdds
-    temp.simplify()
-    sol = M_temp.inv()*(temp)       
+    subslist = zip(mod1.qdds, [0,0])
+    temp = mod1.eq_list.subs(subslist)
+    sol = mod1.MM.inv()*(-temp)       
     #dictionary verwenden um Parameter durch Werte zu ersetzen
     q1_dd_expr = sol[0].subs(params_values)
     q2_dd_expr = sol[1].subs(params_values)
