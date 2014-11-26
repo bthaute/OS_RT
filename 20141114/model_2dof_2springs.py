@@ -6,6 +6,8 @@ import numpy as np
 import model_tools as mt
 import pickle
 from parameter_springs import para_g, para_m, para_l, para_a, para_k, para_d, para_I
+from IPython import embed as IPS
+#import cholesky as chol
 
 pfilepath = "model2dof2springs.pcl"
 
@@ -20,7 +22,7 @@ if flag_new_model_generation:
     x1 = sp.Symbol("x1")
     q11 = sp.Function("q11")(t)
     q12 = sp.Function("q12")(t)
-    q21 = sp.Function("q12")(t)
+    q21 = sp.Function("q21")(t)
     q22 = sp.Function("q22")(t)
     qq = sp.Matrix([q11, q12, q21, q22])
     FF = sp.Matrix(sp.symbols("F11, F12, F21, F22"))
@@ -62,31 +64,30 @@ if flag_new_model_generation:
     q11_d, q12_d,q21_d, q22_d =sp.symbols("q11_d, q12_d,q21_d, q22_d")
     mod1.eq_list=mod1.eq_list+sp.Matrix([[d1*q11_d],[d1*q12_d],[d2*q21_d],[d2*q22_d]])
 
-    
     #Loese nach q_dot_dot auf
-#    eq_list_temp = mod1.eq_list.subs(params_values)
-#    MM_temp = mod1.MM.subs(params_values)
-#    MM_temp.simplify()
+    eq_list_temp = mod1.eq_list.subs(params_values)
+    MM_temp = mod1.MM.subs(params_values)
+    #MM_temp.simplify()
     print "solving equation system"
-#    subslist = zip(mod1.qdds, [0,0,0,0])
-#    temp = eq_list_temp.subs(subslist)
-#    sol = MM_temp.inv() *(-temp) 
+    subslist = zip(mod1.qdds, [0,0,0,0])
+    temp = eq_list_temp.subs(subslist)
+    sol = chol.inv(MM_temp)*(-temp) 
 
-    mt.solve_eq(mod1)      
-    q11_dd_expr = mod1.solved_eq[0].rhs
-    q12_dd_expr = mod1.solved_eq[1].rhs
-    q21_dd_expr = mod1.solved_eq[2].rhs
-    q22_dd_expr = mod1.solved_eq[3].rhs
-    q11_dd_expr.simplify()
-    q12_dd_expr.simplify()
-    q21_dd_expr.simplify()
-    q22_dd_expr.simplify()
+#    mt.solve_eq(mod1)      
+#    q11_dd_expr = mod1.solved_eq[0].rhs
+#    q12_dd_expr = mod1.solved_eq[1].rhs
+#    q21_dd_expr = mod1.solved_eq[2].rhs
+#    q22_dd_expr = mod1.solved_eq[3].rhs
+#    q11_dd_expr.simplify()
+#    q12_dd_expr.simplify()
+#    q21_dd_expr.simplify()
+#    q22_dd_expr.simplify()
     #dictionary verwenden um Parameter durch Werte zu ersetzen
     print "craete system q_dd_expr"
-#    q11_dd_expr = sol[0]
-#    q12_dd_expr = sol[1]
-#    q21_dd_expr = sol[2]
-#    q22_dd_expr = sol[3]
+    q11_dd_expr = sol[0]
+    q12_dd_expr = sol[1]
+    q21_dd_expr = sol[2]
+    q22_dd_expr = sol[3]
 #    q11_dd_expr.simplify()
 #    q12_dd_expr.simplify()
 #    q21_dd_expr.simplify()
@@ -111,3 +112,4 @@ else:  # flag_new_model_generation == False
     mod1 = pdict["mod1"]
 
 print "read model"
+IPS()

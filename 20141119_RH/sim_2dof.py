@@ -11,6 +11,7 @@ from numpy import r_,pi
 from scipy.integrate import odeint
 import pylab as pl
 import matplotlib.pyplot as plt
+from parameter import para_g, para_m, para_l, para_a, para_k, para_d, para_I
 
 
 
@@ -19,15 +20,19 @@ import traj_2dof as traj
 
 print "import finished ..."
 
-params_values = {"m1":2550, "m2":1700, "I1":53.125 ,"I2":17.354, "a1":9,
-                 "l1": 4.5, "l2": 8, "k1":0, "k2":0, "d1":100, "d2":100, "g":9.81 }
+params_values = {"m11":para_m[0,0], "m12":para_m[0,1], "m21":para_m[1,0], "m22":para_m[1,1], "I11":para_I[0,0] ,"I12":para_I[0,1], "I21":para_I[1,0] ,"I22":para_I[1,1], "a11":para_a[0,0], "a12":para_a[0,1], "a21":para_a[1,0], "a22":para_a[1,1],
+                 "l11": para_l[0,0], "l12": para_l[0,1], "l21": para_l[1,0], "l22": para_l[1,1], "k1":para_k[0], "k2":para_k[1], "d1":para_d[0], "d2":para_d[1], "g":para_g }
+
 # <codecell>                 
 #sol = sp.solve(mod1.eq_list,mod1.extforce_list)
-
-mod_temp = mod1.eq_list - mod1.eq_list.jacobian(mod1.extforce_list)*mod1.extforce_list
-mod_temp.simplify()
-F1 = mod_temp[0].subs(params_values)
-F2 = mod_temp[1].subs(params_values)
+subslist=zip(mod1.extforce_list,[0,0])
+sol = -mod1.eq_list.subs(subslist)
+F1 = sol[0].subs(params_values)
+F2 = sol[1].subs(params_values)
+#mod_temp = mod1.eq_list - mod1.eq_list.jacobian(mod1.extforce_list)*mod1.extforce_list
+#mod_temp.simplify()
+#F1 = mod_temp[0].subs(params_values)
+#F2 = mod_temp[1].subs(params_values)
 
 print "force equations created"
 

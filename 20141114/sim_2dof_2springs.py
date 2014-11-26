@@ -14,28 +14,37 @@ import matplotlib.pyplot as plt
 
 
 from model_2dof import q1_dd_expr, q2_dd_expr, mod1
-from parameter import para_g, para_m, para_l, para_a, para_k, para_d, para_I
+from parameter_springs import para_g, para_m, para_l, para_a, para_k, para_d, para_I
 traj=np.load('traj_01.npy')
 
 
-params_values = {"m1":para_m[0], "m2":para_m[1], "I1":para_I[0] ,"I2":para_m[1], "a1":para_a[0],
-                 "l1": para_l[0], "l2": para_l[1], "k1":para_k[0], "k2":para_k[1], "d1":para_d[0], "d2":para_d[1], "g":para_g }
+params_values = {"m11":para_m[0,0], "m12":para_m[0,1], "m21":para_m[1,0], "m22":para_m[1,1], "I11":para_I[0,0] ,"I12":para_I[0,1], "I21":para_I[1,0] ,"I22":para_I[1,1], "a11":para_a[0,0], "a12":para_a[0,1], "a21":para_a[1,0], "a22":para_a[1,1],
+                 "l11": para_l[0,0], "l12": para_l[0,1], "l21": para_l[1,0], "l22": para_l[1,1], "k1":para_k[0], "k2":para_k[1], "d1":para_d[0], "d2":para_d[1], "g":para_g }
 
 # <codecell>                 
 # Stelle Modell nach externen Groessen um
 
-mod_temp = mod1.eq_list - mod1.eq_list.jacobian(mod1.extforce_list)* mod1.extforce_list
-mod_temp.simplify()
-F1 = mod_temp[0].subs(params_values)
-F2 = mod_temp[1].subs(params_values)
+subslist=zip(mod1.extforce_list,[0,0,0,0])
+sol = mod1.eq_list.subs(subslist)
+F11 = sol[0].subs(params_values)
+F12 = sol[1].subs(params_values)
+F21 = sol[2].subs(params_values)
+F22 = sol[3].subs(params_values)
 # <codecell>
 
 #Umformen zu einer lambda function
-q1_dd_fnc = sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qds[0],mod1.qds[1],\
-                         mod1.extforce_list[0],mod1.extforce_list[1]],q1_dd_expr,'numpy')
-q2_dd_fnc = sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qds[0],mod1.qds[1],\
-                         mod1.extforce_list[0],mod1.extforce_list[1]],q2_dd_expr,'numpy')
-
+q11_dd_fnc = sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qs[2],mod1.qs[3], mod1.qds[0],mod1.qds[1],\
+                         mod1.qds[2],mod1.qds[3],mod1.extforce_list[0],mod1.extforce_list[1],\
+                         mod1.extforce_list[2],mod1.extforce_list[3]],q11_dd_expr,'numpy')
+q12_dd_fnc = sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qs[2],mod1.qs[3], mod1.qds[0],mod1.qds[1],\
+                         mod1.qds[2],mod1.qds[3],mod1.extforce_list[0],mod1.extforce_list[1],\
+                         mod1.extforce_list[2],mod1.extforce_list[3]],q12_dd_expr,'numpy')
+q21_dd_fnc = sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qs[2],mod1.qs[3], mod1.qds[0],mod1.qds[1],\
+                         mod1.qds[2],mod1.qds[3],mod1.extforce_list[0],mod1.extforce_list[1],\
+                         mod1.extforce_list[2],mod1.extforce_list[3]],q21_dd_expr,'numpy')
+q22_dd_fnc = sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qs[2],mod1.qs[3], mod1.qds[0],mod1.qds[1],\
+                         mod1.qds[2],mod1.qds[3],mod1.extforce_list[0],mod1.extforce_list[1],\
+                         mod1.extforce_list[2],mod1.extforce_list[3]],q22_dd_expr,'numpy')
 # <codecell>
 def calc_F_traj(t):
        

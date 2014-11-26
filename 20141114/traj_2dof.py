@@ -8,24 +8,21 @@ import symb_tools as st
 from sympy import pi
 import numpy as np
 import pylab as pl
-import pickle
 
-pfilepath = "trajectory2dof.pcl"
-
-flag_new_trajectory_generation = True
 # <codecell>
 
-
-if flag_new_trajectory_generation:
+def calc_traj(T0,T1,q1_t0,q1_t1,q2_t0,q2_t1):
+    
 
     t = sp.Symbol('t')
     
-    T0 = 0
-    T1 = 10
-    q1_t0=-pi/2
-    q1_t1=pi/4
-    q2_t0=0
-    q2_t1=-pi/4
+    #T0 = 0
+    #T1 = 10
+    #q1_t0=-pi/2
+    #q1_t1=pi/4
+    #q2_t0=0
+    #q2_t1=-pi/4
+    
     # Übergangspolynom bestimmen
     q1_poly = st.trans_poly(t, cn=2, left=(T0, q1_t0, 0, 0), right=(T1, q1_t1, 0, 0))
     q1_poly
@@ -69,18 +66,31 @@ if flag_new_trajectory_generation:
     # Ausführbare Python-Funktion erstellen, die man auch mit numpy-Vektoren auswerten kann
     qq_func = st.expr_to_func(t, list(qq_traj), eltw_vectorize=True)
     
-    # <markdowncell>
+    #qq = qq_func(tt)
     
-    # Eine solche Funktion kann man jetzt entweder an bestimmten Zeitpunkten auswerten und plotten oder in der RHS-Funktion der Simulation für eine Vorsteuerung verwenden
+    return qq_func
+
+# <markdowncell>
+
+# Eine solche Funktion kann man jetzt entweder an bestimmten Zeitpunkten auswerten und plotten oder in der RHS-Funktion der Simulation für eine Vorsteuerung verwenden
+
+# <codecell>
+def example():
+    tt = np.linspace(0, 10, 1e3)
+    
+    
+    T0 = 0
+    T1 = 10
+    q1_t0=-pi/2
+    q1_t1=pi/4
+    q2_t0=0
+    q2_t1=-pi/4
+    
     
     # <codecell>
-    
-    tt = np.linspace(-5, 15, 1e3)
-    
-    # <codecell>
-    
-    qq = qq_func(tt)
-    np.save('traj_01',qq)
+    qq_traj=calc_traj(T0,T1,q1_t0,q1_t1,q2_t0,q2_t1)
+    qq = qq_traj(tt)
+    #np.save('traj_01',qq)
     
     # <codecell>
     
@@ -90,22 +100,9 @@ if flag_new_trajectory_generation:
     # <codecell>
     
     pl.plot(tt, qq[:, 0], label='$q_1$')
-    pl.plot(tt, qq[:, 2], label='$q_1_d$')
-    pl.plot(tt, qq[:, 4], label='$q_1_dd$')
+    pl.plot(tt, qq[:, 1], label='$q_1_d$')
+    #pl.plot(tt, qq[:, 4], label='$q_1_dd$')
     #pl.plot(tt, qq[:, 1], label='$q_2$')
+    pl.show()
     
-    pdict = {"qq_func": qq_func}
-    
 
-
-    with  open(pfilepath, "w") as pfile:
-        pickle.dump(pdict, pfile)
-
-
-else:  # flag_new_model_generation == False
-
-
-    with  open(pfilepath, "r") as pfile:
-        pdict = pickle.load(pfile)
-
-    qq_func = pdict["qq_func"]

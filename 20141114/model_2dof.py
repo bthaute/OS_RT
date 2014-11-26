@@ -5,6 +5,7 @@ import sympy as sp
 import model_tools as mt
 import pickle
 from parameter import para_g, para_m, para_l, para_a, para_k, para_d, para_I
+import cholesky as chol
 #import symb_tools as st
 #import numpy as np
 #from numpy import r_,pi
@@ -15,7 +16,7 @@ from parameter import para_g, para_m, para_l, para_a, para_k, para_d, para_I
 
 pfilepath = "model2dof.pcl"
 
-flag_new_model_generation = True
+flag_new_model_generation = False
 params_values = {"m1":para_m[0], "m2":para_m[1], "I1":para_I[0] ,"I2":para_m[1], "a1":para_a[0],
                  "l1": para_l[0], "l2": para_l[1], "k1":para_k[0], "k2":para_k[1], "d1":para_d[0], "d2":para_d[1], "g":para_g }
 
@@ -60,12 +61,12 @@ if flag_new_model_generation:
     # Dissipative Kräfte einbeziehen
     q1_d, q2_d =sp.symbols("q1_d,q2_d")
     mod1.eq_list=mod1.eq_list+sp.Matrix([[d1*q1_d],[d2*q2_d]])
- 
+    
     #Loese nach q_dot_dot auf
     print "solving equation system"
     subslist = zip(mod1.qdds, [0,0])
     temp = mod1.eq_list.subs(subslist)
-    sol = mod1.MM.inv()*(-temp)       
+    sol = chol.inv(mod1.MM)*(-temp)       
     #dictionary verwenden um Parameter durch Werte zu ersetzen
     q1_dd_expr = sol[0].subs(params_values)
     q2_dd_expr = sol[1].subs(params_values)
