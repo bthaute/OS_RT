@@ -1,0 +1,18 @@
+\begin{thebibliography}{1}
+
+\bibitem{FLMR95ijc}
+{\sc Fliess, M.}, {\sc J.~L\'evine}, {\sc P.~Martin} \btxandshort{.}\ {\sc
+  P.~Rouchon}: {\em Flatness and defect of non-linear systems: introductory
+  theory and examples\/}.
+\newblock International Journal of Control, 61(6):1327--1361, 1995.
+
+\bibitem{Mik57de}
+{\sc Mikusi{\'n}ski, J.}: {\em Operatorenrechnung\/}.
+\newblock {V}{E}{B} Deutscher Verlag der Wissenschaften, Berlin, 1957.
+
+\bibitem{MittelbachGoosens05}
+{\sc Mittelbach, F.} \btxandshort{.}\ {\sc M.~Goosens}: {\em Der
+  \LaTeX-Begleiter\/}.
+\newblock Pearson Studium, 2. \btxeditionshort{.}, 2005.
+
+\end{thebibliography}

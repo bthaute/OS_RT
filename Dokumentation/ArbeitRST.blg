@@ -1,0 +1,46 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: ArbeitRST.aux
+The style file: gerabbrv.bst
+Database file #1: Arbeit.bib
+You've used 3 entries,
+            2344 wiz_defined-function locations,
+            566 strings with 4822 characters,
+and the built_in function-call counts, 993 in all, are:
+= -- 96
+> -- 43
+< -- 0
++ -- 17
+- -- 14
+* -- 78
+:= -- 167
+add.period$ -- 6
+call.type$ -- 3
+change.case$ -- 13
+chr.to.int$ -- 0
+cite$ -- 3
+duplicate$ -- 42
+empty$ -- 84
+format.name$ -- 14
+if$ -- 213
+int.to.chr$ -- 0
+int.to.str$ -- 3
+missing$ -- 6
+newline$ -- 15
+num.names$ -- 6
+pop$ -- 20
+preamble$ -- 1
+purify$ -- 13
+quote$ -- 0
+skip$ -- 28
+stack$ -- 0
+substring$ -- 46
+swap$ -- 10
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 8
+warning$ -- 0
+while$ -- 8
+width$ -- 4
+write$ -- 32

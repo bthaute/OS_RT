@@ -1,0 +1,113 @@
+\documentclass[arbeit=master,oneside]{ArbeitRST}
+% Paket zum Erzeugen von Blindtext (ist nur für dieses Beispieldokument sinnvoll)
+\usepackage{blindtext}
+% zwei Parameter zum Verändern des Layouts
+%\parindent0em
+%\parskip2ex
+% Einige Einstellungen für das hyperref-Paket
+% Die farbig dargestellten Links, Gleichungsnummern etc. sollten automatisch beim Ausdrucken schwarz dargestellt werden.
+% An dieser Stelle können Sie die Farbgebung anpassen.
+\hypersetup{
+    unicode=false,          % non-Latin characters in Acrobat’s bookmarks
+    pdftoolbar=true,        % show Acrobat’s toolbar?
+    pdfmenubar=true,        % show Acrobat’s menu?
+    pdffitwindow=false,     % window fit to page when opened
+    pdfstartview={FitH},    % fits the width of the page to the window
+    pdftitle={RST Vorlage},    % title
+    pdfauthor={Author},     % author
+    pdfsubject={Subject},   % subject of the document
+    pdfcreator={Creator},   % creator of the document
+    pdfproducer={Producer}, % producer of the document
+    pdfkeywords={keyword1} {key2} {key3}, % list of keywords
+    pdfnewwindow=true,      % links in new window
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=blue,          % color of internal links (change box color with linkbordercolor)
+    citecolor=green,        % color of links to bibliography
+    filecolor=magenta,      % color of file links
+    urlcolor=cyan           % color of external links
+}
+% Entfernt die farbigen Markierungen - bitte Druckversion mit dieser Option kompilieren
+%\hypersetup{hidelinks}
+\begin{document}
+
+%% Titelseite
+% Name des Verfassers
+\author{Martin P. Mustermann}
+% Geburtsort
+\geburtsort{Dresden}
+% Geburtsdatum
+\geburtsdatum{1. Januar 1912}
+% Titel der Arbeit
+\title{Titel}
+% Untertitel
+\subtitle{Untertitel}
+% Angabe der Betreuer
+\betreuer{Betreuer 1}
+\betreuer{Betreuer 2}
+% Datum der Einreichung
+\date{2. Februar 2222}
+% Titelseite erstellen
+\maketitle
+%% Selbstständigkeitserklärung
+% Ort der Selbstständigkeitserklärung (Standard: Dresden)
+\selbstort{Pirna}
+% Datum der Selbstständigkeitserklärung (Standard: aktuelles Systemdatum)
+\selbstdatum{1. Januar 2011}
+\selbststaendigkeitserklaerung
+%% Kurzfassung / Abstract
+\kurzfassung{An dieser Stelle fügen Sie bitte eine deutsche Kurzfassung ein.}{Please insert the English abstract here.}
+%% Inhaltsverzeichnis
+\tableofcontents
+
+\input{DokArbeitRst}
+\chapter[kurzer Titel]{Ausführlicher Kapiteltitel, der wirklich viel zu lang für das Inhaltsverzeichnis in dieser Dokumentvorlage ist}
+\blindtext[6]
+\chapter{Beispielkapitel}
+\blindtext[4]
+\section{Etwas Mathematik}
+\LaTeX{} eignet sich in besonderem Maße zum Setzen von mathematischen Formeln. Eine einzelne Formel erhalten Sie mit der \texttt{equation}-Umgebung:
+\begin{equation}\label{eq:exp}
+1 + \mathrm{e}^{i\pi} = 0.
+\end{equation}
+Bitte beachten Sie, dass Formeln Teil des Satzes sind und somit mit den entsprechenden Satzzeichen versehen werden müssen.
+In der Regel genügt es für eine Gleichung nur dann eine Nummer zu vergeben, wenn Sie später auch auf diese verweisen. Um auf die Nummer einer Gleichung zugreifen zu können verwenden Sie den Befehl \texttt{eqref}: 
+\begin{center}
+\ldots wie in Gl.\ \eqref{eq:exp} gezeigt\ldots	.
+\end{center}
+Möchten Sie verhindern, dass eine Gleichung nummiert wird, verwenden Sie die \texttt{equation*}-Umgebung:
+\begin{equation*}
+E + F - K = 2.
+\end{equation*}
+Für Gleichungssysteme bietet sich die \texttt{align}- bzw. \texttt{align*}-Umgebung an, wobei bei letzterer keine Gleichungsnummern ausgegeben wird:
+\begin{align}\label{eq:align}
+\partiell{u}{x} &= \partiell{v}{y}\\
+\partiell{u}{y} &= -\partiell{v}{x}.
+\end{align}
+Alternativ können Sie auch eine $\texttt{aligned}$-Umgebung verwenden:
+\begin{equation}
+\begin{aligned}
+\partiell{u}{x} &= \partiell{v}{y}\\
+\partiell{u}{y} &= -\partiell{v}{x}.
+\end{aligned}
+\end{equation}
+Mit Hilfe der \texttt{subequations}-Umgebung lassen sich die Nummern der einzelnen Gleichungen eines Systems vereinheitlichen:
+\begin{subequations}
+\begin{align}
+\partiell{h}{t} + \partiell{(vh)}{x} =& 0\\
+\partiell{v}{t} + \partiell{}{x}\left(gh + \frac{u^2}{2}\right) &= 0.
+\end{align}
+\end{subequations}
+Die \texttt{subequations}-Umgebung funktioniert auch zusammen mit mehreren einzelnen Gleichungen:
+\begin{subequations}
+\begin{equation}
+\partiell{h}{t} + \partiell{(vh)}{x} = 0
+\end{equation}
+und
+\begin{equation}
+\partiell{v}{t} + \partiell{}{x}\left(gh + \frac{u^2}{2}\right) = 0.
+\end{equation}
+\end{subequations}
+\nocite{FLMR95ijc,Mik57de}
+\bibliography{Arbeit}
+\bibliographystyle{gerabbrv}
+\end{document}
