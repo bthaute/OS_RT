@@ -80,7 +80,7 @@ if flag_new_parameter:
     
     
     # Federkonstanten -> noch keine Ahnung
-    para_k = [100,100,100,100,100]
+    para_k = [00,00,00,00,00]
     
 #    Federkonstanten -> noch keine Ahnung
     para_d = [100,100,100,100,100]   

@@ -6,11 +6,11 @@ Created on Mon Nov 24 15:18:13 2014
 """
 
 import sympy as sp
-import pickle
-import numpy as np
-from parameter_springs import para_g, para_m, para_l, para_a, para_k, para_d, para_I
-import symb_tools as st
-from IPython import embed as IPS
+#import pickle
+#import numpy as np
+#from parameter_springs import para_g, para_m, para_l, para_a, para_k, para_d, para_I
+#import symb_tools as st
+#from IPython import embed as IPS
 #
 #
 #q11, q12, q21, q22 = sp.symbols(["q11", "q12", "q21", "q22"])
@@ -22,9 +22,9 @@ from IPython import embed as IPS
 #para_q={"q11":0.1,"q12":0.2,"q21":0.3,"q22":0.4,"q11_d":0.5,"q12_d":0.6,"q21_d":0.7,"q22_d":0.8}
 ##A=sp.Matrix([[I11 + I12 + I21 + I22 + m11*(2*l11**2*sp.sin(q11)**2 + 2*l11**2*sp.cos(q11)**2)/2 + m12*((-2*a11*sp.sin(q11) - 2*l12*sp.sin(q11 + q12))*(-a11*sp.sin(q11) - l12*sp.sin(q11 + q12)) + (a11*sp.cos(q11) + l12*sp.cos(q11 + q12))*(2*a11*sp.cos(q11) + 2*l12*sp.cos(q11 + q12)))/2 + m21*((-2*a11*sp.sin(q11) - 2*a12*sp.sin(q11 + q12) - 2*l21*sp.sin(q11 + 2*q12))*(-a11*sp.sin(q11) - a12*sp.sin(q11 + q12) - l21*sp.sin(q11 + 2*q12)) + (a11*sp.cos(q11) + a12*sp.cos(q11 + q12) + l21*sp.cos(q11 + 2*q12))*(2*a11*sp.cos(q11) + 2*a12*sp.cos(q11 + q12) + 2*l21*sp.cos(q11 + 2*q12)))/2 + m22*((-2*a11*sp.sin(q11) - 2*a12*sp.sin(q11 + q12) - 2*a21*sp.sin(q11 + 2*q12) - 2*l22*sp.sin(q11 + 2*q12 + q22))*(-a11*sp.sin(q11) - a12*sp.sin(q11 + q12) - a21*sp.sin(q11 + 2*q12) - l22*sp.sin(q11 + 2*q12 + q22)) + (a11*sp.cos(q11) + a12*sp.cos(q11 + q12) + a21*sp.cos(q11 + 2*q12) + l22*sp.cos(q11 + 2*q12 + q22))*(2*a11*sp.cos(q11) + 2*a12*sp.cos(q11 + q12) + 2*a21*sp.cos(q11 + 2*q12) + 2*l22*sp.cos(q11 + 2*q12 + q22)))/2, I12 + 2*I21 + 2*I22 + m12*(-l12*(-2*a11*sp.sin(q11) - 2*l12*sp.sin(q11 + q12))*sp.sin(q11 + q12) + l12*(2*a11*sp.cos(q11) + 2*l12*sp.cos(q11 + q12))*sp.cos(q11 + q12))/2 + m21*((-a12*sp.sin(q11 + q12) - 2*l21*sp.sin(q11 + 2*q12))*(-2*a11*sp.sin(q11) - 2*a12*sp.sin(q11 + q12) - 2*l21*sp.sin(q11 + 2*q12)) + (a12*sp.cos(q11 + q12) + 2*l21*sp.cos(q11 + 2*q12))*(2*a11*sp.cos(q11) + 2*a12*sp.cos(q11 + q12) + 2*l21*sp.cos(q11 + 2*q12)))/2 + m22*((-a12*sp.sin(q11 + q12) - 2*a21*sp.sin(q11 + 2*q12) - 2*l22*sp.sin(q11 + 2*q12 + q22))*(-2*a11*sp.sin(q11) - 2*a12*sp.sin(q11 + q12) - 2*a21*sp.sin(q11 + 2*q12) - 2*l22*sp.sin(q11 + 2*q12 + q22)) + (a12*sp.cos(q11 + q12) + 2*a21*sp.cos(q11 + 2*q12) + 2*l22*sp.cos(q11 + 2*q12 + q22))*(2*a11*sp.cos(q11) + 2*a12*sp.cos(q11 + q12) + 2*a21*sp.cos(q11 + 2*q12) + 2*l22*sp.cos(q11 + 2*q12 + q22)))/2],
 #[                                                                                                                                                                I12 + 2*I21 + 2*I22 + m12*(-2*l12*(-a11*sp.sin(q11) - l12*sp.sin(q11 + q12))*sp.sin(q11 + q12) + 2*l12*(a11*sp.cos(q11) + l12*sp.cos(q11 + q12))*sp.cos(q11 + q12))/2 + m21*((-2*a12*sp.sin(q11 + q12) - 4*l21*sp.sin(q11 + 2*q12))*(-a11*sp.sin(q11) - a12*sp.sin(q11 + q12) - l21*sp.sin(q11 + 2*q12)) + (2*a12*sp.cos(q11 + q12) + 4*l21*sp.cos(q11 + 2*q12))*(a11*sp.cos(q11) + a12*sp.cos(q11 + q12) + l21*sp.cos(q11 + 2*q12)))/2 + m22*((-2*a12*sp.sin(q11 + q12) - 4*a21*sp.sin(q11 + 2*q12) - 4*l22*sp.sin(q11 + 2*q12 + q22))*(-a11*sp.sin(q11) - a12*sp.sin(q11 + q12) - a21*sp.sin(q11 + 2*q12) - l22*sp.sin(q11 + 2*q12 + q22)) + (2*a12*sp.cos(q11 + q12) + 4*a21*sp.cos(q11 + 2*q12) + 4*l22*sp.cos(q11 + 2*q12 + q22))*(a11*sp.cos(q11) + a12*sp.cos(q11 + q12) + a21*sp.cos(q11 + 2*q12) + l22*sp.cos(q11 + 2*q12 + q22)))/2,                                                                                                                                       I12 + 4*I21 + 4*I22 + m12*(2*l12**2*sp.sin(q11 + q12)**2 + 2*l12**2*sp.cos(q11 + q12)**2)/2 + m21*((-2*a12*sp.sin(q11 + q12) - 4*l21*sp.sin(q11 + 2*q12))*(-a12*sp.sin(q11 + q12) - 2*l21*sp.sin(q11 + 2*q12)) + (a12*sp.cos(q11 + q12) + 2*l21*sp.cos(q11 + 2*q12))*(2*a12*sp.cos(q11 + q12) + 4*l21*sp.cos(q11 + 2*q12)))/2 + m22*((-2*a12*sp.sin(q11 + q12) - 4*a21*sp.sin(q11 + 2*q12) - 4*l22*sp.sin(q11 + 2*q12 + q22))*(-a12*sp.sin(q11 + q12) - 2*a21*sp.sin(q11 + 2*q12) - 2*l22*sp.sin(q11 + 2*q12 + q22)) + (a12*sp.cos(q11 + q12) + 2*a21*sp.cos(q11 + 2*q12) + 2*l22*sp.cos(q11 + 2*q12 + q22))*(2*a12*sp.cos(q11 + q12) + 4*a21*sp.cos(q11 + 2*q12) + 4*l22*sp.cos(q11 + 2*q12 + q22)))/2]])
-#def inv(A):
-with open('Matrix.pcl','r') as matr:
-    A=pickle.load(matr)
+def inv(A):
+#with open('Matrix.pcl','r') as matr:
+#    A=pickle.load(matr)
 
 #A=sp.Matrix([[9,2,4],[2,9,6],[4,6,9]])
 #L_calc=sp.cholesky(A)
@@ -73,6 +73,6 @@ with open('Matrix.pcl','r') as matr:
     #E=D-L
     #print E    
     print "done ... thanks"
-    
-    IPS()
-    #return A_inv      
+
+    #IPS()
+    return A_inv      

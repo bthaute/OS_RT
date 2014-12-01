@@ -2,12 +2,12 @@
 # <nbformat>3.0</nbformat>
 
 import sympy as sp
-import numpy as np
+#import numpy as np
 import model_tools as mt
 import pickle
 from parameter_springs import para_g, para_m, para_l, para_a, para_k, para_d, para_I
 from IPython import embed as IPS
-#import cholesky as chol
+import cholesky as chol
 
 pfilepath = "model2dof2springs.pcl"
 
@@ -112,4 +112,4 @@ else:  # flag_new_model_generation == False
     mod1 = pdict["mod1"]
 
 print "read model"
-IPS()
+#IPS()
