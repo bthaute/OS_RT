@@ -41,7 +41,8 @@ def update_plot(axes):
     q1 = qq1[i]
     q2 = qq2[i]
     q3 = qq3[i]
-    CCframe(q1, q2, q3)
+    q4 = qq4[i]
+    CCframe(q1, q2, q3, q4)
 
     # Ausgabe der aktuellen Zeit
     pl.text(0.06, 0.05, "t = %3.2fs" % t, transform = axes.transAxes)
@@ -51,7 +52,7 @@ def update_plot(axes):
 
 
 
-def CCframe(q1, q2, q3, xy = 0):
+def CCframe(q1, q2, q3, q4, xy = 0):
     """
     creates a cartesian coordinate frame
     """
@@ -64,10 +65,12 @@ def CCframe(q1, q2, q3, xy = 0):
     J1= J0 + l1*exp(1j*q1)
     J2= J1 + l2*exp(1j*(q1+q2))
     J3= J2 + l3*exp(1j*(q1+q2+q3))
+    J4= J3 + l4*exp(1j*(q1+q2+q3+q4))
     pl.plot(r_[J0,].real, r_[J0,].imag, 'ks', ms = 8)
     pl.plot(r_[J0, J1].real, r_[J0, J1].imag, 'k-', lw=3)
     pl.plot(r_[J2, J1].real, r_[J2, J1].imag, 'ko-', lw=2)
-    pl.plot(r_[J2, J3].real, r_[J2, J3].imag, 'ko-')
+    pl.plot(r_[J2, J3].real, r_[J2, J3].imag, 'ko-', lw=2)
+    pl.plot(r_[J4, J3].real, r_[J4, J3].imag, 'ko-')
     pl.xticks= []
     pl.yticks= []
     pl.axis('equal')
@@ -92,9 +95,10 @@ C.i = 0 # globaler counter
 di = 200
 
 
-l1 = 1.0
-l2 = 1.0
-l3 = 1.0
+l1 = 0.5
+l2 = 0.5
+l3 = 0.5
+l4 = 0.5
 
 
 
@@ -132,7 +136,8 @@ L=500
 tt=lsg[:,0]
 qq1=lsg[:,1]
 qq2=lsg[:,2]
-qq3=tt*0
+qq3=lsg[:,3]
+qq4=lsg[:,4]
 
 if 0:
     from IPython import embed as IPS
@@ -141,6 +146,7 @@ if 0:
     pl.plot(tt, qq1)
     pl.plot(tt, qq2)
     pl.plot(tt, qq3)
+    pl.plot(tt, qq4)
 
     pl.show()
 

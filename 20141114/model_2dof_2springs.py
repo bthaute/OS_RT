@@ -62,7 +62,7 @@ if flag_new_model_generation:
     
     # Dissipative Kräfte einbeziehen
     q11_d, q12_d,q21_d, q22_d =sp.symbols("q11_d, q12_d,q21_d, q22_d")
-    mod1.eq_list=mod1.eq_list+sp.Matrix([[d1*q11_d],[d1*q12_d],[d2*q21_d],[d2*q22_d]])
+    mod1.eq_list=mod1.eq_list+sp.Matrix([[d1*q11_d],[d2*q12_d],[d1*q21_d],[d2*q22_d]])
 
     #Loese nach q_dot_dot auf
     eq_list_temp = mod1.eq_list.subs(params_values)

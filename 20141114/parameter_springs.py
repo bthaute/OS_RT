@@ -24,7 +24,7 @@ import pickle
 
 pfilepath = "para5dof_springs.pcl"
 
-flag_new_parameter = False
+flag_new_parameter = True
 if flag_new_parameter:
     
     parameter = sp.symbols("H, B, L, D, M")
@@ -80,10 +80,10 @@ if flag_new_parameter:
     
     
     # Federkonstanten -> noch keine Ahnung
-    para_k = [00,00,00,00,00]
+    para_k = [1e6,1e6,0,0,0]
     
 #    Federkonstanten -> noch keine Ahnung
-    para_d = [100,100,100,100,100]   
+    para_d = [100,1e4,100,100,100]   
     
     # Trägheitsmomente Beachte: Bei uns wird momentan nur Trägheit in x benötigt in[kg*m^2]
     para_Jx = np.matrix([[0.1,0.1],[0.1,0.1],[0.1,0.1],[0.1,0.1],[0.1,0.1]])

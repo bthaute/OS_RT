@@ -45,19 +45,33 @@ F21_fnc =    sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qs[2],mod1.qs[3], mod1.qds
 #                         mod1.qds[2],mod1.qds[3],mod1.qdds[0],mod1.qdds[1],mod1.qdds[2],mod1.qdds[3]],F22,'numpy')
                          
 #Umformen zu einer lambda function
-q11_dd_fnc = sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qs[2],mod1.qs[3], mod1.qds[0],mod1.qds[1],\
-                         mod1.qds[2],mod1.qds[3],mod1.extforce_list[0],mod1.extforce_list[1],\
-                         mod1.extforce_list[2],mod1.extforce_list[3]],q11_dd_expr,'numpy')
-q12_dd_fnc = sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qs[2],mod1.qs[3], mod1.qds[0],mod1.qds[1],\
-                         mod1.qds[2],mod1.qds[3],mod1.extforce_list[0],mod1.extforce_list[1],\
-                         mod1.extforce_list[2],mod1.extforce_list[3]],q12_dd_expr,'numpy')
-q21_dd_fnc = sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qs[2],mod1.qs[3], mod1.qds[0],mod1.qds[1],\
-                         mod1.qds[2],mod1.qds[3],mod1.extforce_list[0],mod1.extforce_list[1],\
-                         mod1.extforce_list[2],mod1.extforce_list[3]],q21_dd_expr,'numpy')
-q22_dd_fnc = sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qs[2],mod1.qs[3], mod1.qds[0],mod1.qds[1],\
-                         mod1.qds[2],mod1.qds[3],mod1.extforce_list[0],mod1.extforce_list[1],\
-                         mod1.extforce_list[2],mod1.extforce_list[3]],q22_dd_expr,'numpy')
+                         
+#q11_dd_fnc = sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qs[2],mod1.qs[3], mod1.qds[0],mod1.qds[1],\
+#                         mod1.qds[2],mod1.qds[3],mod1.extforce_list[0],mod1.extforce_list[1],\
+#                         mod1.extforce_list[2],mod1.extforce_list[3]],q11_dd_expr,'numpy')
+#q12_dd_fnc = sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qs[2],mod1.qs[3], mod1.qds[0],mod1.qds[1],\
+#                         mod1.qds[2],mod1.qds[3],mod1.extforce_list[0],mod1.extforce_list[1],\
+#                         mod1.extforce_list[2],mod1.extforce_list[3]],q12_dd_expr,'numpy')
+#q21_dd_fnc = sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qs[2],mod1.qs[3], mod1.qds[0],mod1.qds[1],\
+#                         mod1.qds[2],mod1.qds[3],mod1.extforce_list[0],mod1.extforce_list[1],\
+#                         mod1.extforce_list[2],mod1.extforce_list[3]],q21_dd_expr,'numpy')
+#q22_dd_fnc = sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qs[2],mod1.qs[3], mod1.qds[0],mod1.qds[1],\
+#                         mod1.qds[2],mod1.qds[3],mod1.extforce_list[0],mod1.extforce_list[1],\
+#                         mod1.extforce_list[2],mod1.extforce_list[3]],q22_dd_expr,'numpy')
 # <codecell>
+
+# alternativer Zugang
+subslist = zip(mod1.qdds, [0,0,0,0])
+temp = -mod1.eq_list.subs(subslist).subs(params_values)
+Mq_dd_func = sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qs[2],mod1.qs[3], mod1.qds[0],mod1.qds[1],\
+                         mod1.qds[2],mod1.qds[3],mod1.extforce_list[0],mod1.extforce_list[1],\
+                         mod1.extforce_list[2],mod1.extforce_list[3]],temp,'numpy')
+M=mod1.MM.subs(params_values)
+M_func = sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qs[2],mod1.qs[3], mod1.qds[0],mod1.qds[1],\
+                         mod1.qds[2],mod1.qds[3],mod1.extforce_list[0],mod1.extforce_list[1],\
+                         mod1.extforce_list[2],mod1.extforce_list[3]],M,'numpy')
+#IPS()
+
 def calc_F_traj(t):
        
     states=qq_traj(t)  
@@ -68,14 +82,15 @@ def calc_F_traj(t):
     
     return f1, f2
 
-def pd_controller(z):
-    q1, q2, q1_d, q2_d = z
-
-
-    k1 = 100000
-    k2 = 100000
-    f1 = -k1*(q1+pi/2) - k1*q1_d
-    f2 = -k2*q2 - k2*q2_d
+def pd_controller(z,t):
+    q1, q2, q3, q4, q1_d, q2_d, q3_d, q4_d = z
+    #
+    states=qq_traj(t)
+    k1 = 1e7
+    k2 = 1e7
+    f1 = k1*(states[0]-q1) + k1*(states[2]-q1_d) + F11_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)
+    f2 = k2*(states[1]-q3) + k2*(states[3]-q3_d) + F21_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)
+    #
 
     return f1, f2
 
@@ -83,24 +98,29 @@ def get_zd(z,t):
     q1, q2, q3, q4, q1_d, q2_d, q3_d, q4_d = z
     f1 = 0 #force1(q1)
     f2 = 0 #force2(q1,q2)
-#    f1, f2 = pd_controller(z)
-    f1, f2 = calc_F_traj(t)
-    q1_dd = q11_dd_fnc(q1, q2, q3,q4, q1_d, q2_d, q3_d, q4_d,f1,0,f2,0)
-    q2_dd = q12_dd_fnc(q1, q2, q3,q4, q1_d, q2_d, q3_d, q4_d,f1,0,f2,0)
-    q3_dd = q21_dd_fnc(q1, q2, q3,q4, q1_d, q2_d, q3_d, q4_d,f1,0,f2,0)
-    q4_dd = q22_dd_fnc(q1, q2, q3,q4, q1_d, q2_d, q3_d, q4_d,f1,0,f2,0)
+    f1, f2 = pd_controller(z,t)
+    #f1, f2 = calc_F_traj(t)
+    #q1_dd = q11_dd_fnc(q1, q2, q3,q4, q1_d, q2_d, q3_d, q4_d,f1,0,f2,0)
+    #q2_dd = q12_dd_fnc(q1, q2, q3,q4, q1_d, q2_d, q3_d, q4_d,f1,0,f2,0)
+    #q3_dd = q21_dd_fnc(q1, q2, q3,q4, q1_d, q2_d, q3_d, q4_d,f1,0,f2,0)
+    #q4_dd = q22_dd_fnc(q1, q2, q3,q4, q1_d, q2_d, q3_d, q4_d,f1,0,f2,0)
+    rhs_eq = Mq_dd_func(q1, q2, q3,q4, q1_d, q2_d, q3_d, q4_d,f1,0,f2,0)
+    M_eq = M_func(q1, q2, q3,q4, q1_d, q2_d, q3_d, q4_d,f1,0,f2,0)
+    qq_dd = M_eq**-1*rhs_eq    
     #print q1_dd
     #print q2_dd
-    return r_[q1_d,q2_d,q3_d,q4_d,q1_dd,q2_dd,q3_dd,q4_dd]
+    #print t
+    #return r_[q1_d,q2_d,q3_d,q4_d,q1_dd,q2_dd,q3_dd,q4_dd]
+    return r_[q1_d,q2_d,q3_d,q4_d,qq_dd[0,0],qq_dd[1,0],qq_dd[2,0],qq_dd[3,0]]
 
 # <codecell>
 
 tt = np.linspace(0,40,10000)
 
-z0 = r_[-pi/4, 0,0,0,pi/4, 0, 0,0]
+z0 = r_[-pi/4, 0, pi/4, 0, 0, 0, 0,0]
 q1_end =3* pi/4
 q2_end = pi/2
-qq_traj=traj.calc_traj(tt[0],tt[-1]/2,z0[0],q1_end,z0[1],q2_end)
+qq_traj=traj.calc_traj(tt[0],tt[-1]/2,z0[0],q1_end,z0[2],q2_end)
 # <codecell>
 print "simulate"
 lsg = odeint(get_zd,z0,tt)
@@ -117,8 +137,10 @@ deg=180/pi
 fig = plt.figure()
 ax = fig.add_subplot(1,1,1)
 ax.set_title("odeint")
-ax.plot(tt,(lsg[:,1]*deg), label= r"$q_1$")
-ax.plot(tt, (lsg[:,0]*deg), label= r"$q_2$")
+ax.plot(tt,(lsg[:,2]*deg), label= r"$q_3$")
+ax.plot(tt, (lsg[:,0]*deg), label= r"$q_1$")
+ax.plot(tt,(lsg[:,1]*deg), label= r"$q_2$")
+ax.plot(tt,(lsg[:,3]*deg), label= r"$q_4$")
 ax.set_xlabel("$t$ in s")
 ax.set_ylabel("$\phi_2$")
 ax.legend()
