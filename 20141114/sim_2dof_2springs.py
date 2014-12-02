@@ -88,10 +88,15 @@ def pd_controller(z,t):
     states=qq_traj(t)
     k1 = 1e7
     k2 = 1e7
-    f1 = k1*(states[0]-q1) + k1*(states[2]-q1_d) + F11_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)
-    f2 = k2*(states[1]-q3) + k2*(states[3]-q3_d) + F21_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)
+    e_q1 = states[0]-q1
+    e_q1_d = states[2]-q1_d
+    e_q2 = states[1]-q3
+    e_q2_d = states[3]-q3_d
+    f1 = k1*(e_q1 + e_q1_d) + F11_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)
+    f2 = k2*(e_q2 + e_q2_d) + F21_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)
     #
-
+    #e_temp=np.array([[t, e_q1, e_q1_d, e_q2, e_q2_d]])
+    #e=np.concatenate((e,e_temp), axis=0)
     return f1, f2
 
 def get_zd(z,t):
@@ -129,6 +134,12 @@ lsg = odeint(get_zd,z0,tt)
 
 lsg2 = np.concatenate( (tt.reshape(-1, 1) , lsg), axis=1)
 
+#Regelfehler
+qq_soll = qq_traj(tt)
+e1 = qq_soll[:,0]-lsg2[:,1]
+e1_d = qq_soll[:,2]-lsg2[:,5]
+e2 = qq_soll[:,1]-lsg2[:,3]
+e2_d = qq_soll[:,3]-lsg2[:,7]
 #IPS()
 
 
@@ -148,5 +159,19 @@ plt.show()
 np.save('lsg_outfile',lsg2)
 
 # <codecell>
-
+# Regelabweichungen veranschaulicht
+fig = plt.figure()
+a1=fig.add_subplot(2,2,1)
+a1.set_title('e1')
+a1.plot(tt,e1)
+a2=fig.add_subplot(2,2,2)
+a2.set_title('e1_d')
+a2.plot(tt,e1_d)
+a3=fig.add_subplot(2,2,3)
+a3.set_title('e2')
+a3.plot(tt,e2)
+a4=fig.add_subplot(2,2,4)
+a4.set_title('e2_d')
+a4.plot(tt,e2_d)
+plt.show()
 
