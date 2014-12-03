@@ -84,26 +84,39 @@ def calc_F_traj(t):
 
 def pd_controller(z,t):
     q1, q2, q3, q4, q1_d, q2_d, q3_d, q4_d = z
-    #
+    
     states=qq_traj(t)
     k1 = 1e7
     k2 = 1e7
+    error_F11 = 1.1
+    error_F21 = 0.9
     e_q1 = states[0]-q1
     e_q1_d = states[2]-q1_d
     e_q2 = states[1]-q3
     e_q2_d = states[3]-q3_d
-    f1 = k1*(e_q1 + e_q1_d) + F11_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)
-    f2 = k2*(e_q2 + e_q2_d) + F21_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)
-    #
-    #e_temp=np.array([[t, e_q1, e_q1_d, e_q2, e_q2_d]])
-    #e=np.concatenate((e,e_temp), axis=0)
+    f1 = k1*(e_q1 + e_q1_d) + error_F11 * F11_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)
+    f2 = k2*(e_q2 + e_q2_d) + error_F21 * F21_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)
+        
     return f1, f2
+
+temp_zd = True
+f=np.array([[0,0]])
 
 def get_zd(z,t):
     q1, q2, q3, q4, q1_d, q2_d, q3_d, q4_d = z
     f1 = 0 #force1(q1)
     f2 = 0 #force2(q1,q2)
     f1, f2 = pd_controller(z,t)
+    
+    # Stellgrößenbegrenzung
+    #f1 = np.clip(f1,-3e5,3e5)
+    #f2 = np.clip(f2,-3e5,3e5)
+    #global f,temp_zd
+    #if temp_zd:
+    #    f=np.array([[f1,f2]])
+    #    temp_zd = False
+    #else: f = np.concatenate((f,np.array([[f1,f2]])),axis=0)
+    
     #f1, f2 = calc_F_traj(t)
     #q1_dd = q11_dd_fnc(q1, q2, q3,q4, q1_d, q2_d, q3_d, q4_d,f1,0,f2,0)
     #q2_dd = q12_dd_fnc(q1, q2, q3,q4, q1_d, q2_d, q3_d, q4_d,f1,0,f2,0)
@@ -122,10 +135,17 @@ def get_zd(z,t):
 
 tt = np.linspace(0,40,10000)
 
-z0 = r_[-pi/4, 0, pi/4, 0, 0, 0, 0,0]
+error_q11 = 0
+error_q21 = 0
+q11_t0 = -pi/4
+q21_t0 =  pi/4
+z0 = r_[q11_t0 + error_q11, 0, q21_t0 + error_q21, 0, 0, 0, 0,0]
+
 q1_end =3* pi/4
 q2_end = pi/2
-qq_traj=traj.calc_traj(tt[0],tt[-1]/2,z0[0],q1_end,z0[2],q2_end)
+#qq_traj=traj.calc_traj(tt[0],tt[-1]/2,z0[0],q1_end,z0[2],q2_end)
+qq_traj=traj.calc_traj(tt[0],tt[-1]/2,q11_t0,q1_end,q21_t0,q2_end)
+
 # <codecell>
 print "simulate"
 lsg = odeint(get_zd,z0,tt)
@@ -145,7 +165,7 @@ e2_d = qq_soll[:,3]-lsg2[:,7]
 
 # <codecell>
 deg=180/pi
-fig = plt.figure()
+fig = plt.figure(1)
 ax = fig.add_subplot(1,1,1)
 ax.set_title("odeint")
 ax.plot(tt,(lsg[:,2]*deg), label= r"$q_3$")
@@ -160,18 +180,26 @@ np.save('lsg_outfile',lsg2)
 
 # <codecell>
 # Regelabweichungen veranschaulicht
-fig = plt.figure()
-a1=fig.add_subplot(2,2,1)
+fig2 = plt.figure(2)
+a1=fig2.add_subplot(2,2,1)
 a1.set_title('e1')
-a1.plot(tt,e1)
-a2=fig.add_subplot(2,2,2)
+a1.plot(tt,e1*deg)
+a2=fig2.add_subplot(2,2,2)
 a2.set_title('e1_d')
-a2.plot(tt,e1_d)
-a3=fig.add_subplot(2,2,3)
+a2.plot(tt,e1_d*deg)
+a3=fig2.add_subplot(2,2,3)
 a3.set_title('e2')
-a3.plot(tt,e2)
-a4=fig.add_subplot(2,2,4)
+a3.plot(tt,e2*deg)
+a4=fig2.add_subplot(2,2,4)
 a4.set_title('e2_d')
-a4.plot(tt,e2_d)
+a4.plot(tt,e2_d*deg)
 plt.show()
 
+#fig3 = plt.figure(3)
+#ay = fig3.add_subplot(1,1,1)
+#ay.set_title("control variable")
+#ay.plot(np.linspace(0,40,f.shape[0]),f[:,0])
+#ay.set_xlabel("$t$ in s")
+#ay.set_ylabel("$r$")
+#ay.legend()
+#plt.show()

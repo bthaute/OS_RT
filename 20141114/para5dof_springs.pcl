@@ -14,8 +14,8 @@ p5
 tp6
 Rp7
 (I1
-(I5
-I2
+(L5L
+L2L
 tp8
 cnumpy
 dtype
@@ -47,8 +47,8 @@ g5
 tp19
 Rp20
 (I1
-(I5
-I2
+(L5L
+L2L
 tp21
 g12
 I00
@@ -65,8 +65,8 @@ g5
 tp26
 Rp27
 (I1
-(I5
-I2
+(L5L
+L2L
 tp28
 g12
 I00
@@ -102,8 +102,8 @@ g5
 tp38
 Rp39
 (I1
-(I5
-I2
+(L5L
+L2L
 tp40
 g12
 I00
