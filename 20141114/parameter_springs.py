@@ -1,4 +1,4 @@
-# coding: utf-8
+﻿# coding: utf-8
 
 # Vorgabe reale Werte Betonpumpe
 
@@ -15,8 +15,6 @@
 # D...Wandstärke
 # 
 # M...Masse
-
-# In[55]:
 
 import sympy as sp
 import numpy as np
@@ -56,49 +54,46 @@ if flag_new_parameter:
     # Konstanten
     
     # g in [m/s^2]
-    para_g =  9.80665
+    para_g =  np.array([9.80665])
     
     # Massen der Arme inkl. Gelenke in [kg]
-    para_m = np.dot(np.matrix([[(1.6 + 0.95),(1.6 + 0.95)],[(1.1 + 0.6),(1.1 + 0.6)],[(0.8 + 0.55),(0.8 + 0.55)],[(0.5 + 0.4),(0.5 + 0.4)],[(0.28 + 0.2),(0.28 + 0.2)]]),500)
+    para_m = np.dot(np.array([(1.6 + 0.95),(1.6 + 0.95),(1.1 + 0.6),(1.1 + 0.6),\
+    (0.8 + 0.55),(0.8 + 0.55),(0.5 + 0.4),(0.5 + 0.4),(0.28 + 0.2),(0.28 + 0.2)]),500)
         
     # Längen der Arme in [m]
-    para_a = np.dot(np.matrix([[9,9],[8,8],[7,7],[7,7],[6,6]]),0.5)
+    para_a = np.dot(np.array([9,9,8,8,7,7,7,7,6,6]),0.5)
    
-    # Schwerpunkte Annahme bei der halben Länge
-    para_l = np.dot(para_a,0.5)
-        
     # Höhen, Breiten und Dicken der Arme bei Annahme eines rechteckigen Hohträgers
-    
     # Höhen in [m]
-    para_h = np.dot(np.matrix([[0.5,0.5],[0.35,0.35],[0.3,0.3],[0.25,0.25],[0.2,0.2]]),0.5)
+    para_h = np.array([0.5,0.5,0.35,0.35,0.3,0.3,0.25,0.25,0.2,0.2])
     
     # Breiten in [m]
-    para_b = np.dot(np.matrix([[0.5,0.5],[0.35,0.35],[0.3,0.3],[0.25,0.25],[0.2,0.2]]),0.5)
+    para_b = para_h
     
     # Dicken in [m]
-    para_di = [0.02,0.015,0.015,0.01,0.01]
+    para_di = np.array([0.02,0.02,0.015,0.015,0.015,0.015,0.01,0.01,0.01,0.01])
     
     
-    # Federkonstanten -> noch keine Ahnung
-    para_k = [1e6,1e6,0,0,0]
-    
-#    Federkonstanten -> noch keine Ahnung
-    para_d = [100,1e4,100,100,100]   
+    # Federkonstanten -> rad/[Nm] bei 100kg belastung soll es sich um 10° biegen
+    bend = 10*np.pi/180 
+    load = 100*para_g
+    para_k = np.array([0,1,0,1,0,1,0,1,0,1])*para_a*(load/bend)
+#    Dämpfung-> noch keine Ahnung
+    para_d = np.array([0,1,0,1,0,1,0,1,0,1])* 1e4  
     
     # Trägheitsmomente Beachte: Bei uns wird momentan nur Trägheit in x benötigt in[kg*m^2]
-    para_Jx = np.matrix([[0.1,0.1],[0.1,0.1],[0.1,0.1],[0.1,0.1],[0.1,0.1]])
-    para_Jy = np.matrix([[0.1,0.1],[0.1,0.1],[0.1,0.1],[0.1,0.1],[0.1,0.1]])
-    para_Jz = np.matrix([[0.1,0.1],[0.1,0.1],[0.1,0.1],[0.1,0.1],[0.1,0.1]])
-    for index1 in range(0,5):
-        for index2 in range(0,2):
-            para_Jx[index1,index2] = Jx_fnc(para_h[index1,index2],para_b[index1,index2],para_a[index1,index2],para_di[index1],para_m[index1,index2])
-            para_Jy[index1,index2] = Jx_fnc(para_h[index1,index2],para_b[index1,index2],para_a[index1,index2],para_di[index1],para_m[index1,index2])
-            para_Jz[index1,index2] = Jx_fnc(para_h[index1,index2],para_b[index1,index2],para_a[index1,index2],para_di[index1],para_m[index1,index2])
+    para_Jx = np.ones(10)
+    para_Jy = np.ones(10)
+    para_Jz = np.ones(10)
+    for index in range(0,para_Jx.shape[0]):
+            para_Jx[index] = Jx_fnc(para_h[index],para_b[index],para_a[index],para_di[index],para_m[index])
+            para_Jy[index] = Jx_fnc(para_h[index],para_b[index],para_a[index],para_di[index],para_m[index])
+            para_Jz[index] = Jx_fnc(para_h[index],para_b[index],para_a[index],para_di[index],para_m[index])
     
     para_I = para_Jx
         
     print "saving parameter"
-    pdict = {"para_g": para_g, "para_m": para_m, "para_l": para_l, "para_a": para_a, "para_k": para_k, "para_d": para_d, "para_I": para_I}
+    pdict = {"para_g": para_g, "para_m": para_m,  "para_a": para_a, "para_k": para_k, "para_d": para_d, "para_I": para_I}
 
     with  open(pfilepath, "w") as pfile:
         pickle.dump(pdict, pfile)
@@ -110,7 +105,6 @@ else:  # flag_new_parameter == False
 
     para_g = pdict["para_g"]
     para_m = pdict["para_m"]
-    para_l = pdict["para_l"]
     para_a = pdict["para_a"]
     para_k = pdict["para_k"]
     para_d = pdict["para_d"]
