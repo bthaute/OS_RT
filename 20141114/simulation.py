@@ -1,6 +1,9 @@
 # -*- coding: utf-8 -*-
-# <nbformat>3.0</nbformat>
+"""
+Created on Tue Dec  9 16:58:04 2014
 
+@author: herrmann
+"""
 # <codecell>
 
 import sympy as sp
@@ -14,17 +17,12 @@ import matplotlib.pyplot as plt
 from IPython import embed as IPS
 
 import traj_2dof as traj
-#from model_2dof_2springs import mod1
 from parameter_springs import para_g, para_m, para_a, para_k, para_d, para_I
-#traj=np.load('traj_01.npy')
+
 from model import mod1
 
-
-#params_values = {"m11":para_m[0], "m12":para_m[1], "m21":para_m[2], "m22":para_m[3], "I11":para_I[0] ,"I12":para_I[1], "I21":para_I[2] ,"I22":para_I[3], "a11":para_a[0], "a12":para_a[1], "a21":para_a[2], "a22":para_a[3],
-#                  "k1":para_k[1], "k2":para_k[3], "d1":para_d[1], "d2":para_d[3], "g":para_g[0] }
-
-nr_aj = 2
 # Number of the actuated joints -> uses .simplify()
+nr_aj = 2  
 
 II = sp.Matrix([sp.symbols("I1")])
 mm = sp.Matrix([sp.symbols("m1")])
@@ -40,51 +38,37 @@ for index in range(2,2*(nr_aj)+1):
     kk = st.row_stack(kk,sp.Matrix([sp.symbols("k"+np.str(index))]))
     dd = st.row_stack(dd,sp.Matrix([sp.symbols("d"+np.str(index))]))
     qq_0 = st.row_stack(qq_0,sp.Matrix([sp.symbols("q"+np.str(index)+"_0")]))
+
+# Modellfehler in der Parametrierung
+model_error_on = False
+if model_error_on:
+    model_error=0.2*np.random.randn(10,6)+1
+else:
+    model_error=np.ones((10,6))
     
-params_values_error = zip(mm,para_m*1.1) + zip(II,para_I*0.9) + zip(aa,para_a*1.2) + zip(kk,para_k*1.1) + zip(dd,para_d*0.8) + zip(g,para_g*1.1)
-params_values = zip(mm,para_m*1.1) + zip(II,para_I*0.9) + zip(aa,para_a*1.2) + zip(kk,para_k*1.1) + zip(dd,para_d*0.8) + zip(g,para_g*1.1)
+params_values_error = zip(mm,para_m*model_error[:,0]) + zip(II,para_I*model_error[:,1]) + zip(aa,para_a*model_error[:,2]) + zip(kk,para_k*model_error[:,3]) + zip(dd,para_d*model_error[:,4]) + zip(g,para_g*model_error[0,5])
+params_values = zip(mm,para_m) + zip(II,para_I) + zip(aa,para_a) + zip(kk,para_k) + zip(dd,para_d) + zip(g,para_g)
 
 # <codecell>                 
 # Stelle Modell nach externen Groessen um
 
-subslist=zip(mod1.extforce_list,[0,0,0,0])
-sol = mod1.eq_list.subs(subslist)
-F11 = sol[0].subs(params_values_error)
+subslist_force=zip(mod1.extforce_list,sp.zeros(mod1.qdds.shape[0],1))
+sol = mod1.eq_list.subs(subslist_force)
+FF = sp.Matrix([sol[0].subs(params_values_error)])
+for index in range(1,nr_aj):
+    FF = st.row_stack(FF,sp.Matrix([sol[index*2].subs(params_values_error)]))
 
-F21 = sol[2].subs(params_values_error)
-
-#IPS()
 # <codecell>
 print "build lambda-functions"
-F11_fnc =    sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qs[2],mod1.qs[3], mod1.qds[0],mod1.qds[1],\
-                         mod1.qds[2],mod1.qds[3],mod1.qdds[0],mod1.qdds[1],mod1.qdds[2],mod1.qdds[3]],F11,'numpy')
-# nicht aktuiert Gelenk 12, Gelenk 22
-#F12_fnc =    sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qs[2],mod1.qs[3], mod1.qds[0],mod1.qds[1],\
-#                         mod1.qds[2],mod1.qds[3],mod1.qdds[0],mod1.qdds[1],mod1.qdds[2],mod1.qdds[3]],F12,'numpy')
-F21_fnc =    sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qs[2],mod1.qs[3], mod1.qds[0],mod1.qds[1],\
-                         mod1.qds[2],mod1.qds[3],mod1.qdds[0],mod1.qdds[1],mod1.qdds[2],mod1.qdds[3]],F21,'numpy')
-#F22_fnc =    sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qs[2],mod1.qs[3], mod1.qds[0],mod1.qds[1],\
-#                         mod1.qds[2],mod1.qds[3],mod1.qdds[0],mod1.qdds[1],mod1.qdds[2],mod1.qdds[3]],F22,'numpy')
-                         
-#Umformen zu einer lambda function
-                         
-#q11_dd_fnc = sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qs[2],mod1.qs[3], mod1.qds[0],mod1.qds[1],\
-#                         mod1.qds[2],mod1.qds[3],mod1.extforce_list[0],mod1.extforce_list[1],\
-#                         mod1.extforce_list[2],mod1.extforce_list[3]],q11_dd_expr,'numpy')
-#q12_dd_fnc = sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qs[2],mod1.qs[3], mod1.qds[0],mod1.qds[1],\
-#                         mod1.qds[2],mod1.qds[3],mod1.extforce_list[0],mod1.extforce_list[1],\
-#                         mod1.extforce_list[2],mod1.extforce_list[3]],q12_dd_expr,'numpy')
-#q21_dd_fnc = sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qs[2],mod1.qs[3], mod1.qds[0],mod1.qds[1],\
-#                         mod1.qds[2],mod1.qds[3],mod1.extforce_list[0],mod1.extforce_list[1],\
-#                         mod1.extforce_list[2],mod1.extforce_list[3]],q21_dd_expr,'numpy')
-#q22_dd_fnc = sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qs[2],mod1.qs[3], mod1.qds[0],mod1.qds[1],\
-#                         mod1.qds[2],mod1.qds[3],mod1.extforce_list[0],mod1.extforce_list[1],\
-#                         mod1.extforce_list[2],mod1.extforce_list[3]],q22_dd_expr,'numpy')
+
+FF_fnc =    sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qs[2],mod1.qs[3], mod1.qds[0],mod1.qds[1],\
+                         mod1.qds[2],mod1.qds[3],mod1.qdds[0],mod1.qdds[1],mod1.qdds[2],mod1.qdds[3]],FF,'numpy')
+
 # <codecell>
 
 # alternativer Zugang
-subslist = zip(mod1.qdds, [0,0,0,0])
-temp = -mod1.eq_list.subs(subslist).subs(params_values)
+subslist_M = zip(mod1.qdds, sp.zeros(mod1.qdds.shape[0],1))
+temp = -mod1.eq_list.subs(subslist_M).subs(params_values)
 Mq_dd_func = sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qs[2],mod1.qs[3], mod1.qds[0],mod1.qds[1],\
                          mod1.qds[2],mod1.qds[3],mod1.extforce_list[0],mod1.extforce_list[1],\
                          mod1.extforce_list[2],mod1.extforce_list[3]],temp,'numpy')
@@ -98,8 +82,8 @@ def calc_F_traj(t):
        
     states=qq_traj(t)  
   
-    f1 = F11_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)
-    f2 = F21_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)
+    f1 = FF_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)[0]
+    f2 = FF_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)[1]
      
     return f1, f2
 
@@ -107,18 +91,48 @@ def pd_controller(z,t):
     q1, q2, q3, q4, q1_d, q2_d, q3_d, q4_d = z
     
     states=qq_traj(t)
-    k1 = 1e7
-    k2 = 1e7
-    error_F11 = 1
-    error_F21 = 1
-    e_q1 = states[0]-q1
-    e_q1_d = states[2]-q1_d
-    e_q2 = states[1]-q3
-    e_q2_d = states[3]-q3_d
-    f1 = k1*(e_q1 + e_q1_d) + error_F11 * F11_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)
-    f2 = k2*(e_q2 + e_q2_d) + error_F21 * F21_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)
+#    if t==0:
+#        controler_values(states,z)
+#    k = np.array([1e7])
+#    e_q = np.array([states[0]-z[1]])
+#    e_q_d = np.array([states[2]-z[2*nr_aj]])
+#    for index in range(1,nr_aj):
+#        k = np.concatenate((k,np.array([1e7])))
+#        e_q = np.concatenate((e_q,np.array([states[index]-z[index]])))
+#        e_q_d = np.concatenate((e_q_d, np.array([states[2*nr_aj-index]-z[2*nr_aj-index]])))
+#    feed_forward_error = False
+#    if feed_forward_error:
+#        error_FF = 0.2*np.random.randn(nr_aj,1)
+#    else:
+#        error_FF = np.ones((nr_aj,1))
         
-    return f1, f2
+    e_q = np.array([states[0]-q1,states[1]-q3])
+    e_q_d = np.array([states[2]-q1_d,states[3]-q3_d])
+    k=np.array([1e7,1e7])
+#    e_q2 = states[1]-q3
+#    e_q2_d = states[3]-q3_d
+#    error_FF[0]
+    f1 = k[0]*(e_q[0] + e_q_d[0]) + 1 * FF_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)[0]
+    f2 = k[1]*(e_q[1] + e_q_d[1]) + 1 * FF_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)[1]
+        
+    return f1[0,0], f2[0,0]
+    
+#def controler_values(states,z):
+#    k = np.array([1e7])
+#    e_q = np.array([states[0]-z[1]])
+#    e_q_d = np.array([states[2]-z[2*nr_aj]])
+#    for index in range(1,nr_aj):
+#        k = np.concatenate((k,np.array([1e7])))
+#        e_q = np.concatenate((e_q,np.array([states[index]-z[index]])))
+#        e_q_d = np.concatenate((e_q_d, np.array([states[2*nr_aj-index]-z[2*nr_aj-index]])))
+#    feed_forward_error = False
+#    if feed_forward_error:
+#        error_FF = 0.2*np.random.randn(nr_aj,1)
+#    else:
+#        error_FF = np.ones((nr_aj,1))
+#        
+#    return np.array[k,e_q,e_q_d]
+    
 
 def get_zd(z,t):
     q1, q2, q3, q4, q1_d, q2_d, q3_d, q4_d = z
@@ -149,18 +163,19 @@ def get_zd(z,t):
     #return r_[q1_d,q2_d,q3_d,q4_d,q1_dd,q2_dd,q3_dd,q4_dd]
     return r_[q1_d,q2_d,q3_d,q4_d,qq_dd[0,0],qq_dd[1,0],qq_dd[2,0],qq_dd[3,0]]
 
+    
 # <codecell>
 
 tt = np.linspace(0,40,10000)
 
 error_q11 = 0
 error_q21 = 0
-q11_t0 = -pi/4
-q21_t0 =  pi/4
-z0 = r_[q11_t0 + error_q11, 0, q21_t0 + error_q21, 0, 0, 0, 0,0]
+q11_t0 = pi/3 # -pi/4
+q21_t0 = -pi/2 # pi/4
+z0 = r_[q11_t0 + error_q11, 0, q21_t0 + error_q21, 0, 0, 2, 0,0]
 
-q1_end =3* pi/4
-q2_end = pi/2
+q1_end = q11_t0 # 3*pi/4
+q2_end = q21_t0 # pi/2
 #qq_traj=traj.calc_traj(tt[0],tt[-1]/2,z0[0],q1_end,z0[2],q2_end)
 qq_traj=traj.calc_traj(tt[0],tt[-1]/2,q11_t0,q1_end,q21_t0,q2_end)
 
@@ -180,6 +195,8 @@ e2 = qq_soll[:,1]-lsg2[:,3]
 e2_d = qq_soll[:,3]-lsg2[:,7]
 #IPS()
 
+# später für das linearisierte Modell
+sub_qq_0=zip(['q1_0'],[q11_t0])+zip(['q2_0'],[0])+zip(['q3_0'],[q21_t0])+zip(['q4_0'],[0])
 
 # <codecell>
 deg=180/pi
@@ -241,15 +258,15 @@ def control_effort(lsg2):
         if z==0:
             f1_contr=[k1*(e_q1 + e_q1_d)]
             f2_contr=[k2*(e_q2 + e_q2_d)]
-            f1_feedforw=[F11_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)]
-            f2_feedforw=[F21_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)]
+            #f1_feedforw=[F11_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)]
+            #f2_feedforw=[F21_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)]
         else:    
             f1_contr = np.concatenate((f1_contr,[k1*(e_q1 + e_q1_d)]),axis=1)  
             f2_contr = np.concatenate((f2_contr,[k2*(e_q2 + e_q2_d)]),axis=1)  
-            f1_feedforw = np.concatenate((f1_feedforw,[F11_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)]),axis=1)
-            f2_feedforw = np.concatenate((f2_feedforw,[F21_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)]),axis=1)
+            #f1_feedforw = np.concatenate((f1_feedforw,[F11_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)]),axis=1)
+            #f2_feedforw = np.concatenate((f2_feedforw,[F21_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)]),axis=1)
         j+=1
     
-    return f1_contr,f2_contr,f1_feedforw,f2_feedforw
+    return f1_contr,f2_contr#,f1_feedforw,f2_feedforw
 
-f1_contr,f2_contr,f1_feedforw,f2_feedforw=control_effort(lsg2)
+#f1_contr,f2_contr,f1_feedforw,f2_feedforw=control_effort(lsg2)

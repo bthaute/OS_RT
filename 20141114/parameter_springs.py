@@ -78,8 +78,9 @@ if flag_new_parameter:
     bend = 10*np.pi/180 
     load = 100*para_g
     para_k = np.array([0,1,0,1,0,1,0,1,0,1])*para_a*(load/bend)
+    para_k = np.array([0,2e7,0,1e7,0,0,0,0,0,0])
 #    Dämpfung-> noch keine Ahnung
-    para_d = np.array([0,1,0,1,0,1,0,1,0,1])* 1e4  
+    para_d = np.array([0,1,0,1,0,1,0,1,0,1])* 1e1  
     
     # Trägheitsmomente Beachte: Bei uns wird momentan nur Trägheit in x benötigt in[kg*m^2]
     para_Jx = np.ones(10)

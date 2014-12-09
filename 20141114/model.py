@@ -10,11 +10,11 @@ import cholesky as chol
 from parameter_springs import para_g, para_m, para_a, para_k, para_d, para_I
 from IPython import embed as IPS
 # Number of the actuated joints
-nr_aj = 1
+nr_aj = 2
 # Number of the actuated joints -> uses .simplify()
-nr_simplify = 1
+nr_simplify = 0
 # Do you want to create an new model?
-flag_new_model_generation = True
+flag_new_model_generation = False
 
 
 pfilepath = "model_"+np.str(nr_aj)+"_actuatedJoints_"+np.str(nr_aj)+"_nonactuatedJoints.pcl"
