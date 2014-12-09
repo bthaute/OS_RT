@@ -24,7 +24,7 @@ import pickle
 
 pfilepath = "para5dof.pcl"
 
-flag_new_parameter = False
+flag_new_parameter = True
 if flag_new_parameter:
     
     parameter = sp.symbols("H, B, L, D, M")
