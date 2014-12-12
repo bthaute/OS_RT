@@ -90,49 +90,18 @@ def calc_F_traj(t):
 def pd_controller(z,t):
     q1, q2, q3, q4, q1_d, q2_d, q3_d, q4_d = z
     
+    k=1e7*np.ones((nr_aj,1))
     states=qq_traj(t)
-#    if t==0:
-#        controler_values(states,z)
-#    k = np.array([1e7])
-#    e_q = np.array([states[0]-z[1]])
-#    e_q_d = np.array([states[2]-z[2*nr_aj]])
-#    for index in range(1,nr_aj):
-#        k = np.concatenate((k,np.array([1e7])))
-#        e_q = np.concatenate((e_q,np.array([states[index]-z[index]])))
-#        e_q_d = np.concatenate((e_q_d, np.array([states[2*nr_aj-index]-z[2*nr_aj-index]])))
-#    feed_forward_error = False
-#    if feed_forward_error:
-#        error_FF = 0.2*np.random.randn(nr_aj,1)
-#    else:
-#        error_FF = np.ones((nr_aj,1))
-        
-    e_q = np.array([states[0]-q1,states[1]-q3])
-    e_q_d = np.array([states[2]-q1_d,states[3]-q3_d])
-    k=np.array([1e7,1e7])
-#    e_q2 = states[1]-q3
-#    e_q2_d = states[3]-q3_d
-#    error_FF[0]
-    f1 = k[0]*(e_q[0] + e_q_d[0]) + 1 * FF_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)[0]
-    f2 = k[1]*(e_q[1] + e_q_d[1]) + 1 * FF_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)[1]
-        
-    return f1[0,0], f2[0,0]
+    states2=states.reshape((2,-1))
+    states2=states2[::,:nr_aj:]
+    # Fehler
+    e=states2-z[::2].reshape((2,-1))
+    e=e.T
+    man=np.ones((nr_aj,1))
+
+    f = (k*e).dot(man)+FF_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)
     
-#def controler_values(states,z):
-#    k = np.array([1e7])
-#    e_q = np.array([states[0]-z[1]])
-#    e_q_d = np.array([states[2]-z[2*nr_aj]])
-#    for index in range(1,nr_aj):
-#        k = np.concatenate((k,np.array([1e7])))
-#        e_q = np.concatenate((e_q,np.array([states[index]-z[index]])))
-#        e_q_d = np.concatenate((e_q_d, np.array([states[2*nr_aj-index]-z[2*nr_aj-index]])))
-#    feed_forward_error = False
-#    if feed_forward_error:
-#        error_FF = 0.2*np.random.randn(nr_aj,1)
-#    else:
-#        error_FF = np.ones((nr_aj,1))
-#        
-#    return np.array[k,e_q,e_q_d]
-    
+    return f[0,0],f[1,0]
 
 def get_zd(z,t):
     q1, q2, q3, q4, q1_d, q2_d, q3_d, q4_d = z
@@ -241,32 +210,29 @@ plt.show()
 # <codecell>
 
 def control_effort(lsg2):
-    t, q1, q3, q1_d, q3_d, = lsg2[:,0],lsg2[:,1],lsg2[:,3],lsg2[:,5],lsg2[:,7]
-    k1 = 1e7
-    k2 = 1e7
-    f1_contr=[0]
-    f2_contr=[0]
-    f1_feedforw=[0]
-    f2_feedforw=[0]
+    f_contr=[0]
+    f_feedforw=[0]
+    k=1e7*np.ones((nr_aj,1))
+    man=np.ones((nr_aj,1))
+    t=lsg[:,0]
     j=0
     for z in range(len(t)):
         states=qq_traj(t[z])
-        e_q1 = states[0]-q1[j]
-        e_q1_d = states[2]-q1_d[j]
-        e_q2 = states[1]-q3[j]
-        e_q2_d = states[3]-q3_d[j]
+        states2=states.reshape((2,-1))
+        states2=states2[::,1:nr_aj:]
+        # Fehler
+        e=states2-lsg2[::2].reshape((2,-1))
+        e=e.T
         if z==0:
-            f1_contr=[k1*(e_q1 + e_q1_d)]
-            f2_contr=[k2*(e_q2 + e_q2_d)]
-            #f1_feedforw=[F11_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)]
+            f_contr=[(k*e).dot(man)]
+            f_feedforw=[FF_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)]
             #f2_feedforw=[F21_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)]
         else:    
-            f1_contr = np.concatenate((f1_contr,[k1*(e_q1 + e_q1_d)]),axis=1)  
-            f2_contr = np.concatenate((f2_contr,[k2*(e_q2 + e_q2_d)]),axis=1)  
-            #f1_feedforw = np.concatenate((f1_feedforw,[F11_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)]),axis=1)
+            f_contr = np.concatenate((f_contr,[(k*e).dot(man)]),axis=1)  
+            f_feedforw = np.concatenate((f_feedforw,[FF_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)]),axis=1)
             #f2_feedforw = np.concatenate((f2_feedforw,[F21_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)]),axis=1)
         j+=1
     
-    return f1_contr,f2_contr#,f1_feedforw,f2_feedforw
+    return f_contr,f_feedforw
 
 #f1_contr,f2_contr,f1_feedforw,f2_feedforw=control_effort(lsg2)
