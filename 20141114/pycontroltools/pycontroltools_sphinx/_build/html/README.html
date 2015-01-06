@@ -1,0 +1,109 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>How to build the Sphinx documentation for pycontroltools &mdash; pycontroltools 0.1 documentation</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/print.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '0.1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/theme_extras.js"></script>
+    <link rel="top" title="pycontroltools 0.1 documentation" href="index.html" />
+    <link rel="next" title="Source materials" href="pycontroltools_sources.html" />
+    <link rel="prev" title="Documentation for the code" href="pycontroltools.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>pycontroltools 0.1 documentation</span></a></h1>
+        <h2 class="heading"><span>How to build the Sphinx documentation for pycontroltools</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="pycontroltools.html">Documentation for the code</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="pycontroltools_sources.html">Source materials</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="how-to-build-the-sphinx-documentation-for-pycontroltools">
+<h1>How to build the Sphinx documentation for pycontroltools<a class="headerlink" href="#how-to-build-the-sphinx-documentation-for-pycontroltools" title="Permalink to this headline">¶</a></h1>
+<p>The documentation for the <strong>pycontroltools</strong> module is created using Sphinx.
+To be able to use the tools Sphinx has to be installed
+(<a class="reference external" href="http://sphinx-doc.org/latest/install.html">http://sphinx-doc.org/latest/install.html</a>)
+and initialized.</p>
+<div class="section" id="initializing-sphinx">
+<h2>Initializing Sphinx<a class="headerlink" href="#initializing-sphinx" title="Permalink to this headline">¶</a></h2>
+<p>To initialize the Sphinx folder hierarchy for the project,
+you preferably create a new folder for the documentation in the main folder of
+your project.
+(The script files containing the docstrings have to be in the same directory
+as the documentation folder or in the documentation folder itself.)</p>
+<p>Now start a command console in that folder and type:</p>
+<div class="highlight-bash"><div class="highlight"><pre>sphinx-quickstart
+</pre></div>
+</div>
+</div>
+<div class="section" id="build-html-and-latex-files">
+<h2>Build HTML- and LaTeX-Files<a class="headerlink" href="#build-html-and-latex-files" title="Permalink to this headline">¶</a></h2>
+<p>Copy and replace the files from the <strong>pycontroltools_sphinx</strong> folder of the
+repositorie into your documentation folder.</p>
+<p>To build the HTML-files type:</p>
+<div class="highlight-bash"><div class="highlight"><pre>make html
+</pre></div>
+</div>
+<p>The build-files appear in the folder <strong>_build/html</strong>.</p>
+<p>To build the LaTeX-Files type:</p>
+<div class="highlight-bash"><div class="highlight"><pre>make latex
+</pre></div>
+</div>
+<p>The build-files appear in the folder <strong>_build/latex</strong>.
+If a LaTeX distribution is installed on your system, you can now use
+the LaTeX files to build (and edit) the document with your own LaTeX editor.</p>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="pycontroltools.html">Documentation for the code</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="pycontroltools_sources.html">Source materials</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, Carsten Knoll, edited by Chris Penndorf.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

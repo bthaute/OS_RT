@@ -118,15 +118,15 @@ if flag_new_model_generation:
     mod1.A = st.row_stack(mod1.A,A_)
     B_ = q_dd_expr_lin.jacobian(mod1.extforce_list)
     mod1.B = st.row_stack(sp.zeros(mod1.qs.shape[0],mod1.extforce_list.shape[0]),B_)
-    print "create state space description"
-    A_para_temp = mod1.A.subs(params_values)
-    mod1.A_para = A_para_temp
-    # Achtung hier gibt es
-#    mod1.A_para.simpify()
-    B_para_temp = mod1.B.subs(params_values)
-    mod1.B_para = B_para_temp
-#    mod1.B_para.simpify()
-    IPS()
+    #    print "create state space description"
+    #    A_para_temp = mod1.A.subs(params_values)
+    #    mod1.A_para = A_para_temp
+    #    # Achtung hier gibt es
+    ##    mod1.A_para.simpify()
+    #    B_para_temp = mod1.B.subs(params_values)
+    #    mod1.B_para = B_para_temp
+    ##    mod1.B_para.simpify()
+    #    IPS()
     # Speichere Modell in Datei ab.
     print "saving model"
     pdict = {"mod1": mod1}

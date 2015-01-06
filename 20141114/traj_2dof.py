@@ -105,4 +105,8 @@ def example():
     #pl.plot(tt, qq[:, 1], label='$q_2$')
     pl.show()
     
+    lsg=np.concatenate((tt.reshape(-1,1),qq), axis=1)
+    np.save('Trajektorie_Bsp',lsg)
+    return  lsg
+    
 

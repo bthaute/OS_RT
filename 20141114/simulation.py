@@ -77,7 +77,7 @@ M_func = sp.lambdify([mod1.qs[0],mod1.qs[1], mod1.qs[2],mod1.qs[3], mod1.qds[0],
                          mod1.qds[2],mod1.qds[3],mod1.extforce_list[0],mod1.extforce_list[1],\
                          mod1.extforce_list[2],mod1.extforce_list[3]],M,'numpy')
 #IPS()
-
+# <codecell>
 def calc_F_traj(t):
        
     states=qq_traj(t)  
@@ -86,23 +86,30 @@ def calc_F_traj(t):
     f2 = FF_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)[1]
      
     return f1, f2
-
+    
+Bk_opt=np.array([[ -3850742.68840943,  -1168179.30944712,    572685.92341211,   -829342.73665955,  -2321800.26669223,   -958161.40449268,    -34473.98775092,   -248108.98384053],
+       [ -1896612.40241954,   -732166.89093391,   -181480.50007226,   -537116.708522  ,  -1138256.78085381,  19388676.83651922,   -188894.41163585,   -169773.20668387],
+       [  -385962.37262645,   -354504.81738105,   -753379.34580358,   -329553.21279944,   -240036.62640163,   -222917.85184836,   -305371.60841489,   -114109.99513054],
+       [  -117495.28088422,   -104823.25767166,   -227355.66425041,   -104686.26100281,    -74138.88126445,    -68152.74985214,    -93554.54750739,   9968492.99219859]])
+# <codecell>
 def pd_controller(z,t):
     q1, q2, q3, q4, q1_d, q2_d, q3_d, q4_d = z
     
     k=1e7*np.ones((nr_aj,1))
     states=qq_traj(t)
-    states2=states.reshape((2,-1))
-    states2=states2[::,:nr_aj:]
+    zstern=[states[0],q2,states[1],q4,states[2],q2_d,states[3],q4_d]
+    states2=states[:4:]
+    states2=states2.reshape((2,-1))
+    #states2=states2[::,:nr_aj:]
     # Fehler
     e=states2-z[::2].reshape((2,-1))
     e=e.T
     man=np.ones((nr_aj,1))
 
-    f = (k*e).dot(man)+FF_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)
-    
+    #f = (k*e).dot(man)+FF_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)
+    f = -np.dot(Bk_opt,z-zstern)[0::2]+FF_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)
     return f[0,0],f[1,0]
-
+# <codecell>
 def get_zd(z,t):
     q1, q2, q3, q4, q1_d, q2_d, q3_d, q4_d = z
     f1 = 0 #force1(q1)
@@ -117,37 +124,51 @@ def get_zd(z,t):
     #    f=np.array([[f1,f2]])
     #    temp_zd = False
     #else: f = np.concatenate((f,np.array([[f1,f2]])),axis=0)
-    
-    #f1, f2 = calc_F_traj(t)
-    #q1_dd = q11_dd_fnc(q1, q2, q3,q4, q1_d, q2_d, q3_d, q4_d,f1,0,f2,0)
-    #q2_dd = q12_dd_fnc(q1, q2, q3,q4, q1_d, q2_d, q3_d, q4_d,f1,0,f2,0)
-    #q3_dd = q21_dd_fnc(q1, q2, q3,q4, q1_d, q2_d, q3_d, q4_d,f1,0,f2,0)
-    #q4_dd = q22_dd_fnc(q1, q2, q3,q4, q1_d, q2_d, q3_d, q4_d,f1,0,f2,0)
-    rhs_eq = Mq_dd_func(q1, q2, q3,q4, q1_d, q2_d, q3_d, q4_d,f1,0,f2,0)
-    M_eq = M_func(q1, q2, q3,q4, q1_d, q2_d, q3_d, q4_d,f1,0,f2,0)
-    qq_dd = M_eq**-1*rhs_eq    
+    #q0=r_[pi/3, 0, -pi/2, 0, 0, 0.0, 0,0]
+    #qq_dd=mod1.A_para.subs(sub_qq_0)*(z-q0).reshape((-1,1))+mod1.B_para.subs(sub_qq_0)*np.array([[f1],[0],[f2],[0]])
+    A_schlange=A#A_fnc(q1,q2,q3,q4)
+    B_schlange=B#B_fnc(q1,q2,q3,q4)
+    #qq_dd=np.dot(A,(z-q0))+np.dot(B_schlange,np.array([f1,0,f2,0]))
+    qq_dd=np.dot(A_schlange,(z-z1))+np.dot(B_schlange,np.array([f1,0,f2,0]))
+    #rhs_eq = Mq_dd_func(q1, q2, q3,q4, q1_d, q2_d, q3_d, q4_d,f1,0,f2,0)
+    #M_eq = M_func(q1, q2, q3,q4, q1_d, q2_d, q3_d, q4_d,f1,0,f2,0)
+    #qq_dd = M_eq**-1*rhs_eq
+        
     #print q1_dd
     #print q2_dd
     #print t
     #return r_[q1_d,q2_d,q3_d,q4_d,q1_dd,q2_dd,q3_dd,q4_dd]
-    return r_[q1_d,q2_d,q3_d,q4_d,qq_dd[0,0],qq_dd[1,0],qq_dd[2,0],qq_dd[3,0]]
-
+    #return r_[q1_d,q2_d,q3_d,q4_d,qq_dd[0,0],qq_dd[1,0],qq_dd[2,0],qq_dd[3,0]]
+    return qq_dd
     
 # <codecell>
 
-tt = np.linspace(0,40,10000)
+tt = np.linspace(0,10,1000)
 
 error_q11 = 0
 error_q21 = 0
 q11_t0 = pi/3 # -pi/4
 q21_t0 = -pi/2 # pi/4
-z0 = r_[q11_t0 + error_q11, 0, q21_t0 + error_q21, 0, 0, 2, 0,0]
+z0 = r_[q11_t0 + error_q11, 0, q21_t0 + error_q21, 0, 0.08, 0.0, 0,0.056]
+z1 = r_[q11_t0 + error_q11, 0, q21_t0 + error_q21, 0, 0, 0.0, 0,0]
 
 q1_end = q11_t0 # 3*pi/4
 q2_end = q21_t0 # pi/2
 #qq_traj=traj.calc_traj(tt[0],tt[-1]/2,z0[0],q1_end,z0[2],q2_end)
 qq_traj=traj.calc_traj(tt[0],tt[-1]/2,q11_t0,q1_end,q21_t0,q2_end)
 
+sub_qq_0=zip(['q1_0'],[q11_t0])+zip(['q2_0'],[0])+zip(['q3_0'],[q21_t0])+zip(['q4_0'],[0])
+#A=st.to_np(mod1.A.subs(params_values).subs(sub_qq_0))
+A=mod1.A.subs(params_values)
+A=A.subs(sub_qq_0)
+A=st.to_np(A)
+#A_fnc = sp.lambdify(['q1_0','q2_0','q3_0','q4_0'],A,'numpy')
+#B=st.to_np(mod1.B.subs(params_values).subs(sub_qq_0))
+B=mod1.B.subs(params_values)
+B=B.subs(sub_qq_0)
+B=st.to_np(B)
+#B_fnc = sp.lambdify(['q1_0','q2_0','q3_0','q4_0'],B,'numpy')
+q0=r_[pi/3, 0, -pi/2, 0, 0, 0.0, 0,0]
 # <codecell>
 print "simulate"
 lsg = odeint(get_zd,z0,tt)
@@ -214,25 +235,42 @@ def control_effort(lsg2):
     f_feedforw=[0]
     k=1e7*np.ones((nr_aj,1))
     man=np.ones((nr_aj,1))
-    t=lsg[:,0]
-    j=0
-    for z in range(len(t)):
-        states=qq_traj(t[z])
-        states2=states.reshape((2,-1))
-        states2=states2[::,1:nr_aj:]
+    ti=lsg2[:,0]
+    
+    for z in range(len(ti)):
+        states=qq_traj(ti[z])
+        states2=states[:4:]
+        states2=states2.reshape((2,-1))
+        #states2=states2[::,:nr_aj:]
         # Fehler
-        e=states2-lsg2[::2].reshape((2,-1))
+        e=states2-lsg2[z,1::2].reshape((2,-1))
         e=e.T
         if z==0:
-            f_contr=[(k*e).dot(man)]
-            f_feedforw=[FF_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)]
+            f_contr=np.array((k*e).dot(man))
+            f_feedforw=np.array(FF_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0))
             #f2_feedforw=[F21_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)]
         else:    
-            f_contr = np.concatenate((f_contr,[(k*e).dot(man)]),axis=1)  
-            f_feedforw = np.concatenate((f_feedforw,[FF_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)]),axis=1)
+            f_contr = np.concatenate((f_contr,(k*e).dot(man)),axis=1)  
+            f_feedforw = np.concatenate((f_feedforw,FF_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)),axis=1)
             #f2_feedforw = np.concatenate((f2_feedforw,[F21_fnc(states[0],0,states[1],0,states[2],0,states[3],0,states[4],0,states[5],0)]),axis=1)
-        j+=1
-    
+        
+    f_feedforw=np.array(f_feedforw)
+    fig3 = plt.figure(3)
+    ay = fig3.add_subplot(1,2,1)
+    ay.set_title("Regler, Vorsteueuerung: q1")
+    ay.plot(ti,f_contr[0,:], label= r"f_contr q1" )
+    ay.plot(ti,f_feedforw[0,:], label= r"f_feedfor q1")
+    ay.set_xlabel("$t$ in s")
+    ay.set_ylabel("$M$")
+    ay.legend()
+    az = fig3.add_subplot(1,2,2)
+    az.set_title("Regler, Vorsteueuerung: q2")
+    az.plot(ti,f_contr[1,:], label= r"f_contr q2" )
+    az.plot(ti,f_feedforw[1,:], label= r"f_feedfor q2")
+    az.set_xlabel("$t$ in s")
+    az.set_ylabel("$M$")        
+    az.legend()
+    plt.show()
+        #f_contr,f_feedforw=control_effort(lsg2)
     return f_contr,f_feedforw
-
-#f1_contr,f2_contr,f1_feedforw,f2_feedforw=control_effort(lsg2)
+f_contr,f_feedforw=control_effort(lsg2)

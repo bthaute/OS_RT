@@ -1,0 +1,58 @@
+\newpage
+\section{Cholesky-Zerlegung}
+In einer Anordnung von $n$ seriellen Manipulatoren sind $2n$-Freiheitsgerade, welche die Dimension von $\vect{M}\in\Reals^{2n\times 2n}$ beschreiben. Zur Umstellung des Gleichungssystems (\ref{eq:BWGL}) ist die Inverse der Matrix notwendig. Bei der symbolischen Implementierungen ist an dieser Stelle ein sehr hoher Rechenaufwand zu erwarten. Jede Massenmatrix eines solchen mechanischen Systems ist symmetrisch ($\vect{M}=\vect{M}^T$) und positiv definit ($\forall$ EW $>0$) \cite{janschek2009systementwurf}. Durch diese Eigenschaften lässt sich eine Cholesky-Zerlegung $\vect{M}=\vect{L}\vect{L}^T$ (mit $\vect{L}$ untere Dreiecksmatrix) durchführen \cite{schwarz2009numerische}. Wenn man sich die Multiplikation 
+\begin{equation}
+\begin{aligned}
+	\vect{L}\vect{L}^T &= 
+	\begin{pmatrix}
+		l_{11} & 0      & 0	&	\cdots & 0\\
+		l_{21} & l_{22} & 0 &  &\\
+		l_{31} & l_{32} & l_{33} & &\\
+		\vdots & & & \ddots & 0\\
+		l_{2n1} & & & & l_{2n2n}
+	\end{pmatrix} \cdot 
+	\begin{pmatrix}
+	l_{11} & l_{21}      & l_{31}	&	\cdots & l_{2n1}\\
+	0 & l_{22} & l_{32} & &\\
+	0 & 0 & l_{33} & &\\
+	\vdots & & & \ddots& 0\\
+	0 & & & & l_{2n2n} 
+	\end{pmatrix}\\
+	&= 
+	\begin{pmatrix}
+	l_{11}^2 & l_{21}l_{11}      & l_{31}l_{11}	&	\cdots\\
+	l_{21}l_{11} & l_{21}^2+l_{22}^2 & l_{21}l_{31}+l_{22}l_{32} & \\
+	l_{31}l_{11} & l_{31}l_{21}+l_{32}l_{22} & l_{31}^2+l_{32}^2+l_{33}^2 & \\
+	\vdots & & & \ddots 
+	\end{pmatrix}
+\end{aligned}
+\end{equation}
+
+betrachtet, können durch einen Koeffizientenvergleich mit
+\begin{equation}
+\vect{M}=\begin{pmatrix}
+m_{11} & m_{12}      & m_{13}	&	\cdots& m_{12n}\\
+m_{21} & m_{22} & m_{23} & &\\
+m_{31} & m_{32} & m_{33} & &\\
+\vdots & & & \ddots & \\
+m_{2n1}& & & & m_{2n2n}
+\end{pmatrix}
+\end{equation}
+
+die Elemente $l_{ij}$ mit $i,j=1,2,\dots,2n$ folgender Maßen berechnet werden
+
+\begin{equation}
+\begin{aligned}
+	l_{ij}=
+	\begin{cases}
+	0, j>i\\
+	\sqrt{m_{ii}-\sum \limits_{k=1}^{j-1}l^{2}_{ik}} , i=j\\
+	\frac{1}{l_{jj}} \left( m_{ij}-\sum \limits_{k=1}^{j-1}l_{ik}l_{jk}\right) , i>j
+	\end{cases}
+\end{aligned}
+\end{equation}
+
+An dieser Stelle ist zu erahnen, dass die Wurzel nur in jedem Fall reell gelöst werden kann, wenn die zuvor genannten Eigenschaften der Matrix gelten.
+
+Die für die allgemeine Invertierung einer Matrix zu berechnende Determinante ist durch diese Zerlegung stark vereinfacht worden. Bei einer Dreiecksmatrix haben nur die Diagonalelemente der Matrix einen Einfluss, da alle anderen Summanden der Regel von Sarrus $0$ ergeben. Außerdem gilt $\det(\vect{L}\vect{L}^T)=\det\vect{L}\cdot\det\vect{L}^T$. Die Multiplikation der Diagonalelemente von $\vect{L}$ und der ihrer Transponierten sind identisch, so dass $\det(\vect{L}\vect{L}^T)=(\det\vect{L})^2$ ist.
+

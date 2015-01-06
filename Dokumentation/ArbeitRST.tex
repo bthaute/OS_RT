@@ -1,6 +1,28 @@
 \documentclass[arbeit=master,oneside]{ArbeitRST}
 % Paket zum Erzeugen von Blindtext (ist nur für dieses Beispieldokument sinnvoll)
 \usepackage{blindtext}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+%\usepackage{fancyhdr}
+\usepackage{pgfplots}
+%Absatzeinrückung ausschalten
+\setlength{\parindent}{0pt}
+\usepackage{tikz}
+\usepackage{caption}
+\usepackage[%per=slash,
+decimalsymbol=comma,
+loctolang={DE:ngerman,UK:english},abbreviations]{siunitx}
+\usepackage{pstricks}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{fancyref}
+\usepackage{tabularx} 
+
+
 % zwei Parameter zum Verändern des Layouts
 %\parindent0em
 %\parskip2ex
@@ -58,6 +80,9 @@
 \kurzfassung{An dieser Stelle fügen Sie bitte eine deutsche Kurzfassung ein.}{Please insert the English abstract here.}
 %% Inhaltsverzeichnis
 \tableofcontents
+
+\input{Doku_Modell}
+\input{visualisierung}
 
 \input{DokArbeitRst}
 \chapter[kurzer Titel]{Ausführlicher Kapiteltitel, der wirklich viel zu lang für das Inhaltsverzeichnis in dieser Dokumentvorlage ist}

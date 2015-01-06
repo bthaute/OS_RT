@@ -6,6 +6,11 @@
   theory and examples\/}.
 \newblock International Journal of Control, 61(6):1327--1361, 1995.
 
+\bibitem{janschek2009systementwurf}
+{\sc Janschek, K.}: {\em Systementwurf mechatronischer Systeme: Methoden --
+  Modelle -- Konzepte\/}.
+\newblock Springer Berlin Heidelberg, 2009.
+
 \bibitem{Mik57de}
 {\sc Mikusi{\'n}ski, J.}: {\em Operatorenrechnung\/}.
 \newblock {V}{E}{B} Deutscher Verlag der Wissenschaften, Berlin, 1957.
@@ -14,5 +19,10 @@
 {\sc Mittelbach, F.} \btxandshort{.}\ {\sc M.~Goosens}: {\em Der
   \LaTeX-Begleiter\/}.
 \newblock Pearson Studium, 2. \btxeditionshort{.}, 2005.
+
+\bibitem{schwarz2009numerische}
+{\sc Schwarz, H.} \btxandshort{.}\ {\sc N.~K{\"o}ckler}: {\em Numerische
+  Mathematik\/}.
+\newblock Vieweg Studium. Vieweg+Teubner Verlag, 2009.
 
 \end{thebibliography}

@@ -1,0 +1,128 @@
+\indexentry{lietools.lietools (module)|hyperpage}{1}
+\indexentry{lie (module)|hyperpage}{1}
+\indexentry{jac() (in module lietools.lietools)|hyperpage}{1}
+\indexentry{lie\_deriv() (in module lietools.lietools)|hyperpage}{1}
+\indexentry{lie\_bracket() (in module lietools.lietools)|hyperpage}{2}
+\indexentry{lie\_deriv\_covf() (in module lietools.lietools)|hyperpage}{3}
+\indexentry{linearcontrol.linearcontrol (module)|hyperpage}{4}
+\indexentry{linearcontrol (module)|hyperpage}{4}
+\indexentry{cont\_mat() (in module linearcontrol.linearcontrol)|hyperpage}{4}
+\indexentry{is\_left\_coprime() (in module linearcontrol.linearcontrol)|hyperpage}{4}
+\indexentry{linear\_input\_trafo() (in module linearcontrol.linearcontrol)|hyperpage}{4}
+\indexentry{linearcontrol.robust\_poleplacement (module)|hyperpage}{4}
+\indexentry{opt\_polplatzierung (module)|hyperpage}{4}
+\indexentry{exchange\_all\_cols() (in module linearcontrol.robust\_poleplacement)|hyperpage}{4}
+\indexentry{full\_qr() (in module linearcontrol.robust\_poleplacement)|hyperpage}{5}
+\indexentry{opt\_place\_MI() (in module linearcontrol.robust\_poleplacement)|hyperpage}{5}
+\indexentry{ortho\_complement() (in module linearcontrol.robust\_poleplacement)|hyperpage}{5}
+\indexentry{trajectories.trajectories (module)|hyperpage}{6}
+\indexentry{trajectories (module)|hyperpage}{6}
+\indexentry{integrate\_pw() (in module trajectories.trajectories)|hyperpage}{6}
+\indexentry{make\_pw() (in module trajectories.trajectories)|hyperpage}{6}
+\indexentry{auxfuncs.math.diffoperators (module)|hyperpage}{6}
+\indexentry{diffoperators (module)|hyperpage}{6}
+\indexentry{div() (in module auxfuncs.math.diffoperators)|hyperpage}{6}
+\indexentry{gradient() (in module auxfuncs.math.diffoperators)|hyperpage}{6}
+\indexentry{hoderiv() (in module auxfuncs.math.diffoperators)|hyperpage}{6}
+\indexentry{auxfuncs.math.laplace (module)|hyperpage}{7}
+\indexentry{laplace (module)|hyperpage}{7}
+\indexentry{do\_laplace\_deriv() (in module auxfuncs.math.laplace)|hyperpage}{7}
+\indexentry{auxfuncs.math.matrix (module)|hyperpage}{7}
+\indexentry{matrix (module)|hyperpage}{7}
+\indexentry{all\_k\_minors() (in module auxfuncs.math.matrix)|hyperpage}{7}
+\indexentry{as\_mutable\_matrix() (in module auxfuncs.math.matrix)|hyperpage}{7}
+\indexentry{cancel\_rows\_cols() (in module auxfuncs.math.matrix)|hyperpage}{7}
+\indexentry{col\_degree() (in module auxfuncs.math.matrix)|hyperpage}{7}
+\indexentry{col\_minor() (in module auxfuncs.math.matrix)|hyperpage}{7}
+\indexentry{col\_select() (in module auxfuncs.math.matrix)|hyperpage}{7}
+\indexentry{col\_stack() (in module auxfuncs.math.matrix)|hyperpage}{7}
+\indexentry{concat\_cols() (in module auxfuncs.math.matrix)|hyperpage}{7}
+\indexentry{concat\_rows() (in module auxfuncs.math.matrix)|hyperpage}{7}
+\indexentry{elementwise\_mul() (in module auxfuncs.math.matrix)|hyperpage}{7}
+\indexentry{ensure\_mutable() (in module auxfuncs.math.matrix)|hyperpage}{7}
+\indexentry{expand() (in module auxfuncs.math.matrix)|hyperpage}{7}
+\indexentry{general\_minor() (in module auxfuncs.math.matrix)|hyperpage}{7}
+\indexentry{getOccupation() (in module auxfuncs.math.matrix)|hyperpage}{7}
+\indexentry{get\_col\_reduced\_right() (in module auxfuncs.math.matrix)|hyperpage}{7}
+\indexentry{get\_rows() (in module auxfuncs.math.matrix)|hyperpage}{8}
+\indexentry{is\_col\_reduced() (in module auxfuncs.math.matrix)|hyperpage}{8}
+\indexentry{is\_row\_reduced() (in module auxfuncs.math.matrix)|hyperpage}{8}
+\indexentry{matrix\_atoms() (in module auxfuncs.math.matrix)|hyperpage}{8}
+\indexentry{matrix\_count\_ops() (in module auxfuncs.math.matrix)|hyperpage}{8}
+\indexentry{matrix\_degrees() (in module auxfuncs.math.matrix)|hyperpage}{8}
+\indexentry{matrix\_random\_equaltest() (in module auxfuncs.math.matrix)|hyperpage}{8}
+\indexentry{matrix\_series() (in module auxfuncs.math.matrix)|hyperpage}{8}
+\indexentry{matrix\_subs\_random\_numbers() (in module auxfuncs.math.matrix)|hyperpage}{8}
+\indexentry{matrix\_with\_rationals() (in module auxfuncs.math.matrix)|hyperpage}{8}
+\indexentry{mdiff() (in module auxfuncs.math.matrix)|hyperpage}{8}
+\indexentry{ratsimp() (in module auxfuncs.math.matrix)|hyperpage}{8}
+\indexentry{row\_col\_select() (in module auxfuncs.math.matrix)|hyperpage}{8}
+\indexentry{row\_stack() (in module auxfuncs.math.matrix)|hyperpage}{8}
+\indexentry{simplify() (in module auxfuncs.math.matrix)|hyperpage}{8}
+\indexentry{symbMatrix() (in module auxfuncs.math.matrix)|hyperpage}{8}
+\indexentry{symm\_matrix\_to\_vect() (in module auxfuncs.math.matrix)|hyperpage}{8}
+\indexentry{symmetryDict() (in module auxfuncs.math.matrix)|hyperpage}{8}
+\indexentry{trigsimp() (in module auxfuncs.math.matrix)|hyperpage}{8}
+\indexentry{unimod\_completion() (in module auxfuncs.math.matrix)|hyperpage}{9}
+\indexentry{vect\_to\_symm\_matrix() (in module auxfuncs.math.matrix)|hyperpage}{9}
+\indexentry{auxfuncs.math.miscmath (module)|hyperpage}{9}
+\indexentry{miscmath (module)|hyperpage}{9}
+\indexentry{equation (class in auxfuncs.math.miscmath)|hyperpage}{9}
+\indexentry{extract\_independent\_eqns() (in module auxfuncs.math.miscmath)|hyperpage}{9}
+\indexentry{fractionfromfloat() (in module auxfuncs.math.miscmath)|hyperpage}{9}
+\indexentry{get\_coeff\_row() (in module auxfuncs.math.miscmath)|hyperpage}{9}
+\indexentry{jac() (in module auxfuncs.math.miscmath)|hyperpage}{9}
+\indexentry{lin\_solve\_all() (in module auxfuncs.math.miscmath)|hyperpage}{10}
+\indexentry{lin\_solve\_eqns() (in module auxfuncs.math.miscmath)|hyperpage}{10}
+\indexentry{lin\_solve\_eqns\_jac() (in module auxfuncs.math.miscmath)|hyperpage}{10}
+\indexentry{make\_eqns() (in module auxfuncs.math.miscmath)|hyperpage}{10}
+\indexentry{multi\_series() (in module auxfuncs.math.miscmath)|hyperpage}{10}
+\indexentry{numer\_denom() (in module auxfuncs.math.miscmath)|hyperpage}{10}
+\indexentry{rat\_if\_close() (in module auxfuncs.math.miscmath)|hyperpage}{10}
+\indexentry{rationalize\_expression() (in module auxfuncs.math.miscmath)|hyperpage}{10}
+\indexentry{real\_roots() (in module auxfuncs.math.miscmath)|hyperpage}{10}
+\indexentry{roots() (in module auxfuncs.math.miscmath)|hyperpage}{10}
+\indexentry{sp\_fff() (in module auxfuncs.math.miscmath)|hyperpage}{10}
+\indexentry{symbs\_to\_func() (in module auxfuncs.math.miscmath)|hyperpage}{10}
+\indexentry{trigsimp2() (in module auxfuncs.math.miscmath)|hyperpage}{10}
+\indexentry{uv() (in module auxfuncs.math.miscmath)|hyperpage}{10}
+\indexentry{auxfuncs.math.numtools (module)|hyperpage}{10}
+\indexentry{numtools (module)|hyperpage}{10}
+\indexentry{chop() (in module auxfuncs.math.numtools)|hyperpage}{10}
+\indexentry{clean\_numbers() (in module auxfuncs.math.numtools)|hyperpage}{11}
+\indexentry{dd() (in module auxfuncs.math.numtools)|hyperpage}{11}
+\indexentry{np\_trunc\_small\_values() (in module auxfuncs.math.numtools)|hyperpage}{11}
+\indexentry{random\_equaltest() (in module auxfuncs.math.numtools)|hyperpage}{11}
+\indexentry{to\_np() (in module auxfuncs.math.numtools)|hyperpage}{11}
+\indexentry{auxfuncs.math.polynomial (module)|hyperpage}{11}
+\indexentry{polynomial (module)|hyperpage}{11}
+\indexentry{coeffs() (in module auxfuncs.math.polynomial)|hyperpage}{11}
+\indexentry{condition\_poly() (in module auxfuncs.math.polynomial)|hyperpage}{11}
+\indexentry{element\_deg\_factory() (in module auxfuncs.math.polynomial)|hyperpage}{11}
+\indexentry{get\_order\_coeff\_from\_expr() (in module auxfuncs.math.polynomial)|hyperpage}{11}
+\indexentry{poly\_coeffs() (in module auxfuncs.math.polynomial)|hyperpage}{11}
+\indexentry{poly\_degree() (in module auxfuncs.math.polynomial)|hyperpage}{11}
+\indexentry{poly\_scalar\_field() (in module auxfuncs.math.polynomial)|hyperpage}{11}
+\indexentry{trans\_poly() (in module auxfuncs.math.polynomial)|hyperpage}{11}
+\indexentry{zeros\_to\_coeffs() (in module auxfuncs.math.polynomial)|hyperpage}{11}
+\indexentry{auxfuncs.math.taylor (module)|hyperpage}{12}
+\indexentry{taylor (module)|hyperpage}{12}
+\indexentry{multi\_taylor() (in module auxfuncs.math.taylor)|hyperpage}{12}
+\indexentry{multi\_taylor\_matrix() (in module auxfuncs.math.taylor)|hyperpage}{12}
+\indexentry{series() (in module auxfuncs.math.taylor)|hyperpage}{12}
+\indexentry{auxfuncs.programming.miscprog (module)|hyperpage}{12}
+\indexentry{miscprog (module)|hyperpage}{12}
+\indexentry{atoms() (in module auxfuncs.programming.miscprog)|hyperpage}{12}
+\indexentry{aux\_make\_tup\_if\_necc() (in module auxfuncs.programming.miscprog)|hyperpage}{12}
+\indexentry{expr\_to\_func() (in module auxfuncs.programming.miscprog)|hyperpage}{12}
+\indexentry{get\_diffterms() (in module auxfuncs.programming.miscprog)|hyperpage}{12}
+\indexentry{get\_expr\_var() (in module auxfuncs.programming.miscprog)|hyperpage}{12}
+\indexentry{makeGlobal() (in module auxfuncs.programming.miscprog)|hyperpage}{12}
+\indexentry{make\_global() (in module auxfuncs.programming.miscprog)|hyperpage}{12}
+\indexentry{prev() (in module auxfuncs.programming.miscprog)|hyperpage}{12}
+\indexentry{rev\_tuple() (in module auxfuncs.programming.miscprog)|hyperpage}{12}
+\indexentry{simp\_trig\_dict() (in module auxfuncs.programming.miscprog)|hyperpage}{12}
+\indexentry{subs\_same\_symbs() (in module auxfuncs.programming.miscprog)|hyperpage}{13}
+\indexentry{trig\_term\_poly() (in module auxfuncs.programming.miscprog)|hyperpage}{13}
+\indexentry{tup0() (in module auxfuncs.programming.miscprog)|hyperpage}{13}
+\indexentry{zip0() (in module auxfuncs.programming.miscprog)|hyperpage}{13}

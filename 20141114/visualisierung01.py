@@ -147,7 +147,7 @@ if 0:
     pl.plot(tt, qq2)
     pl.plot(tt, qq3)
     pl.plot(tt, qq4)
-
+    
     pl.show()
 
     raise SystemExit

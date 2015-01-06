@@ -1,0 +1,143 @@
+.. pycontroltools_code-label:
+
+*******************************************
+Documentation for the code
+*******************************************
+======================
+**lietools** (package)
+======================
+
+**lietools** (module)
+'''''''''''''''''''''
+
+The module **lietools** contains functions concerning
+different types of Lie-derivatives. It is based upon the `sympy`
+package for symbolic computation, especially the class `sympy.Matrix`.
+
+.. automodule:: lietools.lietools
+    :members: jac, lie_deriv, lie_bracket, lie_deriv_covf
+
+==================
+**linearcontrol**
+==================
+
+**linearcontrol**
+''''''''''''''''''
+
+The module **linearcontrol** contains functions concerning
+linear control algorithms.
+
+.. automodule:: linearcontrol.linearcontrol
+    :members:
+
+**robust_poleplacement**
+''''''''''''''''''''''''
+
+The module **robust_poleplacement** contains functions to calculate a robust
+control matrix for multiple input systems.
+
+.. automodule:: linearcontrol.robust_poleplacement
+    :members:
+
+==================
+**trajectories**
+==================
+
+**trajectories**
+''''''''''''''''''
+
+The module **trajectories** contains functions concerning the construction
+of system trajectories.
+
+.. automodule:: trajectories.trajectories
+    :members:
+
+==================
+**auxfuncs/math**
+==================
+The auxfuncs package **math** contains mathematical auxiliary functions for
+**pycontroltools** categorized in the modules concerning:
+
+- differential operators
+- LaPlace
+- matrices
+- miscellaneous
+- numerical tools
+- polynomial helpfunctions
+- Taylor
+
+**diffoperators**
+''''''''''''''''''
+
+The module **diffoperators** contains functions concerning differential
+Operators.
+
+.. automodule:: auxfuncs.math.diffoperators
+    :members:
+
+**laplace**
+''''''''''''''''''
+
+The module **laplace** contains functions concerning LaPlace.
+
+.. automodule:: auxfuncs.math.laplace
+    :members:
+
+**matrix**
+''''''''''''''''''
+
+The module **matrix** contains functions concerning operations on matrices.
+
+.. automodule:: auxfuncs.math.matrix
+    :members:
+
+**miscmath**
+''''''''''''''''''
+
+The module **miscmath** contains miscellaneous mathematical functions for
+**pycontroltools**.
+
+.. automodule:: auxfuncs.math.miscmath
+    :members:
+
+**numtools**
+''''''''''''''''''
+
+The module **numtools** contains numerical tools.
+
+.. automodule:: auxfuncs.math.numtools
+    :members:
+
+**polynomial**
+''''''''''''''''''
+
+The module **polynomial** contains functions concerning the construction
+of polynomials.
+
+.. automodule:: auxfuncs.math.polynomial
+    :members:
+
+**taylor**
+''''''''''''''''''
+
+The module **taylor** contains functions concerning the construction
+of Taylor polynomials.
+
+.. automodule:: auxfuncs.math.taylor
+    :members:
+
+=========================
+**auxfuncs/programming**
+=========================
+The helpfunctions package **programming** contains helpfunctions for
+**pycontroltools** concerning programming issues.
+
+**miscprog**
+''''''''''''''''''
+
+The module **miscprog** contains miscellaneous functions concerning
+programming in **pycontroltools**.
+
+.. automodule:: auxfuncs.programming.miscprog
+    :members:
+

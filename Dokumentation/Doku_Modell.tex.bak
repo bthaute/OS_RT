@@ -1,0 +1,153 @@
+\chapter{Einleitung}
+%%Einleitung
+%Thema
+%Erläuterung des Problems
+%Aufgabe/Ziel
+In dieser Seminararbeit soll eine verfahrbare Pumpe zur Beförderung von flüssigem Beton, wie sie im Baubereich eingesetzt wird, aus regelungstechnischer Sicht untersucht werden. Eine solche Autobetonpumpe ist in der folgenden Abbildung dargestellt. 
+
+%Grafik
+\begin{figure}[h!]
+\centering
+\includegraphics[scale=0.75]{betonpumpe-004.jpg}
+\caption[]{Autobetonpumpe mit ausgefahrem Verteilermast, Quelle: \\http://www.trans-beton.de/images/picts/betonpumpe-004.jpg}
+\end{figure}
+
+Als erstes soll ein dynamisches Modell für die Pumpe gefunden werden. Dann soll mit Hilfe von numerischer Berechnungen/Simulationen unter Verwendung der Programmiersprache Python der Steuerungsentwurf erfolgen. Alle Gelenkwinkel der Pumpe sollen dabei möglichst exakt einer vorgegeben Solltrajekorie folgen.
+Beim Einsatz der Pumpe kommt es darüberhinaus zu starken Schwingungen, welche durch einen Regler verringert werden sollen.
+
+%\begin{figure}[h!]
+%\centering
+%\includegraphics[scale=0.23]{betonpumpe.jpg}
+%\caption[]{Betonpumpe, Quelle: \\http://i00.i.aliimg.com/photo/v1/112691528/Truck_mounted_Concrete_Boom_Pump.jpg}
+%\end{figure}
+
+
+\chapter{Modellbildung}
+Die Anordnung soll als Mehrfachpendel modelliert werden. Die Masse der Armsegmente wird als konzentriert in den einzelnen Schwerpunkten angenommen. Die Durchbiegung eines Armsegments wird durch ein unaktuiertes Gelenk mit einer Federsteifigkeit $k$ modelliert. Auf eine verteiltparametrische Beschreibung soll verzichtet werden.
+% Rechtfertigung der Modellbeschreibung -> Hydraulikantriebe,etc.
+% genauere Erklärung der Skizze
+
+%Skizze
+\begin{figure}[h!]
+\centering
+\def\svgscale{0.8}
+\input{Skizze.pdf_tex}
+\caption{Skizze des Modells für zwei Armsegmente und Durchbiegung}
+\label{fig:Skizze}
+\end{figure}
+
+% Formeln
+
+% Wahl der Koordinaten
+% Potentielle und Kinetische Koenergie
+% Euler Lagrange-Formalismus
+Abbildung \ref{fig:Skizze} stellt das Modell eines Verteilermasts mit 2 Armsegmenten dar. Der erste Index beschreibt das physikalisch vorhandene i-te Armsegment des Verteilermasts. Der zweite Index nur für die Modellierung der Biegung vorhandene Unterteilung der einzelnen Segmente. Die aktuierten Gelenke sind in grau dargestellt. In diese werden äußere Momente $F$ durch die hydraulische Antriebe eingeprägt. Die restlichen Gelenke dienen nur zur Modellierung der Biegung der Armsegmente. Alle Gelenke sind masselos. Es werden Relativwinkel zwischen den Segmenten verwendet.\\
+\section{Herleitung der Bewegungsgleichung}
+Ziel ist es die nichtlinearen Bewegungsgleichungen für ein Modell mit beliebig vielen Gelenkwinkel aufzustellen. Für die Herleitung der Bewegungsgleichung wird der Euler-Lagrange-Formalismus verwendet.\\ 
+Zunächst werden geeignete Koordinaten für die Beschreibung der Schwerpunktlagen der Massen gesucht. Die Schwerpunkte der Teilmassen des i-ten Armsegments werden kartesisch beschrieben durch die Vektoren
+
+\begin{equation}
+\vec{x_\mathrm{i}}=(x_\mathrm{ij},y_\mathrm{ij})^T.
+\end{equation}
+
+Die Gelenke sind über starre Stabelemente mit der Länge $a_\mathrm{ij}$ gekoppelt. Die Minimalkoordinaten des i-ten Armsegment entsprechen daher den Winkeln
+\begin{equation}
+\vec{q_\mathrm{i}} = (q_\mathrm{i1},...,q_\mathrm{ij})^T.
+\end{equation}
+
+Die Euler-Lagrange-Gleichungen 2.Art lauten
+\begin{equation}
+\dfrac{d}{dt}\dfrac{\partial L(\vec{q},\dot{\vec{q}})}{q_\mathrm{ij}}-\dfrac{\partial L(\vec{q},\dot{\vec{q}})}{q_\mathrm{ij}}=F_\mathrm{i}-d_\mathrm{i}
+\label{eq:lagr}
+\end{equation}
+
+mit der Lagrange-Funktion
+\begin{equation}
+L(\vec{q},\dot{\vec{q}})=T(\vec{q},\dot{\vec{q}})-U(\vec{q})
+\end{equation}
+wobei $T$ die kinetische Koenergie und $U$ die potentielle Energie der Massen darstellt.
+Die kinetische Koenergie berechnet sich zu 
+\begin{equation}
+T = \sum \left( \dfrac{1}{2}\cdot m_\mathrm{ij}\cdot(v^2_{x,ij}+v^2_\mathrm{y,ij})+\dfrac{1}{2}\cdot J_{ij}\cdot\omega_\mathrm{ij}^2 \right).
+\end{equation}
+Sie enthält einen translatorischen und einen rotatorischen Anteil.\\
+Die potentielle Energie berechnet sich zu 
+
+\begin{equation}
+U = \sum \left( m_\mathrm{ij}\cdot g \cdot y_\mathrm{ij} + k_i \cdot q_\mathrm{ij} \right).
+\end{equation}
+
+Die kartesischen Schwerpunktkoordinaten lassen sich über die bekannten Armsegmentlängen $a_\mathrm{ij}$, Schwerpunktlängen $l_\mathrm{ij}$ und die Gelenkwinkel $q_\mathrm{ij}$ berechnen. Exemplarisch ergibt sich damit für die ersten zwei Masseelemente aus Abbildung \ref{fig:Skizze}:
+
+\begin{align*}
+x_\mathrm{11} &= l_\mathrm{11}\cdot \cos(q_\mathrm{11}) \\
+y_\mathrm{11} &= l_\mathrm{11}\cdot \sin(q_\mathrm{11}) \\
+x_\mathrm{12} &= a_\mathrm{11}\cdot \cos(q_\mathrm{11})+l_\mathrm{12}\cdot\cos(q_\mathrm{11}-q_\mathrm{12})\\
+y_\mathrm{12} &= a_\mathrm{11}\cdot \sin(q_\mathrm{11})+l_\mathrm{12}\cdot\sin(q_\mathrm{11}-q_\mathrm{12})\\
+ 			 &\mathrel{\makebox[\widthof{=}]{\vdots}} 
+\end{align*}
+
+Man erhält dabei durch Lösung von (\ref{eq:lagr}) ein System nichtlinearer Bewegungsgleichungen, welches die allgemeine Form
+
+\begin{equation}
+M(\vec{q})\cdot\ddot{\vec{q}}+C(\vec{q},\dot{\vec{q}})\cdot\dot{\vec{q}}+K\cdot\vec{q}+g(\vec{q})=\vec{F}
+\label{eq:BWGL}
+\end{equation}
+
+hat. \\
+Dabei stellt $M(\vec{q})$ die Massenmatrix, der Term $C(\vec{q},\dot{\vec{q}})$ Zentrifugalkräfte, $K\cdot\vec{q}$ die elastischen Fesselungskräfte und $g(\vec{q})$ Gravitationskräfte dar.\\   
+Für Simulation muss (\ref{eq:BWGL}) nach $\ddot{\vec{q}}$ umgestellt werden, da diese die Bewegungsgleichungen über eine numerische Integration löst.
+
+\begin{align*}
+M \cdot \ddot{\vec{q}}		 &= \vec{F}-C\dot{\vec{q}}-K\vec{q}-g 			\\
+M^{-1}\cdot M \ddot{\vec{q}} &= M^{-1}(\vec{F}-C\dot{\vec{q}}-K\vec{q}-g)	\\
+\ddot{\vec{q}}				 &= M^{-1}(\vec{F}-C\dot{\vec{q}}-K\vec{q}-g)
+\end{align*}
+
+\chapter{Steuerungsentwurf}
+ 
+\begin{figure}[h!]
+\centering
+\input{Vorsteuerung.pdf_tex}
+\caption{Regelkreis}
+\end{figure}
+
+Planung einer Trajektorie. Allg Darstellung als Polynom n-ten Grades
+
+\begin{figure}[h!]
+\centering
+\input{Trajektorie.pdf_tex}
+\caption{Trajektorie}
+\end{figure}
+
+\begin{equation}
+q_{\mathrm{traj}}(t) = a_\mathrm{n}t^n+\dots+a_\mathrm{1}t+a_\mathrm{0}
+\end{equation}
+Randbedingungen
+
+\begin{align*}
+q(T_\mathrm{0})			&=q_\mathrm{a} & q(T_\mathrm{1})&=q_\mathrm{soll}\\	
+\dot{q}(T_\mathrm{0})	&=0 		   & \dot{q}(T_\mathrm{1})&=0\\
+\ddot{q}(T_\mathrm{0})	&=0 		   & \ddot{q}(T_\mathrm{1})&=0
+\end{align*}
+
+damit lässt sich ein lineares Gleichungssystem mit 6 Gleichungen aufstellen. Es ergibt sich also ein Polynom 6.Grades.\\
+Mit Hilfe der ermittelten Trajektorie für die Gelenkwinkel und der ersten und zweiten Ableitung, die berechnet werden können, können mit (\ref{eq:BWGL}) die erforderlichen Momente berechnet werden, welche die Motoren aufbringen müssen.
+
+\begin{equation}
+F_\mathrm{Vorst} = M(\vec{q}_{\mathrm{traj}})\cdot\ddot{\vec{q}}_{\mathrm{traj}}+C(\vec{q}_{\mathrm{traj}},\dot{\vec{q}}_{\mathrm{traj}})\cdot\dot{\vec{q}}_{\mathrm{traj}}+K\cdot{\vec{q}}_{\mathrm{traj}}+g(\vec{q}_{\mathrm{traj}}) 
+\end{equation}
+
+Die folgende Abbildung zeigen die Simulationsergebnisse bei Verwendung einer reinen Steuerung bei vier vorhanden Gelenkwinkel, von denen zwei aktuiert sind. 
+\begin{figure}[h!]
+\centering
+\scalebox{0.75}{\input{figure3.pgf}}
+\caption{Verlauf der Gelenkwinkel bei Verwendung einer Vorsteuerung, kein Regler vorhanden}
+\end{figure}
+
+Es wurde kein Regler verwendet
+
+%\begin{figure}[htb!]
+%\input{figure4.pgf}
+%\caption{Verlauf der Fehler}
+%\end{figure}

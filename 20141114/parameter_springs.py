@@ -22,7 +22,7 @@ import pickle
 
 pfilepath = "para5dof_springs.pcl"
 
-flag_new_parameter = True
+flag_new_parameter = False
 if flag_new_parameter:
     
     parameter = sp.symbols("H, B, L, D, M")
