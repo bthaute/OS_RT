@@ -36,12 +36,12 @@ if flag_new_parameter:
     Jx1 = (M1*(H**2 + L**2))/12
     Jy1 = (M1*(B**2 + L**2))/12
     Jz1 = (M1*(B**2 + H**2))/12
-    Jx2 = (M1*((H - 2*D)**2 + L**2))/12
-    Jy2 = (M1*((B - 2*D)**2 + L**2))/12
-    Jz2 = (M1*((B - 2*D)**2 + (H - 2*D)**2))/12
+    Jx2 = (M2*((H - 2*D)**2 + L**2))/12
+    Jy2 = (M2*((B - 2*D)**2 + L**2))/12
+    Jz2 = (M2*((B - 2*D)**2 + (H - 2*D)**2))/12
     
-    Jx = Jx1 - Jx2
-    Jy = Jy1 - Jy2
+    Jx = Jx1 - Jx2 + M*(L/2)**2
+    Jy = Jy1 - Jy2 + M*(L/2)**2
     Jz = Jz1 - Jz2
     Jx.simplify()
     Jy.simplify()
