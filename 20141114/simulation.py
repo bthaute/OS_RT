@@ -202,7 +202,7 @@ ax.set_ylabel("$\phi_2$")
 ax.legend()
 plt.show()
 np.save('lsg_outfile',lsg2)
-
+plt.savefig('LinearesModell.png',dpi=150)
 # <codecell>
 # Regelabweichungen veranschaulicht
 fig2 = plt.figure(2)
