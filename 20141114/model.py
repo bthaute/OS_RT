@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 # <nbformat>3.0</nbformat>
 
 import sympy as sp
@@ -14,7 +14,7 @@ nr_aj = 2
 # Number of the actuated joints -> uses .simplify()
 nr_simplify = 0
 # Do you want to create an new model?
-flag_new_model_generation = True
+flag_new_model_generation = False
 
 
 pfilepath = "model_"+np.str(nr_aj)+"_actuatedJoints_"+np.str(nr_aj)+"_nonactuatedJoints_test.pcl"
