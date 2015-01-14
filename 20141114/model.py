@@ -14,10 +14,10 @@ nr_aj = 2
 # Number of the actuated joints -> uses .simplify()
 nr_simplify = 0
 # Do you want to create an new model?
-flag_new_model_generation = False
+flag_new_model_generation = True
 
 
-pfilepath = "model_"+np.str(nr_aj)+"_actuatedJoints_"+np.str(nr_aj)+"_nonactuatedJoints.pcl"
+pfilepath = "model_"+np.str(nr_aj)+"_actuatedJoints_"+np.str(nr_aj)+"_nonactuatedJoints_test.pcl"
 if flag_new_model_generation:  
 
     print "create new model"
@@ -70,7 +70,7 @@ if flag_new_model_generation:
         s_diff_temp =ss[:,index].diff(t)
         T = T + (II[index]*q_dd_sum**2 + mm[index]*(s_diff_temp.T*s_diff_temp)[0])/2
         V = V + (kk[index]*qq[index]**2)/2 + g[0]*mm[index]*ss[1,index]
-        
+    IPS()    
     # Erzeuge Modell nach Lagrange
     print "create model by model_tools"
     mod1 = mt.generate_model(T, V, qq, FF)
@@ -85,7 +85,7 @@ if flag_new_model_generation:
     
     #Linearisiere
     subslist_lin = zip(mod1.qdds, sp.zeros(mod1.qdds.shape[0]))+zip(mod1.qds,\
-    sp.zeros(mod1.qds.shape[0]))+zip(mod1.qs, qq_0)+zip(mod1.extforce_list, sp.zeros(mod1.extforce_list.shape[0]))
+    sp.zeros(mod1.qds.shape[0]))+zip(mod1.qs, qq_0)#+zip(mod1.extforce_list, sp.zeros(mod1.extforce_list.shape[0]))
     vector_exp = mod1.qdds
     vector_exp = st.row_stack(vector_exp,mod1.qds)
     vector_exp = st.row_stack(vector_exp,mod1.qs)
@@ -113,7 +113,7 @@ if flag_new_model_generation:
         for index in range(0,q_dd_expr_lin.shape[0]):
             print ("vereinfache sol",index+1)
             q_dd_expr_lin[index].simplify()
-    A_ = q_dd_expr_lin.jacobian([mod1.qds,mod1.qs])
+    A_ = q_dd_expr_lin.jacobian([mod1.qs,mod1.qds])
     mod1.A = st.col_stack(sp.zeros(q_dd_expr_lin.shape[0]),sp.eye(q_dd_expr_lin.shape[0]))
     mod1.A = st.row_stack(mod1.A,A_)
     B_ = q_dd_expr_lin.jacobian(mod1.extforce_list)
@@ -142,4 +142,4 @@ else:  # flag_new_model_generation == False
 
     mod1 = pdict["mod1"]
    
-print "read model"
+    print "read model"

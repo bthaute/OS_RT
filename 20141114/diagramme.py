@@ -15,10 +15,17 @@ from matplotlib import rcParams
 #import svgutils.transform as sg
 #from pylab import *
 
+datei='lsg_outfile'
+dateiload=datei+'.npy'
+dateisave=datei+'.pgf'
 #lsg=np.load('lsg_outfile.npy')
-lsg=np.load('Trajektorie_Bsp.npy')
+#lsg=np.load('Trajektorie_Bsp.npy')
+lsg=np.load(dateiload)
+
 tt=lsg[:,0]
 
+#if pl.fignum_exists(1):
+#    pl.close()
 #==============================================================================
     # setting rcParams for figures
     #=========================
@@ -47,7 +54,7 @@ rcParams['axes.labelsize'] = '16' # sets fontsize of the x any y labels
 #==============================================================================
 
 fig1 = pl.figure()
-fig1.canvas.set_window_title(r'Zustandsgrößen')
+#fig1.canvas.set_window_title(r'Zustandsgrößen')
 #fig1.suptitle(r'Zustandsgroessen', fontsize=20)
 
 
@@ -69,9 +76,9 @@ ax1.spines['top'].set_color('none')
 
 
 #ax1.plot(tt, res_bad[:,0], 'k')
-ax1.plot(tt, lsg[:,1]*180/pi, label= r'$q_1$')#, 'k')
+#ax1.plot(tt, lsg[:,1]*180/pi, label= r'$q_1$')#, 'k')
 ax1.plot(tt, lsg[:,2]*180/pi, label= r'$q_2$')#, 'k')
-ax1.plot(tt, lsg[:,3]*180/pi, label= r'$q_3$')#, 'k')
+#ax1.plot(tt, lsg[:,3]*180/pi, label= r'$q_3$')#, 'k')
 ax1.plot(tt, lsg[:,4]*180/pi, label= r'$q_4$')#, 'k')
 ax1.set_ylabel(r'Winkel [^\circ]')
 ax1.set_xlabel(r'Zeit[s]')
@@ -79,7 +86,8 @@ ax1.legend()
 pl.grid()
 
 pl.show()
-#pl.savefig('xsim_opt_place_MI.svg')
+#pl.close(fig1)
+#pl.savefig(dateisave)
 
 #
 #
