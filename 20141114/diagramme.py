@@ -15,13 +15,17 @@ from matplotlib import rcParams
 #import svgutils.transform as sg
 #from pylab import *
 
-datei='lsg_outfile'
-dateiload=datei+'.npy'
-dateisave=datei+'.pgf'
+datei1='lsg_outfilelin'
+dateiload1=datei1+'.npy'
+dateisave=datei1+'.pgf'
+datei2='lsg_outfilenlin'
+dateiload2=datei2+'.npy'
+dateisave=datei2+'.pgf'
 #lsg=np.load('lsg_outfile.npy')
 #lsg=np.load('Trajektorie_Bsp.npy')
-lsg=np.load(dateiload)
-
+lsg1=np.load(dateiload1)
+lsg2=np.load(dateiload2)
+lsg=lsg2-lsg1
 tt=lsg[:,0]
 
 #if pl.fignum_exists(1):
