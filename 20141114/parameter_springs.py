@@ -49,6 +49,14 @@ if flag_new_parameter:
     Jx_fnc = sp.lambdify([H, B, L, D, M],Jx,'numpy')
     Jy_fnc = sp.lambdify([H, B, L, D, M],Jy,'numpy')
     Jz_fnc = sp.lambdify([H, B, L, D, M],Jz,'numpy')
+    
+    parameter = sp.symbols("J, g")
+    J, g = parameter
+    
+    k=(J + M*(L))*(2*np.pi*5)**2 - M*g*(L)
+    k_fnc = sp.lambdify([J, M, L, g],k,'numpy')
+    c=-(2*J + M*L)*(np.log(0.1)/10)
+    c_fnc = sp.lambdify([J, M, L],c,'numpy')
     # Vorgabe 
     
     # Konstanten
@@ -74,13 +82,13 @@ if flag_new_parameter:
     para_di = np.array([0.02,0.02,0.015,0.015,0.015,0.015,0.01,0.01,0.01,0.01])
     
     
-    # Federkonstanten -> rad/[Nm] bei 100kg belastung soll es sich um 10° biegen
-    bend = 10*np.pi/180 
-    load = 100*para_g
-    para_k = np.array([0,7.81,0,7.81,0,7.81,0,7.81,0,7.81])*1e6
-    #para_k = np.array([0,2e7,0,1e7,0,0,0,0,0,0])
-#    Dämpfung-> noch keine Ahnung
-    para_d = np.array([0,2.6,0,2.6,0,2.6,0,2.6,0,2.6])* 1e3  
+     #Federkonstanten -> rad/[Nm] bei 100kg belastung soll es sich um 10° biegen
+#    bend = 10*np.pi/180 
+#    load = 100*para_g
+#    para_k = np.array([0,1,0,1,0,1,0,1,0,1])*para_a*(load/bend)
+#    para_k = np.array([0,2e7,0,1e7,0,0,0,0,0,0])
+    # Dämpfung-> noch keine Ahnung
+#    para_d = np.array([0,1,0,1,0,1,0,1,0,1])* 1e1  
     
     # Trägheitsmomente Beachte: Bei uns wird momentan nur Trägheit in x benötigt in[kg*m^2]
     para_Jx = np.ones(10)
@@ -92,6 +100,18 @@ if flag_new_parameter:
             para_Jz[index] = Jx_fnc(para_h[index],para_b[index],para_a[index],para_di[index],para_m[index])
     
     para_I = para_Jx
+    
+    # Federkonstanten -> rad/[Nm] bei 1Hz Schwingung
+    para_k = np.zeros(10,)
+    for index in range(0,para_k.shape[0]): 
+        if (((index+1)%2)==0):
+            para_k[index] = k_fnc(para_I[index], para_m[index], para_a[index], para_g)
+      
+    # Dämpfung-> nach 10s auf 10% gedämpft
+    para_d = np.zeros(10,)
+    for index in range(0,para_d.shape[0]): 
+        para_d[index] = c_fnc(para_I[index], para_m[index], para_a[index])
+        
         
     print "saving parameter"
     pdict = {"para_g": para_g, "para_m": para_m,  "para_a": para_a, "para_k": para_k, "para_d": para_d, "para_I": para_I}

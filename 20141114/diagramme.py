@@ -15,17 +15,10 @@ from matplotlib import rcParams
 #import svgutils.transform as sg
 #from pylab import *
 
-datei1='lsg_outfilelin'
-dateiload1=datei1+'.npy'
-dateisave=datei1+'.pgf'
-datei2='lsg_outfilenlin'
-dateiload2=datei2+'.npy'
-dateisave=datei2+'.pgf'
-#lsg=np.load('lsg_outfile.npy')
+
+lsg=np.load('lsg_outfile.npy')
 #lsg=np.load('Trajektorie_Bsp.npy')
-lsg1=np.load(dateiload1)
-lsg2=np.load(dateiload2)
-lsg=lsg2-lsg1
+
 tt=lsg[:,0]
 
 #if pl.fignum_exists(1):
@@ -50,11 +43,11 @@ rcParams['figure.facecolor'] = '1' # sets color behind subplots
 rcParams['lines.markersize'] = '8' # sets size of markers
 rcParams['lines.linewidth'] = '1.0' # sets linewidth of functions
 
-rcParams['xtick.labelsize'] = '15' # sets fontsize of the tick labels
-rcParams['ytick.labelsize'] = '15' # sets fontsize of the tick labels
+rcParams['xtick.labelsize'] = '24'#15 # sets fontsize of the tick labels
+rcParams['ytick.labelsize'] = '24'#15 # sets fontsize of the tick labels
 rcParams['figure.figsize'] = '12,8' # sets figure size in inches
-rcParams['axes.titlesize'] = '18' # sets fontsize of the axes title
-rcParams['axes.labelsize'] = '16' # sets fontsize of the x any y labels
+rcParams['axes.titlesize'] = '24' #18# sets fontsize of the axes title
+rcParams['axes.labelsize'] = '24' #16# sets fontsize of the x any y labels
 #==============================================================================
 
 fig1 = pl.figure()
@@ -65,12 +58,12 @@ fig1 = pl.figure()
 
 
 # subplot for the stable, but not optimal, control system
-ax1 = fig1.add_subplot(1,1,1)
+ax1 = fig1.add_subplot(2,1,1)
 
 # Figure Settings
 #==============================================================================
-ax1.set_title(r'\bf{Gelenkwinkel}',
-                    loc = 'center')
+#ax1.set_title(r'\bf{Gelenkwinkel}',
+#                    loc = 'center')
 # hide right and top spine
 ax1.spines['right'].set_color('none')
 ax1.spines['top'].set_color('none')
@@ -78,20 +71,29 @@ ax1.spines['top'].set_color('none')
 #ax1.set_xlim([0,4])
 #==============================================================================
 
-
+t_end=500
 #ax1.plot(tt, res_bad[:,0], 'k')
-#ax1.plot(tt, lsg[:,1]*180/pi, label= r'$q_1$')#, 'k')
-ax1.plot(tt, lsg[:,2]*180/pi, label= r'$q_2$')#, 'k')
-#ax1.plot(tt, lsg[:,3]*180/pi, label= r'$q_3$')#, 'k')
-ax1.plot(tt, lsg[:,4]*180/pi, label= r'$q_4$')#, 'k')
-ax1.set_ylabel(r'Winkel [^\circ]')
-ax1.set_xlabel(r'Zeit[s]')
+ax1.plot(tt[:t_end], lsg[:t_end,1]*180/pi, label= r'$\theta_{11}$')#, 'k')
+#ax1.plot(tt[:t_end], lsg[:t_end,2]*180/pi, label= r'$\theta_{12}$')#, 'k')
+#ax1.plot(tt[:t_end], lsg[:t_end,3]*180/pi, label= r'$\theta_{21}$')#, 'k')
+#ax1.plot(tt[:t_end], lsg[:t_end,4]*180/pi, label= r'$\theta_{22}$')#, 'k')
+ax1.set_ylabel(r'Winkel in $^\circ$')
+ax1.set_xlabel(r'Zeit in s')
 ax1.legend()
+pl.grid()
+
+ax2 = fig1.add_subplot(2,1,2)
+ax2.spines['right'].set_color('none')
+ax2.spines['top'].set_color('none')
+ax2.plot(tt[:t_end], lsg[:t_end,3]*180/pi, label= r'$\theta_{21}$')#, 'k')
+ax2.set_ylabel(r'Winkel in $^\circ$')
+ax2.set_xlabel(r'Zeit in s')
+ax2.legend()
 pl.grid()
 
 pl.show()
 #pl.close(fig1)
-#pl.savefig(dateisave)
+#pl.savefig('trajtest.png')
 
 #
 #

@@ -5,21 +5,21 @@ import numpy as np
 from numpy import pi, exp, r_
 import time
 
-# <codecell>
+## <codecell>
 #from main01_20141110 import lsg
 lsg=np.load('lsg_outfile.npy')
 #lsg=np.load('traj_01.npy')
 
-# <codecell>
+## <codecell>
 
 def live_animation():
     dt = 0.3  # in s # hat irgendwie keinen Einfluss -> Egal.
     interval=int(dt * 1000)  # interval in ms
     timer = fig.canvas.new_timer(interval=interval)
-
-    timer.add_callback(update_plot, ax)
+    
+    timer.add_callback(update_plot,ax)
     timer.start()
-
+    
     pl.show()
 
 
@@ -92,7 +92,7 @@ class Container:
 
 C = Container()
 C.i = 0 # globaler counter
-di = 200
+di = 20
 
 
 l1 = 0.5
@@ -121,7 +121,7 @@ ax.axis('off')
 
 
 #L = 1000
-L=500
+#L=500
 #tt = np.linspace(0, 10, L)
 #qq1 = np.linspace(0, 3*pi, L)
 #qq2 = np.linspace(0, 5*pi, L)
@@ -132,12 +132,12 @@ L=500
 #qq1=lsg[:,0]
 #qq2=lsg[:,1]
 #qq3=tt*0
-
+gain = 10;
 tt=lsg[:,0]
-qq1=lsg[:,1]
-qq2=lsg[:,2]
-qq3=lsg[:,3]
-qq4=lsg[:,4]
+qq1 = lsg[:,1]
+qq2 = gain * lsg[:,2]
+qq3 = lsg[:,3]
+qq4 = gain * lsg[:,4]
 
 if 0:
     from IPython import embed as IPS
@@ -153,9 +153,9 @@ if 0:
     raise SystemExit
 
 
-C.i = 0
+#C.i = 0
 #C.i = 50
-#
+
 #update_plot(ax)
 #pl.show()
 

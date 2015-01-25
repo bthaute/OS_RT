@@ -14,7 +14,7 @@ nr_aj = 2
 # Number of the actuated joints -> uses .simplify()
 nr_simplify = 0
 # Do you want to create an new model?
-flag_new_model_generation = False
+flag_new_model_generation = True
 
 
 pfilepath = "model_"+np.str(nr_aj)+"_actuatedJoints_"+np.str(nr_aj)+"_nonactuatedJoints_test.pcl"
@@ -70,10 +70,43 @@ if flag_new_model_generation:
         s_diff_temp =ss[:,index].diff(t)
         T = T + (II[index]*q_dd_sum**2 + mm[index]*(s_diff_temp.T*s_diff_temp)[0])/2
         V = V + (kk[index]*qq[index]**2)/2 + g[0]*mm[index]*ss[1,index]
-    IPS()    
+    
     # Erzeuge Modell nach Lagrange
     print "create model by model_tools"
     mod1 = mt.generate_model(T, V, qq, FF)
+
+    
+    # Einschub Lastmodelierung
+    if True:
+        # Masse und Trägheitmoment einer Punktmasse
+        m_Last = sp.Symbol('m')
+        J_Last = m_Last * aa[3]**2
+        FF = sp.Matrix([sp.zeros(4,1)])
+        s_Last = sp.Matrix([0, 0])
+        
+        q = 0
+        q_diff = 0
+        for i in range(4):
+            q = q + qq[i]
+            q_diff = q_diff + qq[i].diff('t')
+            s_Last = s_Last + aa[i] * sp.Matrix([sp.cos(q), sp.sin(q)])
+            
+        T_Last = (J_Last*q_diff**2) / 2 + (m_Last * (s_Last.diff('t').T*s_Last.diff('t'))[0]) / 2
+        V_Last = m_Last * 9.81 * s_Last[1]
+        
+        mod_Last = mt.generate_model(T_Last, V_Last, qq, FF)
+        
+        T_combo = T + T_Last
+        V_combo = V + V_Last
+        
+        mod_combo = mt.generate_model(T_combo, V_combo, qq, FF)
+        
+        # Konsistenzprüfung
+        assert st.random_equaltest(mod_combo.eq_list,mod1.eq_list+mod_Last.eq_list)
+            
+    #IPS()
+    
+    
     if (nr_aj <= nr_simplify):
         for index in range(0,(mod1.eq_list.shape[0])):
             print ("vereinfache eq list",index+1)
