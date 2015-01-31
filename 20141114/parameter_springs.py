@@ -50,12 +50,12 @@ if flag_new_parameter:
     Jy_fnc = sp.lambdify([H, B, L, D, M],Jy,'numpy')
     Jz_fnc = sp.lambdify([H, B, L, D, M],Jz,'numpy')
     
-    parameter = sp.symbols("J, g")
-    J, g = parameter
+    parameter = sp.symbols("J, g, omega_0")
+    J, g, omega_0 = parameter
     
-    k=(J + M*(L))*(2*np.pi*5)**2 - M*g*(L)
-    k_fnc = sp.lambdify([J, M, L, g],k,'numpy')
-    c=-(2*J + M*L)*(np.log(0.1)/10)
+    k=(J + M*(L))*(2*np.pi*omega_0)**2 - M*g*(L)
+    k_fnc = sp.lambdify([J, M, L, g, omega_0],k,'numpy')
+    c=-(2*J + M*L)*(np.log(0.5)/10)
     c_fnc = sp.lambdify([J, M, L],c,'numpy')
     # Vorgabe 
     
@@ -103,14 +103,28 @@ if flag_new_parameter:
     
     # Federkonstanten -> rad/[Nm] bei 1Hz Schwingung
     para_k = np.zeros(10,)
-    for index in range(0,para_k.shape[0]): 
+    m_temp = 0
+    a_temp = 0
+    I_temp = 0
+    omega_0 = np.array([1,1,1.2,1.2,1.7,1.7,2.5,2.5,5,5])
+    for index in range(9,-1,-1): 
+        m_temp += para_m[index]
+        a_temp += para_a[index]
+        I_temp += para_I[index]
+        for index2 in range(8,index-1,-1):
+            I_temp += para_m[index2]*para_a[index]
         if (((index+1)%2)==0):
-            para_k[index] = k_fnc(para_I[index], para_m[index], para_a[index], para_g)
+            para_k[index] = k_fnc(I_temp, m_temp, a_temp-(para_a[index]/2), para_g, omega_0[index])
       
     # Dämpfung-> nach 10s auf 10% gedämpft
     para_d = np.zeros(10,)
-    for index in range(0,para_d.shape[0]): 
-        para_d[index] = c_fnc(para_I[index], para_m[index], para_a[index])
+    for index in range(9,-1,-1): 
+        m_temp += para_m[index]
+        a_temp += para_a[index]
+        I_temp += para_I[index]
+        for index2 in range(8,index-1,-1):
+            I_temp += para_m[index2]*para_a[index]
+        para_d[index] = c_fnc(I_temp, m_temp, a_temp-(para_a[index]/2))
         
         
     print "saving parameter"

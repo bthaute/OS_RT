@@ -15,11 +15,14 @@ from matplotlib import rcParams
 #import svgutils.transform as sg
 #from pylab import *
 
+anzahl_subplot = 2
 
-lsg=np.load('lsg_outfile.npy')
+lsg=np.load('lsg_outfile_unvollvoll.npy')
 #lsg=np.load('Trajektorie_Bsp.npy')
 
 tt=lsg[:,0]
+#tt = np.linspace(0,30,1000)
+#lsg = [np.e**(-np.log(10)/30*tt)*(np.sin(2*pi*tt)),1*np.e**(-np.log(10)/30*tt),-1*np.e**(-np.log(10)/30*tt)]
 
 #if pl.fignum_exists(1):
 #    pl.close()
@@ -58,7 +61,7 @@ fig1 = pl.figure()
 
 
 # subplot for the stable, but not optimal, control system
-ax1 = fig1.add_subplot(2,1,1)
+ax1 = fig1.add_subplot(anzahl_subplot,1,1)
 
 # Figure Settings
 #==============================================================================
@@ -71,28 +74,30 @@ ax1.spines['top'].set_color('none')
 #ax1.set_xlim([0,4])
 #==============================================================================
 
-t_end=500
+t_end=250
 #ax1.plot(tt, res_bad[:,0], 'k')
-ax1.plot(tt[:t_end], lsg[:t_end,1]*180/pi, label= r'$\theta_{11}$')#, 'k')
+#ax1.plot(tt[:t_end], lsg[:t_end,1]*180/pi, label= r'$\theta_{11}$')#, 'k')
 #ax1.plot(tt[:t_end], lsg[:t_end,2]*180/pi, label= r'$\theta_{12}$')#, 'k')
-#ax1.plot(tt[:t_end], lsg[:t_end,3]*180/pi, label= r'$\theta_{21}$')#, 'k')
+ax1.plot(tt[:t_end], lsg[:t_end,1]*180/pi, label= r'$\theta_{11}$')#, 'k')
 #ax1.plot(tt[:t_end], lsg[:t_end,4]*180/pi, label= r'$\theta_{22}$')#, 'k')
 ax1.set_ylabel(r'Winkel in $^\circ$')
 ax1.set_xlabel(r'Zeit in s')
 ax1.legend()
 pl.grid()
 
-ax2 = fig1.add_subplot(2,1,2)
-ax2.spines['right'].set_color('none')
-ax2.spines['top'].set_color('none')
-ax2.plot(tt[:t_end], lsg[:t_end,3]*180/pi, label= r'$\theta_{21}$')#, 'k')
-ax2.set_ylabel(r'Winkel in $^\circ$')
-ax2.set_xlabel(r'Zeit in s')
-ax2.legend()
-pl.grid()
-
-pl.show()
-#pl.close(fig1)
+if anzahl_subplot>1:
+    
+    ax2 = fig1.add_subplot(2,1,2)
+    #ax2.spines['right'].set_color('none')
+    #ax2.spines['top'].set_color('none')
+    ax2.plot(tt[:t_end], lsg[:t_end,3]*180/pi, label= r'$\theta_{21}$')#, 'k')
+    ax2.set_ylabel(r'Winkel in $^\circ$')
+    ax2.set_xlabel(r'Zeit in s')
+    ax2.legend()
+    pl.grid()
+    #
+    pl.show()
+    #pl.close(fig1)
 #pl.savefig('trajtest.png')
 
 #
