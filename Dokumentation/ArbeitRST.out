@@ -3,18 +3,20 @@
 \BOOKMARK [1][-]{section.2.1}{Herleitung der Bewegungsgleichung}{chapter.2}% 3
 \BOOKMARK [1][-]{section.2.2}{Cholesky-Zerlegung}{chapter.2}% 4
 \BOOKMARK [0][-]{chapter.3}{Steuerungsentwurf}{}% 5
-\BOOKMARK [0][-]{chapter.4}{Visualisierungen}{}% 6
-\BOOKMARK [1][-]{section.4.1}{Animation}{chapter.4}% 7
-\BOOKMARK [0][-]{chapter.5}{Erl\344uterungen zur Klasse ArbeitRST}{}% 8
-\BOOKMARK [1][-]{section.5.1}{Informationen zu schriftlichen Arbeiten am RST}{chapter.5}% 9
-\BOOKMARK [1][-]{section.5.2}{Die Titelseite}{chapter.5}% 10
-\BOOKMARK [1][-]{section.5.3}{Die Selbstst\344ndigkeitserkl\344rung}{chapter.5}% 11
-\BOOKMARK [1][-]{section.5.4}{Kurzfassung}{chapter.5}% 12
-\BOOKMARK [1][-]{section.5.5}{Auswahl des Typs der Arbeit}{chapter.5}% 13
-\BOOKMARK [1][-]{section.5.6}{Eingebundene Pakete}{chapter.5}% 14
-\BOOKMARK [1][-]{section.5.7}{Zus\344tzliche Makros}{chapter.5}% 15
-\BOOKMARK [1][-]{section.5.8}{Weitere Informationen}{chapter.5}% 16
-\BOOKMARK [0][-]{chapter.6}{kurzer Titel}{}% 17
-\BOOKMARK [0][-]{chapter.7}{Beispielkapitel}{}% 18
-\BOOKMARK [1][-]{section.7.1}{Etwas Mathematik}{chapter.7}% 19
-\BOOKMARK [0][-]{chapter*.13}{Literaturverzeichnis}{}% 20
+\BOOKMARK [1][-]{section.3.1}{Parameterabsch\344tzung}{chapter.3}% 6
+\BOOKMARK [2][-]{subsection.3.1.1}{Federsteifigkeit und -d\344mpung}{section.3.1}% 7
+\BOOKMARK [0][-]{chapter.4}{Visualisierungen}{}% 8
+\BOOKMARK [1][-]{section.4.1}{Animation}{chapter.4}% 9
+\BOOKMARK [0][-]{chapter.5}{Erl\344uterungen zur Klasse ArbeitRST}{}% 10
+\BOOKMARK [1][-]{section.5.1}{Informationen zu schriftlichen Arbeiten am RST}{chapter.5}% 11
+\BOOKMARK [1][-]{section.5.2}{Die Titelseite}{chapter.5}% 12
+\BOOKMARK [1][-]{section.5.3}{Die Selbstst\344ndigkeitserkl\344rung}{chapter.5}% 13
+\BOOKMARK [1][-]{section.5.4}{Kurzfassung}{chapter.5}% 14
+\BOOKMARK [1][-]{section.5.5}{Auswahl des Typs der Arbeit}{chapter.5}% 15
+\BOOKMARK [1][-]{section.5.6}{Eingebundene Pakete}{chapter.5}% 16
+\BOOKMARK [1][-]{section.5.7}{Zus\344tzliche Makros}{chapter.5}% 17
+\BOOKMARK [1][-]{section.5.8}{Weitere Informationen}{chapter.5}% 18
+\BOOKMARK [0][-]{chapter.6}{kurzer Titel}{}% 19
+\BOOKMARK [0][-]{chapter.7}{Beispielkapitel}{}% 20
+\BOOKMARK [1][-]{section.7.1}{Etwas Mathematik}{chapter.7}% 21
+\BOOKMARK [0][-]{chapter*.16}{Literaturverzeichnis}{}% 22

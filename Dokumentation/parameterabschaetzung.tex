@@ -1,0 +1,65 @@
+\newpage
+\section{Parameterabschätzung}
+
+In der verallgemeinerten Herleitung der Bewegungsgleichungen sind die Modellparameter zunächst variabel. Für die Simulation und die weitere Betrachtung sind numerische Werte erforderlich, die das reale Verhalten beschreiben. Das Modell ist neben den geometrischen Eigenschaften, wie z.B. den Längen, den Positionen der Schwerpunkte und den daraus resultierenden Trägheitsmomenten noch von Parametern abhängig, welche die Dynamik beschreiben. Der folgende Abschnitt behandelt die Berechnung der Trägheitsmomente und Herleitung der Federsteifigkeiten und -dämfungen der passiven Gelenke.
+
+\subsection{Federsteifigkeit und -dämpung}
+
+Die Federsteifigkeiten $k_i$ und Federdämpfungen $c_i$ für $i=1,2$ werden separiert voneinander berechnet. 
+
+\begin{figure}[h]
+	\centering
+	\input{Parameter_1.pdf_tex}
+	\caption[Modellparameter]{Modellfreischnitt für Schwingungsbetrachtung}
+	\label{fig:parameter_abschaetung}
+\end{figure}
+
+Dafür wird vereinbart, dass die nicht betrachteten Gelenke keine Auslenkungen aufweisen und keiner Dynamik unterliegen. 
+Für das erste unaktuierte Gelenk kann die nichtlineare Schwingungsdifferentialgleichung (\ref{eq:parameter_nl_DGL}) aufgestellt werden. 
+
+\begin{equation} \label{eq:parameter_nl_DGL}
+J\ddot{\theta}_{12}+c_1\dot{\theta}_{12}+k_1\theta_{12}+mg\cos(\theta_{12})=\tau
+\end{equation}
+
+In der Gleichung (\ref{eq:parameter_nl_DGL}) beschreibt $c_1$ die Dämpfung im ersten Gelenk, $k_1$ die Federsteifigkeit im ersten Gelenk und $J$ das Trägheitsmoment des Balkens um die Drehachse. Die Gesamtlänge des Balkens ist $l$, dessen Masse $m$ und dessen Auslenkung um seine Ruhelage $\theta_{12}$. Die Erdbeschleunigung ist $g$ und die Stellgröße im ersten Gelenk ist $\tau$.
+
+Für die weiteren Betrachtungen wird die Gleichung (\ref{eq:parameter_nl_DGL}) um $\theta_{12}^e=0$ linearisiert. Damit ist $\theta_{12}-\theta_{12}^e=\tilde{\theta}_{12}=\theta_{12}$. Der gleiche Zusammenhang gilt für die Zeitableitungen von $\theta_{12}$. Es ergibt sich die lineare homogene Differentialgleichung zweiter Ordnung (\ref{eq:parameter_l_DGL}).
+
+\begin{equation} \label{eq:parameter_l_DGL}
+J\ddot{\theta}_{12}+c_1\dot{\theta}_{12}+k_1\theta_{12}=0
+\end{equation}
+
+Nach trivialer Umstellung lässt sich ein Koeffizientenvergleich mit der allgemeinen Schwingungsdifferentialgleichung durchführen.
+
+\begin{equation} \label{eq:parameter_koeffvergl}
+\ddot{\theta}_{12}+\dfrac{c_1}{J}\dot{\theta}_{12}+\dfrac{k_1}{J}\theta_{12}\stackrel{!}{=}\ddot{\theta}_{12}+2\delta\dot{\theta}_{12}+\omega_0^2\theta_{12}=0
+\end{equation}
+
+Somit lassen sich die Koeffizienten 
+
+\begin{equation} \label{eq:parameter_koeff}
+\begin{aligned}
+c_1&=2\delta J \mbox{ und}\\
+k_1&=J\omega_0^2
+\end{aligned}
+\end{equation}
+
+ablesen.
+
+\subsection*{Vorgabe einer Dynamik}
+
+Die Schwingung des Auslegers soll einer definierten Dynamik folgen. Als Abschätzung für die Dämpfung $\delta$ ist ein Abklingen der Schwingung innerhalb einer Zeit von $\Delta t=30\si{s}$ auf 10\% der Anfangsauslenkung gefordert.
+
+\begin{figure}[h]
+	\centering
+	\def\svgscale{0.5}
+	\input{Schwingung.pdf_tex}
+	\caption[Schwingungszeitverlauf]{Lösung der Schwingungsdifferentialgleichung}
+	\label{fig:dgl_lsg}
+\end{figure}
+
+In Abbildung \ref{fig:dgl_lsg} ist die Lösung der Differentialgleichung (\ref{eq:parameter_koeffvergl}) vorgegeben. Den abklingenden Teil beschreibt der Realteil der Lösung der Charakteristischen Gleichung der Ansatzmethode. Dieser wird durch $e^{-\delta t}$ beschrieben. Um die Vorgaben zu erfüllen muss die resultierende Gleichung (\ref{eq:delta}) gelöst werden.
+
+\begin{equation} \label{eq:delta}
+\delta=-\dfrac{1}{\Delta t}\ln\left(\dfrac{\theta_{12}(\Delta t)}{\theta_{12}(0)}\right)=-\dfrac{1}{30\si{s}}\ln(0,1)=0,0768\si{Hz}
+\end{equation}
