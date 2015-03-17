@@ -1,4 +1,4 @@
-%% Creator: Inkscape 0.48.3.1, www.inkscape.org
+%% Creator: Inkscape inkscape 0.48.4, www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
 %% Accompanies image file 'Skizze.pdf' (pdf, eps, ps)
 %%
@@ -36,7 +36,7 @@
   }%
   \providecommand\rotatebox[2]{#2}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{596.27042249bp}%
+    \setlength{\unitlength}{629.56339545bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -48,35 +48,34 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.51141469)%
+  \begin{picture}(1,0.48436973)%
     \put(0,0){\includegraphics[width=\unitlength]{Skizze.pdf}}%
-    \put(0.13711159,0.13038236){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$q_{11}$}}}%
-    \put(0.29071086,0.3622592){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$q_{12}$
+    \put(0.12902313,0.1234874){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\theta_{11}$}}}%
+    \put(0.27449967,0.34310198){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\theta_{12}$
 }}}%
-    \put(0.49907274,0.4694173){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$q_{21}$
+    \put(0.47184282,0.44459328){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\theta_{21}$
 }}}%
-    \put(0.80794817,0.31821659){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$q_{22}$
+    \put(0.76438411,0.30138846){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\theta_{22}$
 }}}%
-    \put(0.40979577,0.07082459){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$x$}}}%
-    \put(0.0802884,0.45934697){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$y$}}}%
-    \put(0.84819836,0.46580063){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$g$}}}%
-    \put(0.18837245,0.20745695){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$m_{11}, J_{11}$}}}%
-    \put(0.32494582,0.46580063){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$m_{12}, J_{12}$}}}%
-    \put(0.55303026,0.33163332){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$m_{21}, J_{21}$}}}%
-    \put(0.83478161,0.26454971){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$m_{22}, J_{22}$}}}%
-    \put(-0.00112024,0.04938572){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$F_1$}}}%
-    \put(0.47228413,0.37953549){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$F_2$}}}%
-    \put(-0.00112024,0.04938572){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$F_1$}}}%
-    \put(0.3896234,0.2999877){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$a_{12}$}}}%
-    \put(0.07002794,0.21430858){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$l_{11}$}}}%
-    \put(0.07021122,0.28759072){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$a_{11}$}}}%
-    \put(0.62744045,0.48419776){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$a_{21}$}}}%
-    \put(0.29330019,0.30600291){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$l_{12}$
+    \put(0.38728706,0.0670792){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$x$}}}%
+    \put(0.0752049,0.43505549){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$y$}}}%
+    \put(0.80250576,0.44116786){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$g$}}}%
+    \put(0.17757318,0.19648608){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$m_{11}, J_{11}$}}}%
+    \put(0.3069242,0.44116786){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$m_{12}, J_{12}$}}}%
+    \put(0.52294693,0.31409568){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$m_{21}, J_{21}$}}}%
+    \put(0.78979852,0.25055962){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$m_{22}, J_{22}$}}}%
+    \put(-0.00189864,0.04677407){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\tau_1$}}}%
+    \put(0.44647086,0.35946465){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\tau_2$}}}%
+    \put(0.36818145,0.28412356){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$a_{12}$}}}%
+    \put(0.06548705,0.20297538){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$l_{11}$}}}%
+    \put(0.07021831,0.26782448){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$a_{11}$}}}%
+    \put(0.59342211,0.45859211){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$a_{21}$}}}%
+    \put(0.27695207,0.28982067){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$l_{12}$
 }}}%
-    \put(0.67378082,0.43896717){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$l_{21}$}}}%
-    \put(0.66915193,0.24872684){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$a_{22}$}}}%
-    \put(0.70560973,0.28657096){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$l_{22}$}}}%
-    \put(0.16153897,0.3878896){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$d_1, k_1$}}}%
-    \put(0.77509944,0.39029567){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$d_2, k_2$}}}%
+    \put(0.63731187,0.41575342){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$l_{21}$}}}%
+    \put(0.65001913,0.23785235){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$a_{22}$}}}%
+    \put(0.67543356,0.27597401){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$l_{22}$}}}%
+    \put(0.15215873,0.36737698){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$c_1, k_1$}}}%
+    \put(0.73896965,0.37763177){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$c_2,k_2$}}}%
   \end{picture}%
 \endgroup%

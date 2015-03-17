@@ -10,10 +10,10 @@ In dieser Seminararbeit soll eine mobile Pumpe zur Beförderung von flüssigem B
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.6]{betonpumpe.png}
-\caption[]{Mobile Betonpumpe mit ausgefahrem Ausleger, Quelle: Liebherr}
+\caption[]{Mobile Betonpumpe mit ausgefahrenem Ausleger, Quelle: Liebherr}
 \end{figure}
 
-In der oberen Darstellung ist eine mobile Betonpumpe bestehend aus Ausleger und LKW-Chassis zusehen. Der Ausleger besteht aus fünf Teilen und lässt sich über Hydraulikzylinder und eine Umlenkkinematik in verschiedene Stellungen fahren. Am Chassis ist außerdem ein  Abstützsystem angebracht, welches Kräfte, die vom Ausleger ausgehen, ableitet. Es bietet darüber hinaus auch in unebenen Gelände Halt.\\
+In der oberen Darstellung ist eine mobile Betonpumpe bestehend aus Ausleger und LKW-Chassis zusehen. Der Ausleger besteht aus fünf Teilen und lässt sich über Hydraulikzylinder und eine Umlenkkinematik in verschiedene Stellungen fahren. Am Chassis ist außerdem ein  Abstützsystem angebracht, welches Kräfte, die vom Ausleger ausgehen, ableitet. Es bietet darüber hinaus auch in unebenem Gelände Halt.\\
 
 \begin{table}[h!]
 \centering
@@ -36,12 +36,12 @@ Aufgrund der Leichtbauweise und dem damit verbundenen elastischem Verhalten des 
 
 \section{Aufgabe}
 In dieser Arbeit soll lediglich die aktive Schwingungsdämpfung betrachtet werden. Es soll eine Regelung entworfen werden und zusätzlich eine Steuerung um den Aktor in verschiedene Stellungen überführen zu können. \\
-Als erstes soll ein Modell für, welches die Dynamik des Auslegers abbildet, gefunden werden. Dann soll unter Verwendung der Programmiersprache Python mit Hilfe einer Simulation der Steuerungs- und Regelungsentwurf erfolgen. Die Steuerungs sollte dafür sorgen, dass möglichst alle Gelenkwinkel der Pumpe einer vorgegeben Solltrajekorie folgen. Der Regler soll dabei mögliche Abweichungen, welche durch ein vom Entwurfsmodell abweichendes reales Streckenverhalten hervorgerufen werden können, korrigieren. 
+Als erstes soll ein Modell für, welches die Dynamik des Auslegers abbildet, gefunden werden. Dann soll unter Verwendung der Programmiersprache Python mit Hilfe einer Simulation der Steuerungs- und Regelungsentwurf erfolgen. Die Steuerung sollte dafür sorgen, dass möglichst alle Gelenkwinkel der Pumpe einer vorgegeben Solltrajekorie folgen. Der Regler soll dabei mögliche Abweichungen, welche durch ein vom Entwurfsmodell abweichendes reales Streckenverhalten hervorgerufen werden können, korrigieren. 
 
 
 \chapter{Modellbildung}
 Im folgenden Abschnitt soll vorgestellt werden, wie das mechanische System modelliert wurde. 
-Der Ausleger wird als Mehrfachpendel betrachtet. Dabei wird sich auf einen Ausleger aus vier Teilen beschränkt, da das Aufstellen der Bewegungsgleichungen später symbolisch erfolgt und bereits bei vier Teilen sehr unübersichtliche Terme enstehen. Darüber hinaus wird in diesem Abschnitt erläutert, wie die Biegung der Armsegmente modelliert wird.
+Der Ausleger wird als Mehrfachpendel betrachtet. Dabei wird sich auf einen Ausleger aus vier Teilen beschränkt, da das Aufstellen der Bewegungsgleichungen später symbolisch erfolgt und bereits in diesem Fall sehr unübersichtliche Terme enstehen. Darüber hinaus wird in diesem Abschnitt erläutert, wie die Biegung der Armsegmente modelliert wird.
 
 % Rechtfertigung der Modellbeschreibung -> Hydraulikantriebe,etc.
 % genauere Erklärung der Skizze
@@ -63,7 +63,7 @@ EI\dfrac{\partial^4 z(x,t)}{\partial x^4}-\mu \dfrac{\partial^2 z(x,t)}{\partial
 \end{equation}
 
 Dabei ist $EI$ die Biegesteifigkeit, $q$ die Streckenlast und $\mu$ die hydrodynamische Masse.\\
-Vorteile der Modellierung mit Hilfe einer PDGL ist eine relativ genaue Beschreibung der Durchbiegung. Die Nachteile sind der komplizierte Steuerungs- und Reglerentwurf und die damit verbundene zusätzliche Einarbeitungszeit in das Thema. Außerdem ist unklar, ob die so entworfene Steuerung und Regelung gegenüber einem Modell mit konzentrierten Parametern einen wirklich signifikanten Performance-Gewinn bringt. Aufgrund des wesentlich komplizierteren Modells wird es wahrscheinlich auch zu längeren Simulationszeiten kommen. Darüber hinaus können die Autoren auch nicht abschätzen, wie aufwendig die numerische Lösung von PDGLs in Python sind, bzw. welche Bibliotheken dafür existieren.
+Vorteile der Modellierung mit Hilfe einer PDGL ist eine relativ genaue Beschreibung der Durchbiegung. Die Nachteile sind der kompliziertere Steuerungs- und Reglerentwurf und die damit verbundene zusätzliche Einarbeitungszeit in das Thema. Außerdem ist unklar, ob die so entworfene Steuerung und Regelung gegenüber einem Modell mit konzentrierten Parametern einen wirklich signifikanten Performance-Gewinn bringt. Aufgrund des wesentlich komplizierteren Modells wird es wahrscheinlich auch zu längeren Simulationszeiten kommen. Darüber hinaus können die Autoren nicht abschätzen, wie aufwendig die numerische Lösung von PDGLs in Python sind, bzw. welche Bibliotheken dafür existieren.
 
 
 \subsection{Modellierung mit konzentrierten Parameter}
