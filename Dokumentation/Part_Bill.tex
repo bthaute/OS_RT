@@ -29,14 +29,14 @@ In der oberen Darstellung ist eine mobile Betonpumpe bestehend aus Ausleger und 
 \label{tab:WertePumpe}
 \end{table}
 
-Tabelle \ref{tab:WertePumpe} enthält Werte, welche aus der Gesamtmasse und Gesamtlänge abgeschätzt wurden.
+Tabelle \ref{tab:WertePumpe} enthält die Massen und Längen der einzelnen Segmente des Auslegers, welche aus der Gesamtmasse und Gesamtlänge abgeschätzt wurden.
 
 \section{Probleme}
-Aufgrund der Leichtbauweise und dem damit verbundenen elastischem Verhalten des Materials kommt es durch den diskontinuierlichen Pumpvorgang zum Schwingen des Auslegers. Das Problem kann mit einer aktiven oder passiven Schwingungsdämpfung eingeschränkt werden. Die aktive Schwingungsdämpfung stellt einen geschlossenen Regelkreis dar. Die Biegung kann dabei bspw. über Dehnungsmessstreifen erfasst werden und über ein Stellsignal auf die Hydraulikzylinder korrigiert werden. Bei der passiven Schwingungsdämpfung wird versucht, über konstruktive Maßnahmen die Schwingung zu dämpfen. Das kann z.B. durch den Einsatz von bestimmten Materialien erreicht werden. Ein anderer Ansatz ist die Verwendung von passiven Vibrations-Absorbern. 
+Aufgrund der Leichtbauweise und dem damit verbundenem elastischen Verhalten des Materials kommt es durch den diskontinuierlichen Pumpvorgang zum Schwingen des Auslegers. Das Problem kann mit einer aktiven oder passiven Schwingungsdämpfung minimiert werden. Die aktive Schwingungsdämpfung stellt einen geschlossenen Regelkreis dar. Die Biegung kann dabei bspw. über Dehnungsmessstreifen erfasst werden und mit einem Stellsignal auf die Hydraulikzylinder korrigiert werden. Bei der passiven Schwingungsdämpfung wird versucht, über konstruktive Maßnahmen die Schwingung zu dämpfen. Das kann z.B. durch den Einsatz von bestimmten Materialien erreicht werden. Ein anderer Ansatz ist die Verwendung von passiven Vibrations-Absorbern. 
 
 \section{Aufgabe}
 In dieser Arbeit soll lediglich die aktive Schwingungsdämpfung betrachtet werden. Es soll eine Regelung entworfen werden und zusätzlich eine Steuerung um den Aktor in verschiedene Stellungen überführen zu können. \\
-Als erstes soll ein Modell für, welches die Dynamik des Auslegers abbildet, gefunden werden. Dann soll unter Verwendung der Programmiersprache Python mit Hilfe einer Simulation der Steuerungs- und Regelungsentwurf erfolgen. Die Steuerung sollte dafür sorgen, dass möglichst alle Gelenkwinkel der Pumpe einer vorgegeben Solltrajekorie folgen. Der Regler soll dabei mögliche Abweichungen, welche durch ein vom Entwurfsmodell abweichendes reales Streckenverhalten hervorgerufen werden können, korrigieren. 
+Als erstes soll ein Modell, welches die Dynamik des Auslegers abbildet, gefunden werden. Dann soll unter Verwendung der Programmiersprache Python mit Hilfe einer Simulation der Steuerungs- und Regelungsentwurf erfolgen. Die Steuerung sollte dafür sorgen, dass möglichst alle Gelenkwinkel der Pumpe einer vorgegeben Solltrajekorie folgen. Der Regler soll dabei mögliche Abweichungen, welche durch ein vom Entwurfsmodell abweichendes reales Streckenverhalten hervorgerufen werden können, korrigieren. 
 
 
 \chapter{Modellbildung}
@@ -56,7 +56,7 @@ Der Ausleger wird als Mehrfachpendel betrachtet. Dabei wird sich auf einen Ausle
 \label{fig:VertPara}
 \end{figure}
 
-Die Beschreibung der Balkendynamik erfolgt im verteiltparametrischen Fall über eine partielle Differentialgleichung(PDGL), welche man mit Hilfe der Euler-Bernoulli-Balkentheorie herleiten kann. 
+Die Beschreibung der Balkendynamik erfolgt im verteiltparametrischen Fall über eine partielle Differentialgleichung (PDGL), welche man mit Hilfe der Euler-Bernoulli-Balkentheorie herleiten kann. 
 
 \begin{equation}
 EI\dfrac{\partial^4 z(x,t)}{\partial x^4}-\mu \dfrac{\partial^2 z(x,t)}{\partial t^2} = q(x,t).
@@ -114,7 +114,7 @@ Die Gelenke sind über starre Stabelemente mit der Länge $a_\mathrm{ij}$ gekopp
 
 Die Euler-Lagrange-Gleichungen 2.Art lauten
 \begin{equation}
-\dfrac{d}{dt}\dfrac{\partial L(\vect{\theta},\dot{\vect{\theta}})}{\theta_\mathrm{ij}}-\dfrac{\partial L(\vect{\theta},\dot{\vect{\theta}})}{\theta_\mathrm{ij}}=\tau_\mathrm{i}-d_\mathrm{i}.
+\dfrac{d}{dt}\dfrac{\partial L(\vect{\theta},\dot{\vect{\theta}})}{\partial \dot{\theta}_\mathrm{ij}}-\dfrac{\partial L(\vect{\theta},\dot{\vect{\theta}})}{\partial \theta_\mathrm{ij}}=\tau_\mathrm{i}-d_\mathrm{i}.
 \label{eq:lagr}
 \end{equation}
 
@@ -155,7 +155,7 @@ besitzt.\\
 Dabei stellt $\vect{M}(\vect{\theta})$ die Massenmatrix, der Term $\vect{C}(\vect{\theta},\dot{\vect{\theta}})$ Zentrifugalkräfte, $\vect{K}\cdot\vect{\theta}$ die elastischen Fesselungskräfte und $\vect{g}(\vect{\theta})$ Gravitationskräfte dar.
 
 \section{Aufstellen des Zustandsraummodells}
-Für ein regelungstechnische Betrachtungen werden die Bewegungsgleichungen nun in ein Zustandsraummodell in Regelungsnormalform überführt. Dafür werden die Zustandsvektoren
+Für eine regelungstechnische Betrachtungen werden die Bewegungsgleichungen nun in ein Zustandsraummodell in Regelungsnormalform überführt. Dafür werden die Zustandsvektoren
 
 
 \begin{align}
@@ -169,7 +169,7 @@ sowie der Vektor für die Eingangsgrößen
 \vect{u} = (\tau_1, \tau_2)^T
 \end{align}
 eingeführt.\\
-Für Simulation muss Gleichung (\ref{eq:BWGL}) nach $\ddot{\vect{\theta}}$ umgestellt werden, da die Simulation die Bewegungsgleichungen über eine numerische Integration löst.
+Für Simulationen muss Gleichung (\ref{eq:BWGL}) nach $\ddot{\vect{\theta}}$ umgestellt werden, da die Simulation die Bewegungsgleichungen über eine numerische Integration löst.
 
 \begin{align*}
 \vect{M} \cdot \ddot{\vect{\theta}}		 &= \vect{\tau}-\vect{C} \dot{\vect{\theta}}-\vect{K} \vect{\theta}-\vect{g} 			\\
@@ -181,8 +181,8 @@ Dies entspricht nach Umschreiben mit Hilfe der eingeführten Zustandsgrößen:
 
 \begin{align}
 \begin{aligned}
-\dot{\vect{x}}_\mathrm{1} & = & \vect{x}_\mathrm{2} \\
-\dot{\vect{x}}_\mathrm{2} & = & \vect{M^{-1}}(\vect{u}- \vect{C}(\vect{x}_\mathrm{1},\vect{x}_\mathrm{2})\vect{x}_\mathrm{2}-\vect{g}(\vect{x}_\mathrm{1})-\vect{K}(\vect{x}_\mathrm{1},\vect{x}_\mathrm{2}))
+\dot{\vect{x}}_\mathrm{1} & =  \vect{x}_\mathrm{2} \\
+\dot{\vect{x}}_\mathrm{2} & =  \vect{M^{-1}}(\vect{u}- \vect{C}(\vect{x}_\mathrm{1},\vect{x}_\mathrm{2})\vect{x}_\mathrm{2}-\vect{g}(\vect{x}_\mathrm{1})-\vect{K}(\vect{x}_\mathrm{1},\vect{x}_\mathrm{2}))
 \end{aligned}
 \end{align}
 
@@ -197,8 +197,8 @@ Für die Winkel der aktiven Gelenke ergibt sich damit in der Ruhelage
 \begin{align}\label{eq:uva_momente}
 \begin{aligned}
 \theta_\mathrm{11} = \theta^e_\mathrm{11}\\
-\theta_\mathrm{21} = \theta^e_\mathrm{21}
-\end{aligned}.
+\theta_\mathrm{21} = \theta^e_\mathrm{21}.
+\end{aligned}
 \end{align}
 
 An dieser Stelle wird gefordert, dass die Balken starr sind. Die Annahme wird hier getroffen, um den Entwurf einer Vorsteuerung zu vereinfachen. Es wird
@@ -275,5 +275,5 @@ und damit die Matrix invertierbar ist. Bei der symbolischen Invertierung war das
 53 & 47 & 39 & 20 
 \end{array} \right)
 \end{equation*}
-Nach der Linearisierung kommen noch mehr Operatoren hinzu. Daher ist eine Invertierung in symbolischer Form kaum möglich. Es dauert ewig. Ein Weg die Matrix trotzdem symbolisch zu invertieren, ist die Invertierung mit Hilfe der Cholesky-Zerlegung, im nachfolgenden Abschnitt genauer erläutert wird. \\
+Nach der Linearisierung kommen noch mehr Operatoren hinzu. Daher ist eine Invertierung in symbolischer Form kaum möglich. Es dauert ewig. Ein Weg die Matrix trotzdem symbolisch zu invertieren, ist die Invertierung mit Hilfe der Cholesky-Zerlegung, die im nachfolgenden Abschnitt genauer erläutert wird. \\
 Schlussendlich wurde die Invertierung numerisch durchgeführt. 

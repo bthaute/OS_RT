@@ -1,9 +1,8 @@
-\newpage
 \section{Cholesky-Zerlegung}
-In einer Anordnung von $n$ seriellen Manipulatoren sind $2n$-Freiheitsgerade, welche die Dimension von $\vect{M}\in\Reals^{2n\times 2n}$ beschreiben. Zur Umstellung des Gleichungssystems (\ref{eq:BWGL}) ist die Inverse der Matrix notwendig. Bei der symbolischen Implementierungen ist an dieser Stelle ein sehr hoher Rechenaufwand zu erwarten. Jede Massenmatrix eines solchen mechanischen Systems ist symmetrisch ($\vect{M}=\vect{M}^T$) und positiv definit ($\forall$ EW $>0$) \cite{janschek2009systementwurf}. Durch diese Eigenschaften lässt sich eine Cholesky-Zerlegung $\vect{M}=\vect{L}\vect{L}^T$ (mit $\vect{L}$ untere Dreiecksmatrix) durchführen \cite{schwarz2009numerische}. Wenn man sich die Multiplikation 
+In einer Anordnung von $n$ seriellen Manipulatoren sind $2n$-Freiheitsgerade, welche die Dimension von ${M}\in\Reals^{2n\times 2n}$ beschreiben. Zur Umstellung des Gleichungssystems (\ref{eq:BWGL}) ist die Inverse der Matrix notwendig. Bei der symbolischen Implementierungen ist an dieser Stelle ein sehr hoher Rechenaufwand zu erwarten. Jede Massenmatrix eines solchen mechanischen Systems ist symmetrisch (${M}={M}^T$) und positiv definit ($\forall$ EW $>0$) \cite{janschek2009systementwurf}, eine Invertierung ist dadurch immer möglich. Durch diese Eigenschaften lässt sich eine Cholesky-Zerlegung ${M}={L}{L}^T$ (mit ${L}$ untere Dreiecksmatrix) durchführen \cite{schwarz2009numerische}. Wenn man die Multiplikation 
 \begin{equation}
 \begin{aligned}
-	\vect{L}\vect{L}^T &= 
+	{L} {L}^T &= 
 	\begin{pmatrix}
 		l_{11} & 0      & 0	&	\cdots & 0\\
 		l_{21} & l_{22} & 0 &  &\\
@@ -30,7 +29,7 @@ In einer Anordnung von $n$ seriellen Manipulatoren sind $2n$-Freiheitsgerade, we
 
 betrachtet, können durch einen Koeffizientenvergleich mit
 \begin{equation}
-\vect{M}=\begin{pmatrix}
+{M}=\begin{pmatrix}
 m_{11} & m_{12}      & m_{13}	&	\cdots& m_{12n}\\
 m_{21} & m_{22} & m_{23} & &\\
 m_{31} & m_{32} & m_{33} & &\\
@@ -39,7 +38,7 @@ m_{2n1}& & & & m_{2n2n}
 \end{pmatrix}
 \end{equation}
 
-die Elemente $l_{ij}$ mit $i,j=1,2,\dots,2n$ können in folgender Weise berechnet werden
+die Elemente $l_{ij}$ mit $i,j=1,2,\dots,2n$ in folgender Weise berechnet werden
 
 \begin{equation}
 \begin{aligned}
@@ -54,5 +53,5 @@ die Elemente $l_{ij}$ mit $i,j=1,2,\dots,2n$ können in folgender Weise berechne
 
 An dieser Stelle ist zu erahnen, dass die Wurzel nur in jedem Fall reell gelöst werden kann, wenn die zuvor genannten Eigenschaften der Matrix gelten.
 
-Die für die allgemeine Invertierung einer Matrix zu berechnende Determinante ist durch diese Zerlegung stark vereinfacht worden. Bei einer Dreiecksmatrix haben nur die Diagonalelemente der Matrix einen Einfluss, da alle anderen Summanden der Regel von Sarrus $0$ ergeben. Außerdem gilt $\det(\vect{L}\vect{L}^T)=\det\vect{L}\cdot\det\vect{L}^T$. Die Multiplikation der Diagonalelemente von $\vect{L}$ und der ihrer Transponierten sind identisch, so dass $\det(\vect{L}\vect{L}^T)=(\det\vect{L})^2$ ist.
+Die für die allgemeine Invertierung einer Matrix  $$ A^{-1} = \dfrac{1}{\det A}(A_{\mathrm{adj}})^{T}$$zu berechnende Determinante ist durch diese Zerlegung stark vereinfacht worden. Bei einer Dreiecksmatrix haben nur die Diagonalelemente der Matrix einen Einfluss, da alle anderen Summanden nach der Regel von Sarrus Null ergeben. Außerdem gilt $$\det({L} {L}^T)=\det{L}\cdot\det{L}^T.$$ Das Produkt der Diagonalelemente von ${L}$ und das ihrer Transponierten sind identisch, so dass $\det({L} {L}^T)=(\det{L})^2$ ist.
 

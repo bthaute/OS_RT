@@ -1,0 +1,23 @@
+\chapter{Modellierung der Last}
+
+Im allgemeinen Betrieb einer mobilen Betonpumpe kann davon ausgegangen werden, dass durch den Vorgang des Pumpens von Beton eine Last wirkt. In diesem Kapitel wird eine Beschreibungsform der Last hergeleitet, damit eine Simulation berechnet werden kann.
+
+\section{Ansatz}
+
+\begin{figure}[h]
+	\centering
+	\input{Lastansatz.pdf_tex}
+	\caption[]{Modellierungsannahme der Last}
+	\label{fig:Manipulator_Last}
+\end{figure}
+
+Eine Betonpumpe pumpt den Beton impulsweise. Nach hinreichend langer Zeit ist die Rohrleitung vollständig mit Beton gefüllt. An jeder Stelle der Rohrleitung befindet sich über die gesamte Zeit eine konstante Masse. Zusätzlich kann man sich vorstellen, dass die Masse pro Bogenelement der Leitung auch als konstant betrachtet werden kann, da der Beton einer Art des Schiebens unterliegt. Dadurch ändern sich durch das Pumpen nur die Massenträgheitsmomente der Segmente des Auslegers. Am Ende des Auslegers befindet sich ein senkrecht hängender Schlauch, durch welchen sich der Beton zielgenau platzieren lässt. Durch die Reibung an der Schlauchwand ergibt sich ein Auswurfverhalten mit Tiefpasscharakter. Approximiert lässt sich eine sprungförmige Belastung annehmen, welche die schlimmste Form einer Belastung darstellt. 
+
+In den Modellgleichungen wird die Last als Punktmasse modelliert. Dafür wird bei der Herleitung der Bewegungsgleichungen am Ende des letzten Segmentes eine Masse berücksichtigt, die einen Einfluss auf dessen Trägheitsmoment ausübt. Im Vergleich zu der Modellierung ohne Last kommt ein Term hinzu, der multiplikativ mit der Masse der Last verknüpft ist. In der Simulation kann dieser Wert in Abhängigkeit von der Zeit beeinflusst werden.  
+
+\begin{figure}[h]
+	\centering
+	\input{Manipulatorunterakt_Last.pdf_tex}
+	\caption[]{Modellierungsansatz der Last}
+	\label{fig:Manipulator_Last}
+\end{figure} 

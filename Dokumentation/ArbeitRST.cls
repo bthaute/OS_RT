@@ -74,6 +74,8 @@
 \else\ifnum\pdf@strcmp{\RST@arbeit}{studie}=0
 	\subject{Studienarbeit}
 	\renewcommand{\arbeitwoeingereicht}{an}
+\else\ifnum\pdf@strcmp{\RST@arbeit}{ober}=0
+	\subject{Oberseminar}
 \else
 	\subject{Diplomarbeit}
 	\zeigegradtrue
@@ -145,9 +147,10 @@
 
 \begin{tabular}{rl}
 
-vorgelegt von: & \@author\\
-
-geboren am: & \@geburtsdatum{} in \@geburtsort{}
+vorgelegt von: & Richard Herrmann\\%\@author\\
+			   & Justus Kopp\\
+			   & Bill Thaute\\
+%geboren am: & \@geburtsdatum{} in \@geburtsort{}
 \end{tabular}
 
 
@@ -171,13 +174,13 @@ Tag der Einreichung: & \@date
 \end{tabular}
 \end{center}
 \end{titlepage}
-\newpage
-\thispagestyle{empty}
-\null\vfill
-\begin{center}
-	Bitte ersetzen Sie diese Seite vor dem Binden mit der Aufgabenstellung.
-\end{center}
-\vfill
+%%%\newpage
+%%%\thispagestyle{empty}
+%%%\null\vfill
+%%%\begin{center}
+%%%	Bitte ersetzen Sie diese Seite vor dem Binden mit der Aufgabenstellung.
+%%%\end{center}
+%%%\vfill
 }%
 
  %Selbstständigkeitserklärung
