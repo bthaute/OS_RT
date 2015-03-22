@@ -4,7 +4,7 @@
 In der verallgemeinerten Herleitung der Bewegungsgleichungen sind die Modellparameter zunächst variabel. Für die Simulation und die weiteren Betrachtungen sind numerische Werte erforderlich, die das reale Verhalten beschreiben. Das Modell ist neben den geometrischen Eigenschaften, wie z.B. den Längen, den Positionen der Schwerpunkte und den daraus resultierenden Trägheitsmomenten noch von Parametern abhängig, welche die Dynamik beschreiben. Der folgende Abschnitt behandelt die Herleitung der Federsteifigkeiten und -dämfungen der passiven Gelenke.
 
 \section{Federsteifigkeit und -dämpung}
-
+\label{abs:Federparameter}
 Die Federsteifigkeiten $k_i$ und Federdämpfungen $c_i$ für $i=1,2$ werden separiert voneinander berechnet. 
 
 \begin{figure}[h]
@@ -48,7 +48,7 @@ ablesen.
 
 \section{Vorgabe einer Dynamik}
 
-Die Schwingung des Auslegers soll einer definierten Dynamik folgen. Als Abschätzung für die Dämpfung $\delta$ ist ein Abklingen der Schwingung innerhalb einer Zeit von $\Delta t=30\si{s}$ auf 10\% der Anfangsauslenkung gefordert.
+Die Schwingung des Auslegers soll einer definierten Dynamik folgen. Als Abschätzung für die Dämpfung $\delta$ ist ein Abklingen der Schwingung innerhalb einer Zeit von $\Delta t=30\text{\,s}$ auf 10 \% der Anfangsauslenkung gefordert.
 
 \begin{figure}[h]
 	\centering
@@ -58,26 +58,26 @@ Die Schwingung des Auslegers soll einer definierten Dynamik folgen. Als Abschät
 	\label{fig:dgl_lsg}
 \end{figure}
 
-In Abbildung \ref{fig:dgl_lsg} ist die Lösung der Differentialgleichung (\ref{eq:parameter_l_DGL}) vorgegeben. Den abklingenden Teil beschreibt der Realteil, welcher ein Teil der Lösung der Charakteristischen Gleichung nach der Ansatzmethode ist. Dieser wird durch $e^{-\delta t}$ beschrieben. Um die Vorgaben zu erfüllen muss die resultierende Gleichung (\ref{eq:delta}) gelöst werden.
+In Abbildung \ref{fig:dgl_lsg} ist die Lösung der Differentialgleichung (\ref{eq:parameter_l_DGL}) vorgegeben. Den abklingenden Teil beschreibt der Realteil, welcher ein Teil der Lösung der Charakteristischen Gleichung nach der Ansatzmethode ist. Dieser wird durch $e^{-\delta t}$ beschrieben. Um die Vorgaben zu erfüllen, muss die resultierende Gleichung (\ref{eq:delta}) gelöst werden.
 
 \begin{equation} \label{eq:delta}
 \delta=-\dfrac{1}{\Delta t}\ln\left(\dfrac{\theta_{12}(\Delta t)}{\theta_{12}(0)}\right)=-\dfrac{1}{30\si{s}}\ln(0,1)=0,0768\si{Hz}
 \end{equation}
 
-Für die Berechnung der Parameter $c_1$ und $k_1$ nach Gleichung (\ref{eq:parameter_koeff}) ist die Kenntnis des Gesamtträgheitsmoment $J$ des Balkens um das erste Gelenk notwendig. Die einzelnen Trägheitsmomente $J_{ij}$ mit $i,j=1,2$ sind aus den Vorbetrachtungen bekannt. Unter Zuhilfenahme des Satzes von Steiners kann ein Trägheitsmoment auf eine parallel verschobene Drehachse transformiert werden. Dafür werden die bekannten Trägheitsmomente mit einem Summanden addiert, welcher das Produkt aus der Masse des Teilstückes und des Abstandes zur verschobenen Drehachse zum Quadrat ist. In Anlehnung an die Abbildung \ref{fig:parameter_abschaetung} ergibt sich Gleichung (\ref{eq:Trägheitsmoment}).
+Für die Berechnung der Parameter $c_1$ und $k_1$ nach Gleichung (\ref{eq:parameter_koeff}) ist die Kenntnis des Gesamtträgheitsmoment $J$ des Balkens um das erste Gelenk notwendig. Die einzelnen Trägheitsmomente $J_{ij}$ mit $i,j=1,2$ sind aus den Vorbetrachtungen bekannt. Unter Zuhilfenahme des Satzes von Steiners kann ein Trägheitsmoment auf eine parallel verschobene Drehachse transformiert werden. Dafür werden die bekannten Trägheitsmomente mit einem Summanden addiert, welcher das Produkt aus der Masse des Teilstückes und des Abstandes zur verschobenen Drehachse zum Quadrat ist. In Anlehnung an die \mbox{Abbildung \ref{fig:parameter_abschaetung}} ergibt sich Gleichung (\ref{eq:Trägheitsmoment}).
 
 \begin{equation} \label{eq:Trägheitsmoment}
 J=J_{12}+a_{12}^2m_{21} + J_{ 21} + (a_{12}+a_{21})^2m_{22}+J_{22}
 \end{equation}
 
 In Gleichung (\ref{eq:Trägheitsmoment}) beschreiben $a_{ij}$ mit $i,j=1,2$ die Längen der Teilstücke des Balkens zwischen den Gelenken.\\
-Neben der Vorgabe der Auswirkung der Dämpfung ist auch die gewünschte Eigenfrequenz der Schwingung gegeben. Der ausgestreckte Ausleger soll nach einer Anfangsauslenkung als Anregung mit einer Frequenz $f_d=1\si{Hz}$ schwingen. Daraus ergibt sich $\omega_d=2\pi f_d$. Die Eigenkreisfrequenz der Schwingung wird durch den imaginären Anteil der Lösung der charakteristischen Gleichung der DGL bestimmt. In einem System mit Dämpfung ergibt sich $\omega_d=\sqrt{\omega_0^2-\delta^2}$.
+Neben der Vorgabe der Auswirkung der Dämpfung ist auch die gewünschte Eigenfrequenz der Schwingung gegeben. Der ausgestreckte Ausleger soll nach einer Anfangsauslenkung als Anregung mit einer Frequenz $f_d=1\text{\,Hz}$ schwingen. Daraus ergibt sich $\omega_d=2\pi f_d$. Die Eigenkreisfrequenz der Schwingung wird durch den imaginären Anteil der Lösung der charakteristischen Gleichung der DGL bestimmt. In einem System mit Dämpfung ergibt sich $\omega_d=\sqrt{\omega_0^2-\delta^2}$.
 Mit allen bekannten und berechneten Größen ergibt sich:
 
 \begin{subequations} \label{eq:c1k1}
 \begin{align}
-c_1=1,01\cdot 10^4 \dfrac{\si{Nm}}{\si{rad}} \\
-k_1=1,04\cdot 10^7 \dfrac{\si{Nm}}{\si{rad}}
+c_1=1,01\cdot 10^4 \text{\,}\dfrac{\si{Nm}}{\si{rad}} \\
+k_1=1,04\cdot 10^7 \text{\,}\dfrac{\si{Nm}}{\si{rad}}
 \end{align}
 \end{subequations}
 

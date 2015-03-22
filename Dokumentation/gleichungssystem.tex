@@ -1,5 +1,5 @@
 \section{Cholesky-Zerlegung}
-In einer Anordnung von $n$ seriellen Manipulatoren sind $2n$-Freiheitsgerade, welche die Dimension von ${M}\in\Reals^{2n\times 2n}$ beschreiben. Zur Umstellung des Gleichungssystems (\ref{eq:BWGL}) ist die Inverse der Matrix notwendig. Bei der symbolischen Implementierungen ist an dieser Stelle ein sehr hoher Rechenaufwand zu erwarten. Jede Massenmatrix eines solchen mechanischen Systems ist symmetrisch (${M}={M}^T$) und positiv definit ($\forall$ EW $>0$) \cite{janschek2009systementwurf}, eine Invertierung ist dadurch immer möglich. Durch diese Eigenschaften lässt sich eine Cholesky-Zerlegung ${M}={L}{L}^T$ (mit ${L}$ untere Dreiecksmatrix) durchführen \cite{schwarz2009numerische}. Wenn man die Multiplikation 
+In einer Anordnung von $n$ seriellen Manipulatoren gibt es $2n$-Freiheitsgerade, welche die Dimension von ${M}\in\Reals^{2n\times 2n}$ beschreiben. Zur Umstellung des Gleichungssystems (\ref{eq:BWGL}) ist die Inverse der Matrix notwendig. Bei der symbolischen Implementierungen ist an dieser Stelle ein sehr hoher Rechenaufwand zu erwarten. Jede Massenmatrix eines solchen mechanischen Systems ist symmetrisch (${M}={M}^T$) und positiv definit ($\forall$ EW $>0$) \cite{janschek2009systementwurf}, eine Invertierung ist dadurch immer möglich. Durch diese Eigenschaften lässt sich eine Cholesky-Zerlegung ${M}={L}{L}^T$ (mit ${L}$ untere Dreiecksmatrix) durchführen \cite{schwarz2009numerische}. Wenn man die Multiplikation 
 \begin{equation}
 \begin{aligned}
 	{L} {L}^T &= 
@@ -44,9 +44,9 @@ die Elemente $l_{ij}$ mit $i,j=1,2,\dots,2n$ in folgender Weise berechnet werden
 \begin{aligned}
 	l_{ij}=
 	\begin{cases}
-	0, j>i\\
-	\sqrt{m_{ii}-\sum \limits_{k=1}^{j-1}l^{2}_{ik}} , i=j\\
-	\frac{1}{l_{jj}} \left( m_{ij}-\sum \limits_{k=1}^{j-1}l_{ik}l_{jk}\right) , i>j
+	0 &\text{ für } j>i\\
+	\sqrt{m_{ii}-\sum \limits_{k=1}^{j-1}l^{2}_{ik}} &\text{ für } i=j\\
+	\frac{1}{l_{jj}} \left( m_{ij}-\sum \limits_{k=1}^{j-1}l_{ik}l_{jk}\right) &\text{ für } i>j
 	\end{cases}
 \end{aligned}
 \end{equation}

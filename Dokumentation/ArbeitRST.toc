@@ -1,24 +1,46 @@
 \select@language {ngerman}
 \select@language {ngerman}
 \contentsline {chapter}{\numberline {1}Einleitung}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Probleme}{2}{section.1.1}
+\contentsline {section}{\numberline {1.2}Aufgabe}{2}{section.1.2}
 \contentsline {chapter}{\numberline {2}Modellbildung}{3}{chapter.2}
-\contentsline {section}{\numberline {2.1}Herleitung der Bewegungsgleichung}{4}{section.2.1}
-\contentsline {section}{\numberline {2.2}Cholesky-Zerlegung}{6}{section.2.2}
-\contentsline {chapter}{\numberline {3}Steuerungsentwurf}{7}{chapter.3}
-\contentsline {section}{\numberline {3.1}Parameterabsch\IeC {\"a}tzung}{9}{section.3.1}
-\contentsline {subsection}{\numberline {3.1.1}Federsteifigkeit und -d\IeC {\"a}mpung}{9}{subsection.3.1.1}
-\contentsline {chapter}{\numberline {4}Visualisierungen}{11}{chapter.4}
-\contentsline {section}{\numberline {4.1}Animation}{11}{section.4.1}
-\contentsline {chapter}{\numberline {5}Erl\IeC {\"a}uterungen zur Klasse ArbeitRST}{13}{chapter.5}
-\contentsline {section}{\numberline {5.1}Informationen zu schriftlichen Arbeiten am RST}{13}{section.5.1}
-\contentsline {section}{\numberline {5.2}Die Titelseite}{13}{section.5.2}
-\contentsline {section}{\numberline {5.3}Die Selbstst\IeC {\"a}ndigkeitserkl\IeC {\"a}rung}{14}{section.5.3}
-\contentsline {section}{\numberline {5.4}Kurzfassung}{14}{section.5.4}
-\contentsline {section}{\numberline {5.5}Auswahl des Typs der Arbeit}{14}{section.5.5}
-\contentsline {section}{\numberline {5.6}Eingebundene Pakete}{15}{section.5.6}
-\contentsline {section}{\numberline {5.7}Zus\IeC {\"a}tzliche Makros}{15}{section.5.7}
-\contentsline {section}{\numberline {5.8}Weitere Informationen}{18}{section.5.8}
-\contentsline {chapter}{\numberline {6}kurzer Titel}{19}{chapter.6}
-\contentsline {chapter}{\numberline {7}Beispielkapitel}{21}{chapter.7}
-\contentsline {section}{\numberline {7.1}Etwas Mathematik}{22}{section.7.1}
-\contentsline {chapter}{\nonumberline Literaturverzeichnis}{24}{chapter*.16}
+\contentsline {section}{\numberline {2.1}Modellierung der Biegung}{3}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Modellierung mit verteilten Parameter}{3}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Modellierung mit konzentrierten Parameter}{4}{subsection.2.1.2}
+\contentsline {paragraph}{Zusammenfassung}{5}{section*.9}
+\contentsline {section}{\numberline {2.2}Herleitung der Bewegungsgleichung}{6}{section.2.2}
+\contentsline {section}{\numberline {2.3}Aufstellen des Zustandsraummodells}{7}{section.2.3}
+\contentsline {section}{\numberline {2.4}Ruhelagen}{7}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Unvollst\IeC {\"a}ndig aktuiertes Modell}{7}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Exakte Ruhelagen/unvollst\IeC {\"a}ndig aktuiertes Modell}{8}{subsection.2.4.2}
+\contentsline {section}{\numberline {2.5}Linearisierung}{8}{section.2.5}
+\contentsline {section}{\numberline {2.6}Schwierigkeiten bei der Implementierung des Zustandsraummodells}{9}{section.2.6}
+\contentsline {section}{\numberline {2.7}Cholesky-Zerlegung}{9}{section.2.7}
+\contentsline {chapter}{\numberline {3}Parameterabsch\IeC {\"a}tzung}{11}{chapter.3}
+\contentsline {section}{\numberline {3.1}Federsteifigkeit und -d\IeC {\"a}mpung}{11}{section.3.1}
+\contentsline {section}{\numberline {3.2}Vorgabe einer Dynamik}{12}{section.3.2}
+\contentsline {chapter}{\numberline {4}Modellentwicklung}{14}{chapter.4}
+\contentsline {section}{\numberline {4.1}Modell\IeC {\"u}bersicht}{14}{section.4.1}
+\contentsline {section}{\numberline {4.2}Alle Modelle vollst\IeC {\"a}ndig aktuiert (1. Fall)}{15}{section.4.2}
+\contentsline {section}{\numberline {4.3}Simulationsmodell unteraktuiert (2. Fall)}{16}{section.4.3}
+\contentsline {section}{\numberline {4.4}Modell der Regelung unvollst\IeC {\"a}ndig aktuiert (3. Fall)}{19}{section.4.4}
+\contentsline {section}{\numberline {4.5}Alle Modelle unvollst\IeC {\"a}ndig aktuiert (4. Fall)}{21}{section.4.5}
+\contentsline {chapter}{\numberline {5}Modellierung der Last}{22}{chapter.5}
+\contentsline {section}{\numberline {5.1}Ansatz}{22}{section.5.1}
+\contentsline {chapter}{\numberline {6}Visualisierungen}{24}{chapter.6}
+\contentsline {section}{\numberline {6.1}Animation}{24}{section.6.1}
+\contentsline {chapter}{\numberline {7}Zustandsstabilisierung}{26}{chapter.7}
+\contentsline {section}{\numberline {7.1}Berechnung der Zustandsr\IeC {\"u}ckf\IeC {\"u}hrung}{26}{section.7.1}
+\contentsline {section}{\numberline {7.2}Polvorgabe}{27}{section.7.2}
+\contentsline {section}{\numberline {7.3}Simulationsergebnisse}{28}{section.7.3}
+\contentsline {chapter}{\numberline {8}Trajektorien-Folgeregelung}{31}{chapter.8}
+\contentsline {section}{\numberline {8.1}Trajektoriengenerierung}{31}{section.8.1}
+\contentsline {section}{\numberline {8.2}Allgemeiner Aufbau}{32}{section.8.2}
+\contentsline {section}{\numberline {8.3}Reglereinstellung}{33}{section.8.3}
+\contentsline {section}{\numberline {8.4}Simulationsergebnisse}{34}{section.8.4}
+\contentsline {section}{\numberline {8.5}Stellgr\IeC {\"o}\IeC {\ss }enabsch\IeC {\"a}tzung}{35}{section.8.5}
+\contentsline {section}{\numberline {8.6}Einf\IeC {\"u}hrung von Modellungenauigkeiten}{36}{section.8.6}
+\contentsline {chapter}{\numberline {9}Zusammenfassung und Ausblick}{38}{chapter.9}
+\contentsline {section}{\numberline {9.1}Zusammenfassung der Ergebnisse}{38}{section.9.1}
+\contentsline {section}{\numberline {9.2}Ausblick f\IeC {\"u}r weiteres Vorgehen}{39}{section.9.2}
+\contentsline {chapter}{Literaturverzeichnis}{40}{chapter*.37}

@@ -49,9 +49,8 @@ loctolang={DE:ngerman,UK:english},abbreviations]{siunitx}
     urlcolor=cyan           % color of external links
 }
 % Entfernt die farbigen Markierungen - bitte Druckversion mit dieser Option kompilieren
-%\hypersetup{hidelinks}
+\hypersetup{hidelinks}
 \begin{document}
-
 %% Titelseite
 % Name des Verfassers
 \author{Martin P. Mustermann}
@@ -79,8 +78,14 @@ loctolang={DE:ngerman,UK:english},abbreviations]{siunitx}
 %% Kurzfassung / Abstract
 %\kurzfassung{An dieser Stelle fügen Sie bitte eine deutsche Kurzfassung ein.}{Please insert the English abstract here.}
 %% Inhaltsverzeichnis
+%\pagestyle{empty}
 \tableofcontents
-
+\thispagestyle{empty}
+\listoffigures
+\thispagestyle{empty}
+\listoftables
+\thispagestyle{empty}
+%\pagestyle{headings}
 \setcounter{page}{0}
 \input{Part_Bill}
 \input{gleichungssystem}
@@ -89,6 +94,7 @@ loctolang={DE:ngerman,UK:english},abbreviations]{siunitx}
 \input{modellentwicklung}
 \input{modellierungLast}
 \input{visualisierung}
+\input{Part_Justus}
 
 %%\input{DokArbeitRst}
 %\chapter[kurzer Titel]{Ausführlicher Kapiteltitel, der wirklich viel zu lang für das Inhaltsverzeichnis in dieser Dokumentvorlage ist}
@@ -138,7 +144,6 @@ loctolang={DE:ngerman,UK:english},abbreviations]{siunitx}
 %\partiell{v}{t} + \partiell{}{x}\left(gh + \frac{u^2}{2}\right) = 0.
 %\end{equation}
 %\end{subequations}
-\listoffigures
 %\nocite{FLMR95ijc,Mik57de}
 \bibliography{Arbeit}
 \bibliographystyle{gerabbrv}

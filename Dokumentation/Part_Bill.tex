@@ -10,12 +10,14 @@ In dieser Seminararbeit soll eine mobile Pumpe zur Beförderung von flüssigem B
 \begin{figure}[h!]
 \centering
 \includegraphics[scale=0.6]{betonpumpe.png}
-\caption[]{Mobile Betonpumpe mit ausgefahrenem Ausleger, Quelle: Liebherr}
+\caption{Mobile Betonpumpe mit ausgefahrenem Ausleger, Quelle: Liebherr}
 \end{figure}
 
-In der oberen Darstellung ist eine mobile Betonpumpe bestehend aus Ausleger und LKW-Chassis zusehen. Der Ausleger besteht aus fünf Teilen und lässt sich über Hydraulikzylinder und eine Umlenkkinematik in verschiedene Stellungen fahren. Am Chassis ist außerdem ein  Abstützsystem angebracht, welches Kräfte, die vom Ausleger ausgehen, ableitet. Es bietet darüber hinaus auch in unebenem Gelände Halt.\\
+In der oberen Darstellung ist eine mobile Betonpumpe bestehend aus Ausleger und LKW-Chassis zu sehen. Der Ausleger besteht aus fünf Teilen und lässt sich über Hydraulikzylinder und eine Umlenkkinematik in verschiedene Stellungen fahren. Am Chassis ist außerdem ein  Abstützsystem angebracht, welches Kräfte, die vom Ausleger ausgehen, ableitet. Es bietet darüber hinaus auch Halt in unebenem Gelände.\\
 
 \begin{table}[h!]
+\caption{Beispielwerte der Armsegmente, welche aus gegebener Gesamtmasse und Gesamtlänge ermittelt wurden}
+\label{tab:WertePumpe}
 \centering
 \begin{tabular}{c|c|c}
 \rule[-1ex]{0pt}{2.5ex} Armsegment & Masse/kg & Länge/m \\ 
@@ -25,8 +27,6 @@ In der oberen Darstellung ist eine mobile Betonpumpe bestehend aus Ausleger und 
 \rule[-1ex]{0pt}{2.5ex} 4 & 900 & 7 \\ 
 \rule[-1ex]{0pt}{2.5ex} 5 & 480 & 6 \\ 
 \end{tabular} 
-\caption{Beispielwerte, welche aus gegebener Gesamtmasse und Gesamtlänge ermittelt wurden}
-\label{tab:WertePumpe}
 \end{table}
 
 Tabelle \ref{tab:WertePumpe} enthält die Massen und Längen der einzelnen Segmente des Auslegers, welche aus der Gesamtmasse und Gesamtlänge abgeschätzt wurden.
@@ -35,12 +35,12 @@ Tabelle \ref{tab:WertePumpe} enthält die Massen und Längen der einzelnen Segme
 Aufgrund der Leichtbauweise und dem damit verbundenem elastischen Verhalten des Materials kommt es durch den diskontinuierlichen Pumpvorgang zum Schwingen des Auslegers. Das Problem kann mit einer aktiven oder passiven Schwingungsdämpfung minimiert werden. Die aktive Schwingungsdämpfung stellt einen geschlossenen Regelkreis dar. Die Biegung kann dabei bspw. über Dehnungsmessstreifen erfasst werden und mit einem Stellsignal auf die Hydraulikzylinder korrigiert werden. Bei der passiven Schwingungsdämpfung wird versucht, über konstruktive Maßnahmen die Schwingung zu dämpfen. Das kann z.B. durch den Einsatz von bestimmten Materialien erreicht werden. Ein anderer Ansatz ist die Verwendung von passiven Vibrations-Absorbern. 
 
 \section{Aufgabe}
-In dieser Arbeit soll lediglich die aktive Schwingungsdämpfung betrachtet werden. Es soll eine Regelung entworfen werden und zusätzlich eine Steuerung um den Aktor in verschiedene Stellungen überführen zu können. \\
-Als erstes soll ein Modell, welches die Dynamik des Auslegers abbildet, gefunden werden. Dann soll unter Verwendung der Programmiersprache Python mit Hilfe einer Simulation der Steuerungs- und Regelungsentwurf erfolgen. Die Steuerung sollte dafür sorgen, dass möglichst alle Gelenkwinkel der Pumpe einer vorgegeben Solltrajekorie folgen. Der Regler soll dabei mögliche Abweichungen, welche durch ein vom Entwurfsmodell abweichendes reales Streckenverhalten hervorgerufen werden können, korrigieren. 
+In dieser Arbeit soll lediglich die aktive Schwingungsdämpfung betrachtet werden. Es soll zum einen eine Regelung und weiterhin eine Steuerung entworfen werden, um den Aktor in verschiedene Stellungen überführen zu können. \\
+Als erstes wird ein Modell, welches die Dynamik des Auslegers abbildet, gesucht. Dann soll unter Verwendung der Programmiersprache Python mit Hilfe einer Simulation der Steuerungs- und Regelungsentwurf erfolgen. Die Steuerung sorgt dafür, dass möglichst alle Gelenkwinkel der Pumpe einer vorgegeben Solltrajekorie folgen. Der Regler soll dabei mögliche Abweichungen, welche durch ein vom Entwurfsmodell abweichendes reales Streckenverhalten hervorgerufen werden können, korrigieren. 
 
 
 \chapter{Modellbildung}
-Im folgenden Abschnitt soll vorgestellt werden, wie das mechanische System modelliert wurde. 
+Im folgenden Abschnitt wird das modellierte mechanische System vorgestellt. 
 Der Ausleger wird als Mehrfachpendel betrachtet. Dabei wird sich auf einen Ausleger aus vier Teilen beschränkt, da das Aufstellen der Bewegungsgleichungen später symbolisch erfolgt und bereits in diesem Fall sehr unübersichtliche Terme enstehen. Darüber hinaus wird in diesem Abschnitt erläutert, wie die Biegung der Armsegmente modelliert wird.
 
 % Rechtfertigung der Modellbeschreibung -> Hydraulikantriebe,etc.
@@ -56,14 +56,14 @@ Der Ausleger wird als Mehrfachpendel betrachtet. Dabei wird sich auf einen Ausle
 \label{fig:VertPara}
 \end{figure}
 
-Die Beschreibung der Balkendynamik erfolgt im verteiltparametrischen Fall über eine partielle Differentialgleichung (PDGL), welche man mit Hilfe der Euler-Bernoulli-Balkentheorie herleiten kann. 
+Die Beschreibung der Balkendynamik erfolgt im verteiltparametrischen Fall über \mbox{eine} partielle Differentialgleichung (PDGL), welche man mit Hilfe der Euler-Bernoulli-Balkentheorie herleiten kann. 
 
 \begin{equation}
 EI\dfrac{\partial^4 z(x,t)}{\partial x^4}-\mu \dfrac{\partial^2 z(x,t)}{\partial t^2} = q(x,t).
 \end{equation}
 
 Dabei ist $EI$ die Biegesteifigkeit, $q$ die Streckenlast und $\mu$ die hydrodynamische Masse.\\
-Vorteile der Modellierung mit Hilfe einer PDGL ist eine relativ genaue Beschreibung der Durchbiegung. Die Nachteile sind der kompliziertere Steuerungs- und Reglerentwurf und die damit verbundene zusätzliche Einarbeitungszeit in das Thema. Außerdem ist unklar, ob die so entworfene Steuerung und Regelung gegenüber einem Modell mit konzentrierten Parametern einen wirklich signifikanten Performance-Gewinn bringt. Aufgrund des wesentlich komplizierteren Modells wird es wahrscheinlich auch zu längeren Simulationszeiten kommen. Darüber hinaus können die Autoren nicht abschätzen, wie aufwendig die numerische Lösung von PDGLs in Python sind, bzw. welche Bibliotheken dafür existieren.
+Vorteile der Modellierung mit Hilfe einer PDGL ist eine relativ genaue Beschreibung der Durchbiegung. Die Nachteile sind der kompliziertere Steuerungs- und Reglerentwurf und die damit verbundene zusätzliche Einarbeitungszeit in das Thema. Außerdem ist nicht ersichtlich, ob die so entworfene Steuerung und Regelung gegenüber einem Modell mit konzentrierten Parametern einen wirklich signifikanten Performance-Gewinn bringt. Aufgrund des wesentlich komplizierteren Modells wird es wahrscheinlich auch zu längeren Simulationszeiten kommen. Darüber hinaus können die Autoren nicht abschätzen, wie aufwendig die numerische Lösung von PDGLs in Python ist, bzw. welche Bibliotheken dafür bereits existieren.
 
 
 \subsection{Modellierung mit konzentrierten Parameter}
@@ -75,7 +75,7 @@ Vorteile der Modellierung mit Hilfe einer PDGL ist eine relativ genaue Beschreib
 \label{fig:KonzPara}
 \end{figure}
 
-Um möglichst nah an den Fall der verteilten Parameter zu kommen, müssten in einem Armsegment möglichst viele konzentrierte Feder-Dämpfer-Elemente untergebracht sein. Dabei kommt mit jedem Element eine neue verkoppelte Systemgleichung hinzu, was eine symbolische Betrachtung ab einem gewissen Punkt unüberschaubar macht, die Rechenzeit der Simulation stark erhöht und die Wahl geeigneter Parameter, sowie die Verifikation erschwert.\\
+Um möglichst nah an den Fall der verteilten Parameter zu kommen, müssen in einem Armsegment möglichst viele konzentrierte Feder-Dämpfer-Elemente untergebracht sein. Dabei kommt mit jedem Element eine neue verkoppelte Systemgleichung hinzu, was eine symbolische Betrachtung ab einem gewissen Punkt unüberschaubar macht, die Rechenzeit der Simulation stark erhöht und die Wahl geeigneter Parameter, sowie die Verifikation erschwert.\\
 Aus Gründen der einfacheren symbolischen Handhabung und des einfacheren Steuerungs- und Reglerentwurfs wurde sich daher für die Variante mit einem konzentrierten Feder-Dämpfer-Element im Segment-Schwerpunkt entschieden.
 %Skizze
 \begin{figure}[h!]
@@ -97,8 +97,9 @@ Abbildung \ref{fig:Skizze} stellt das Modell eines Verteilermasts mit zwei Armse
 Für die Modellierung der Durchbiegung eines Segments wird ein zusätzliches passives Gelenk mit konzentriertem Feder- und Dämpfungsparameter verwendet.\\
 Für die Geometrie werden rechteckige Hohlträger angenommen, welches für die Berechnung der Trägheitsmomente entscheidend ist.\\
 Die Dynamik der Hydraulikzylinder wird vernachlässigt, um das Modell nicht noch komplizierter zu machen. In der Praxis sollten diese unbedingt berücksichtigt werden.\\
-Außerdem wird angenommen, dass alle Winkel und Winkelgeschwindigkeiten über entsprechende Sensoren messbar seien.
+Außerdem wird angenommen, dass alle Winkel und Winkelgeschwindigkeiten über entsprechende Sensoren messbar sind.
 
+\newpage
 \section{Herleitung der Bewegungsgleichung}
 Ziel ist es nun die nichtlinearen Bewegungsgleichungen mit den vorgestellten Modellannahmen zu ermitteln. Dabei wird der Euler-Lagrange-Formalismus verwendet.\\ 
 Zunächst werden geeignete Koordinaten für die Beschreibung der Schwerpunktlagen der Massen gesucht. Die Schwerpunkte der Teilmassen des i-ten Armsegments werden kartesisch beschrieben durch die Vektoren
@@ -155,7 +156,8 @@ besitzt.\\
 Dabei stellt $\vect{M}(\vect{\theta})$ die Massenmatrix, der Term $\vect{C}(\vect{\theta},\dot{\vect{\theta}})$ Zentrifugalkräfte, $\vect{K}\cdot\vect{\theta}$ die elastischen Fesselungskräfte und $\vect{g}(\vect{\theta})$ Gravitationskräfte dar.
 
 \section{Aufstellen des Zustandsraummodells}
-Für eine regelungstechnische Betrachtungen werden die Bewegungsgleichungen nun in ein Zustandsraummodell in Regelungsnormalform überführt. Dafür werden die Zustandsvektoren
+\label{abs:aufstellen_Zustandsmodell}
+Für eine regelungstechnische Betrachtung werden die Bewegungsgleichungen nun in ein Zustandsraummodell in Regelungsnormalform überführt. Dafür werden die Zustandsvektoren
 
 
 \begin{align}
@@ -205,7 +207,7 @@ An dieser Stelle wird gefordert, dass die Balken starr sind. Die Annahme wird hi
 \begin{equation}\label{eq:uva_winkel_passiv}
 \theta_\mathrm{12} = \theta_\mathrm{22} \stackrel{!}{=} 0
 \end{equation}
-angenommen. Es handelt sich in diesem Fall um ein vollständig aktuiertes Modell. Dieses Modell wird letztendlich für die Trajektorienplanung verwendet. Im Falle eines unteraktuierten Systems würde die Trajektorienplanung wesentlich schwerer werden. Die Trajektorienplanung stellt in diesem Fall ein Randwertproblem dar.
+angenommen. Es handelt sich in diesem Fall um ein vollständig aktuiertes Modell. Dieses Modell wird letztendlich für die Trajektorienplanung verwendet. Im Falle eines unteraktuierten Systems wird die Trajektorienplanung wesentlich schwerer. Die Trajektorienplanung stellt in diesem Fall ein Randwertproblem dar.
 
 \subsection{Exakte Ruhelagen/unvollständig aktuiertes Modell}
 Es gelten zunächst genauso Gleichung (\ref{eq:uva_winkel}) und (\ref{eq:uva_momente}). Allerdings gilt Gleichung (\ref{eq:uva_winkel_passiv}) nun nicht mehr. Es muss jetzt das nichtlineare Gleichungssystem  
@@ -217,7 +219,7 @@ M(\vect{\theta})\cdot\ddot{\vect{\theta}}+C(\vect{\theta},\dot{\vect{\theta}})\c
 nach $\tau^e_\mathrm{11}$, $\tau^e_\mathrm{21}$, $\theta^e_\mathrm{12}$ und $\theta^e_\mathrm{22}$ aufgelöst werden.
 
 \section{Linearisierung}
-Die Bewegungsgleichung liegt nach der Umformung von oben in der Form 
+Die Bewegungsgleichung liegt nach der Umformung von Abschnitt \ref{abs:aufstellen_Zustandsmodell} in der Form 
 
 \begin{equation}
 \ddot{\vect{\theta}} = \vect{f}(\vect{\theta},\dot{\vect{\theta}},\vect{\tau})
@@ -256,7 +258,7 @@ Mit Hilfe der eingeführten Zustandsvariablen erhält man das folgende System:
 \end{equation}
 
 \section{Schwierigkeiten bei der Implementierung des Zustandsraummodells}
-Wie weiter oben bereits erläutert ist für die Lösung des DGL-Systems über eine numerische Integration eine Invertierung der Matrix $\vect{M}$ notwendig. Zunächst werden einige Eigenschaften der Matrix aufgeführt.\\
+Wie bereits erläutert, ist für die Lösung des DGL-Systems über eine numerische Integration eine Invertierung der Matrix $\vect{M}$ notwendig. Zunächst werden einige Eigenschaften der Matrix aufgeführt.\\
 Sie ist symmetrisch und positiv definit. D.h.
 \begin{equation*}
 \vect{M}(\vect{\theta}) = \vect{M}^T(\vect{\theta})
@@ -275,5 +277,5 @@ und damit die Matrix invertierbar ist. Bei der symbolischen Invertierung war das
 53 & 47 & 39 & 20 
 \end{array} \right)
 \end{equation*}
-Nach der Linearisierung kommen noch mehr Operatoren hinzu. Daher ist eine Invertierung in symbolischer Form kaum möglich. Es dauert ewig. Ein Weg die Matrix trotzdem symbolisch zu invertieren, ist die Invertierung mit Hilfe der Cholesky-Zerlegung, die im nachfolgenden Abschnitt genauer erläutert wird. \\
+Nach der Linearisierung kommen noch mehr Operatoren hinzu. Daher ist eine Invertierung in symbolischer Form, aufgrund eines sehr hohen Zeitaufwandes, kaum möglich. Ein Weg die Matrix trotzdem symbolisch zu invertieren, ist die Invertierung mit Hilfe der Cholesky-Zerlegung, die im nachfolgenden Abschnitt genauer erläutert wird. \\
 Schlussendlich wurde die Invertierung numerisch durchgeführt. 

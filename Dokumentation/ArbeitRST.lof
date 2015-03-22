@@ -1,0 +1,39 @@
+\select@language {ngerman}
+\select@language {ngerman}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {1}{\ignorespaces Mobile Betonpumpe mit ausgefahrenem Ausleger, Quelle: Liebherr\relax }}{1}{figure.caption.4}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {2}{\ignorespaces Biegebalken\relax }}{3}{figure.caption.6}
+\contentsline {figure}{\numberline {3}{\ignorespaces Modellierung der Biegung mit konzentrierten Parametern\relax }}{4}{figure.caption.7}
+\contentsline {figure}{\numberline {4}{\ignorespaces Skizze des Modells f\IeC {\"u}r zwei Armsegmente und Durchbiegung\relax }}{5}{figure.caption.8}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5}{\ignorespaces Modellparameter}}{11}{figure.caption.10}
+\contentsline {figure}{\numberline {6}{\ignorespaces Schwingungszeitverlauf}}{13}{figure.caption.11}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {7}{\ignorespaces Manipulator vollst\IeC {\"a}ndig aktuiert\relax }}{15}{figure.caption.13}
+\contentsline {figure}{\numberline {8}{\ignorespaces Manipulator unvollst\IeC {\"a}ndig aktuiert\relax }}{16}{figure.caption.14}
+\contentsline {figure}{\numberline {9}{\ignorespaces Implementierung des Regelkreises\relax }}{17}{figure.caption.16}
+\contentsline {figure}{\numberline {10}{\ignorespaces Simulationsergebnisse unaktuierte Geleneke unvollst\IeC {\"a}ndig aktuiertes Modell\relax }}{18}{figure.caption.18}
+\contentsline {figure}{\numberline {11}{\ignorespaces Simulationsergebnisse aktuierte Gelenke mit Einzelgelenkregelung\relax }}{19}{figure.caption.19}
+\contentsline {figure}{\numberline {12}{\ignorespaces Simulationsergebisse unaktuierter Gelenke mit unvollst\IeC {\"a}ndig aktuiertem Modell der Regelung\relax }}{20}{figure.caption.20}
+\contentsline {figure}{\numberline {13}{\ignorespaces Simulationsergebnisse der aktuierten Gelenke mit exakt berechneter Ruhelage\relax }}{21}{figure.caption.21}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {14}{\ignorespaces Modellierungsannahme der Last\relax }}{22}{figure.caption.22}
+\contentsline {figure}{\numberline {15}{\ignorespaces Modellierungsansatz der Last\relax }}{23}{figure.caption.23}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {16}{\ignorespaces Animation Betonpumpe}}{24}{figure.caption.24}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {17}{\ignorespaces Blockdiagramm der Zustandsr\IeC {\"u}ckf\IeC {\"u}hrung\relax }}{26}{figure.caption.25}
+\contentsline {figure}{\numberline {18}{\ignorespaces Polplan des geschlossenen Kreises\relax }}{28}{figure.caption.26}
+\contentsline {figure}{\numberline {19}{\ignorespaces Verhalten der Zustandsr\IeC {\"u}ckf\IeC {\"u}hrungen bei impulsweiser Belastung\relax }}{29}{figure.caption.27}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {20}{\ignorespaces Beispieltrajektorie f\IeC {\"u}r den Arbeitspunktwechsel\relax }}{31}{figure.caption.28}
+\contentsline {figure}{\numberline {21}{\ignorespaces Blockdiagramm der Trajektorien-Folgeregelung\relax }}{32}{figure.caption.29}
+\contentsline {figure}{\numberline {22}{\ignorespaces Blockdiagramm der PD-Regelung\relax }}{33}{figure.caption.30}
+\contentsline {figure}{\numberline {23}{\ignorespaces Gelenktrajektorien mit Folgeregelung\relax }}{34}{figure.caption.32}
+\contentsline {figure}{\numberline {24}{\ignorespaces Regelabweichung der Trajektorien-Folgeregelung f\IeC {\"u}r $\varphi _1$, $\varphi _3$\relax }}{35}{figure.caption.33}
+\contentsline {figure}{\numberline {25}{\ignorespaces Absch\IeC {\"a}tzung der maximalen Stellgr\IeC {\"o}\IeC {\ss }en\relax }}{35}{figure.caption.34}
+\contentsline {figure}{\numberline {26}{\ignorespaces Stellgr\IeC {\"o}\IeC {\ss }enverlauf der Trajektorien-Folgeregelung\relax }}{36}{figure.caption.35}
+\contentsline {figure}{\numberline {27}{\ignorespaces Regelabweichung mit Modellungenauigkeiten\relax }}{37}{figure.caption.36}
+\addvspace {10\p@ }
+\addvspace {10\p@ }

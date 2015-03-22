@@ -1,22 +1,43 @@
 \BOOKMARK [0][-]{chapter.1}{Einleitung}{}% 1
-\BOOKMARK [0][-]{chapter.2}{Modellbildung}{}% 2
-\BOOKMARK [1][-]{section.2.1}{Herleitung der Bewegungsgleichung}{chapter.2}% 3
-\BOOKMARK [1][-]{section.2.2}{Cholesky-Zerlegung}{chapter.2}% 4
-\BOOKMARK [0][-]{chapter.3}{Steuerungsentwurf}{}% 5
-\BOOKMARK [1][-]{section.3.1}{Parameterabsch\344tzung}{chapter.3}% 6
-\BOOKMARK [2][-]{subsection.3.1.1}{Federsteifigkeit und -d\344mpung}{section.3.1}% 7
-\BOOKMARK [0][-]{chapter.4}{Visualisierungen}{}% 8
-\BOOKMARK [1][-]{section.4.1}{Animation}{chapter.4}% 9
-\BOOKMARK [0][-]{chapter.5}{Erl\344uterungen zur Klasse ArbeitRST}{}% 10
-\BOOKMARK [1][-]{section.5.1}{Informationen zu schriftlichen Arbeiten am RST}{chapter.5}% 11
-\BOOKMARK [1][-]{section.5.2}{Die Titelseite}{chapter.5}% 12
-\BOOKMARK [1][-]{section.5.3}{Die Selbstst\344ndigkeitserkl\344rung}{chapter.5}% 13
-\BOOKMARK [1][-]{section.5.4}{Kurzfassung}{chapter.5}% 14
-\BOOKMARK [1][-]{section.5.5}{Auswahl des Typs der Arbeit}{chapter.5}% 15
-\BOOKMARK [1][-]{section.5.6}{Eingebundene Pakete}{chapter.5}% 16
-\BOOKMARK [1][-]{section.5.7}{Zus\344tzliche Makros}{chapter.5}% 17
-\BOOKMARK [1][-]{section.5.8}{Weitere Informationen}{chapter.5}% 18
-\BOOKMARK [0][-]{chapter.6}{kurzer Titel}{}% 19
-\BOOKMARK [0][-]{chapter.7}{Beispielkapitel}{}% 20
-\BOOKMARK [1][-]{section.7.1}{Etwas Mathematik}{chapter.7}% 21
-\BOOKMARK [0][-]{chapter*.16}{Literaturverzeichnis}{}% 22
+\BOOKMARK [1][-]{section.1.1}{Probleme}{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.2}{Aufgabe}{chapter.1}% 3
+\BOOKMARK [0][-]{chapter.2}{Modellbildung}{}% 4
+\BOOKMARK [1][-]{section.2.1}{Modellierung der Biegung}{chapter.2}% 5
+\BOOKMARK [2][-]{subsection.2.1.1}{Modellierung mit verteilten Parameter}{section.2.1}% 6
+\BOOKMARK [2][-]{subsection.2.1.2}{Modellierung mit konzentrierten Parameter}{section.2.1}% 7
+\BOOKMARK [1][-]{section.2.2}{Herleitung der Bewegungsgleichung}{chapter.2}% 8
+\BOOKMARK [1][-]{section.2.3}{Aufstellen des Zustandsraummodells}{chapter.2}% 9
+\BOOKMARK [1][-]{section.2.4}{Ruhelagen}{chapter.2}% 10
+\BOOKMARK [2][-]{subsection.2.4.1}{Unvollst\344ndig aktuiertes Modell}{section.2.4}% 11
+\BOOKMARK [2][-]{subsection.2.4.2}{Exakte Ruhelagen/unvollst\344ndig aktuiertes Modell}{section.2.4}% 12
+\BOOKMARK [1][-]{section.2.5}{Linearisierung}{chapter.2}% 13
+\BOOKMARK [1][-]{section.2.6}{Schwierigkeiten bei der Implementierung des Zustandsraummodells}{chapter.2}% 14
+\BOOKMARK [1][-]{section.2.7}{Cholesky-Zerlegung}{chapter.2}% 15
+\BOOKMARK [0][-]{chapter.3}{Parameterabsch\344tzung}{}% 16
+\BOOKMARK [1][-]{section.3.1}{Federsteifigkeit und -d\344mpung}{chapter.3}% 17
+\BOOKMARK [1][-]{section.3.2}{Vorgabe einer Dynamik}{chapter.3}% 18
+\BOOKMARK [0][-]{chapter.4}{Modellentwicklung}{}% 19
+\BOOKMARK [1][-]{section.4.1}{Modell\374bersicht}{chapter.4}% 20
+\BOOKMARK [1][-]{section.4.2}{Alle Modelle vollst\344ndig aktuiert \(1. Fall\)}{chapter.4}% 21
+\BOOKMARK [1][-]{section.4.3}{Simulationsmodell unteraktuiert \(2. Fall\)}{chapter.4}% 22
+\BOOKMARK [1][-]{section.4.4}{Modell der Regelung unvollst\344ndig aktuiert \(3. Fall\)}{chapter.4}% 23
+\BOOKMARK [1][-]{section.4.5}{Alle Modelle unvollst\344ndig aktuiert \(4. Fall\)}{chapter.4}% 24
+\BOOKMARK [0][-]{chapter.5}{Modellierung der Last}{}% 25
+\BOOKMARK [1][-]{section.5.1}{Ansatz}{chapter.5}% 26
+\BOOKMARK [0][-]{chapter.6}{Visualisierungen}{}% 27
+\BOOKMARK [1][-]{section.6.1}{Animation}{chapter.6}% 28
+\BOOKMARK [0][-]{chapter.7}{Zustandsstabilisierung}{}% 29
+\BOOKMARK [1][-]{section.7.1}{Berechnung der Zustandsr\374ckf\374hrung}{chapter.7}% 30
+\BOOKMARK [1][-]{section.7.2}{Polvorgabe}{chapter.7}% 31
+\BOOKMARK [1][-]{section.7.3}{Simulationsergebnisse}{chapter.7}% 32
+\BOOKMARK [0][-]{chapter.8}{Trajektorien-Folgeregelung}{}% 33
+\BOOKMARK [1][-]{section.8.1}{Trajektoriengenerierung}{chapter.8}% 34
+\BOOKMARK [1][-]{section.8.2}{Allgemeiner Aufbau}{chapter.8}% 35
+\BOOKMARK [1][-]{section.8.3}{Reglereinstellung}{chapter.8}% 36
+\BOOKMARK [1][-]{section.8.4}{Simulationsergebnisse}{chapter.8}% 37
+\BOOKMARK [1][-]{section.8.5}{Stellgr\366\337enabsch\344tzung}{chapter.8}% 38
+\BOOKMARK [1][-]{section.8.6}{Einf\374hrung von Modellungenauigkeiten}{chapter.8}% 39
+\BOOKMARK [0][-]{chapter.9}{Zusammenfassung und Ausblick}{}% 40
+\BOOKMARK [1][-]{section.9.1}{Zusammenfassung der Ergebnisse}{chapter.9}% 41
+\BOOKMARK [1][-]{section.9.2}{Ausblick f\374r weiteres Vorgehen}{chapter.9}% 42
+\BOOKMARK [0][-]{chapter*.37}{Literaturverzeichnis}{}% 43

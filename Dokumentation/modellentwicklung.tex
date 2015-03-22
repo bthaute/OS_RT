@@ -1,14 +1,14 @@
 \chapter{Modellentwicklung}\label{ch:modellentwicklung}
 
-In diesem Kapitel wird die systematische Herangehensweise behandelt, mit der die Simulationsumgebung sukzessive erweitert wurde. Dabei ist nachvollziehbar aufbereitet welche Informationen der Regelung und Steuerung im jeweiligen Schritt zu Verfügung stehen.
+In diesem Kapitel wird die systematische Herangehensweise behandelt, mit der die Simulationsumgebung sukzessive erweitert wurde. Dabei ist nachvollziehbar aufbereitet, welche Informationen der Regelung und Steuerung im jeweiligen Schritt zu Verfügung stehen.
 
 \section{Modellübersicht}
 
-Für die Simulation werden drei verschiedene Modelle betrachtet. Zum einen das Modell welches das physikalische Verhalten der Betonpumpe abbilden soll und zum anderen die Modelle, die dem Entwurf der Regelung und der Vorsteuerung zugrunde liegen. Alle Modell können entweder vollständig oder unvollständig aktuierte Eigenschaft aufweisen. Die Möglichkeit einen Stelleingriff auf jedes betrachtete Gelenk ausüben zu können, bedeutet dabei, dass es sich um ein vollständig aktuiertes Modell handelt. Bei unvollständig aktuierten Modellen werden zusätzlich Gelenke integriert, die das dynamische Verhalten verursachen, welche bei realen Betonpumpen beobachtet werden.\\
+Für die Simulation werden drei verschiedene Modelle betrachtet. Zum einen das Modell, welches das physikalische Verhalten der Betonpumpe abbilden soll und zum anderen die Modelle, die dem Entwurf der Regelung und der Vorsteuerung zugrunde liegen. Alle Modell können entweder vollständig oder unvollständig aktuierte Eigenschaft aufweisen. Die Möglichkeit einen Stelleingriff auf jedes betrachtete Gelenk ausüben zu können, bedeutet dabei, dass es sich um ein vollständig aktuiertes Modell handelt. Bei unvollständig aktuierten Modellen werden zusätzlich Gelenke integriert, die das dynamische Verhalten verursachen, welches bei realen Betonpumpen beobachtet werden kann.\\
 
 \begin{table}[htbp]
 	\centering
-	\caption{mögliche Modellkombinationen}
+	\caption{Mögliche Modellkombinationen}
 	\label{tab:Modellübersicht}
 	\begin{tabular}{llll}
 		Fall & Modell der Simulation & Entwurfsmodell des  & Entwurfsmodell der\\
@@ -32,7 +32,7 @@ Im ersten Fall gilt die Annahme, dass sehr massive steife Glieder verbaut wurden
 \begin{figure}[h]
 	\centering
 	\input{Manipulatorvollakt.pdf_tex}
-	\caption[]{Manipulator vollständig aktuiert}
+	\caption{Manipulator vollständig aktuiert}
 	\label{fig:VollAkt}
 \end{figure} 
 
@@ -54,7 +54,7 @@ Das Simulationsmodell bildet approximiert das reales Verhalten des Auslegers ab.
 \begin{figure}[h]
 	\centering
 	\input{Manipulatorunterakt.pdf_tex}
-	\caption[]{Manipulator unvollständig aktuiert}
+	\caption{Manipulator unvollständig aktuiert}
 	\label{fig:UnterAkt}
 \end{figure}   
 
@@ -80,7 +80,7 @@ Bevor die ersten Simulationsergebnisse diskutiert werden, wird an dieser Stelle 
 \begin{figure}[h]
 	\centering
 	\input{Implementierung.pdf_tex}
-	\caption[]{Implementierung des Regelkreises}
+	\caption{Implementierung des Regelkreises}
 	\label{fig:Implementierung}
 \end{figure}
 
@@ -131,7 +131,7 @@ In Abbildung \ref{fig:RuhelageUnaktuierteGelenke} ist der Winkelverlauf der unak
 \label{fig:RuhelageGelenkQ1Q2}
 \end{figure}
 
-Die Winkelverläufe der aktuierten Gelenke sind in Abbildung \ref{fig:RuhelageGelenkQ1Q2} gezeigt. Die Vorsteuerung kompensiert lediglich den Gravitationseinfluss, das heißt das Moment, welches dabei berechnet wird, ist über die gesamte Simulationsdauer konstant. Die Simulation startet nicht in der Ruhelage, für welche die Kompensation berechnet wurde. Damit entspricht dieser Wert auch nicht exakt dem notwendigen. Bei Beginn lenken die unaktuierten Gelenke im Uhrzeigersinn aus, wodurch ein leichter mathematisch positiver Ausschlag der aktuierten Gelenke verzeichnet wird. Die Regelung der einzelnen Gelenke wirkt dagegen. Nach dem Einschwingen verbleiben geringe stationäre Abweichungen, da nur ein PD-Regler verwendet wird, dessen Verstärkungen nicht optimal gewählt wurden. Die Simulationsergebnisse deuten an, dass die Einzelgelenkregelung in den Ruhelagen ausreichend ist, weil nur geringe Abweichungen auftreten.
+Die Winkelverläufe der aktuierten Gelenke sind in Abbildung \ref{fig:RuhelageGelenkQ1Q2} gezeigt. Die Vorsteuerung kompensiert lediglich den Gravitationseinfluss, das heißt das Moment, welches dabei berechnet wird, ist über die gesamte Simulationsdauer konstant. Die Simulation startet nicht in der Ruhelage, für welche die Kompensation berechnet wurde. Damit entspricht dieser Wert auch nicht exakt dem notwendigen. Bei Beginn lenken die unaktuierten Gelenke im Uhrzeigersinn aus, wodurch ein leichter mathematisch positiver Ausschlag der aktuierten Gelenke verzeichnet wird. Die Regelung der einzelnen Gelenke wirkt dagegen. Nach dem Einschwingen verbleiben geringe stationäre Abweichungen, da nur ein PD-Regler verwendet wird, dessen Verstärkungen nicht optimal gewählt wurden. Die Simulationsergebnisse deuten an, dass die Einzelgelenkregelung in den Ruhelagen ausreichend ist, da nur geringe Abweichungen auftreten.
  
 \section{Modell der Regelung unvollständig aktuiert (3. Fall)}
 

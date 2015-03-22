@@ -147,9 +147,9 @@
 
 \begin{tabular}{rl}
 
-vorgelegt von: & Richard Herrmann\\%\@author\\
-			   & Justus Kopp\\
-			   & Bill Thaute\\
+vorgelegt von: & Richard Herrmann \textcolor{red}{\textbf{(Martikelnummer)}}\\%\@author\\
+			   & Justus Kopp (3659597)\\
+			   & Bill Thaute \textcolor{red}{\textbf{(Martikelnummer)}}\\
 %geboren am: & \@geburtsdatum{} in \@geburtsort{}
 \end{tabular}
 
