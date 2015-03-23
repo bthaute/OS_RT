@@ -104,6 +104,14 @@
 \newcommand{\partiell}[3][]{\frac{\partial^{#1}#2}{\partial{#3}^{#1}}}
 \newcommand{\diff}[3][]{\frac{d^{#1}#2}{d{#3}^{#1}}}
 \newcommand{\vect}[1]{\boldsymbol #1}
+\newcommand{\vectd}[1]{\mkern 4mu \dot{\mkern-4mu \vect{#1}}}
+\newcommand{\vectdd}[1]{\mkern 4mu \ddot{\mkern-4mu \vect{#1}}}
+\newcommand{\vecto}[1]{\mkern 4mu \overline{\mkern-4mu \vect{#1}}}
+\newcommand{\vectdo}[1]{\mkern 4mu \dot{\overline{\mkern-4mu \vect{#1}}}}
+\newcommand{\vectddo}[1]{\mkern 4mu \ddot{\overline{\mkern-4mu \vect{#1}}}}
+\newcommand{\vectt}[1]{\mkern 4mu \widetilde{\mkern-4mu \vect{#1}}}
+\newcommand{\vectdt}[1]{\mkern 4mu \dot{\widetilde{\mkern-4mu \vect{#1}}}}
+\newcommand{\vectddt}[1]{\mkern 4mu \ddot{\widetilde{\mkern-4mu \vect{#1}}}}
 \newcommand{\Reals}{\mathds R}
 \newcommand{\Compl}{\mathds C}
 \DeclareMathOperator{\Real}{\mathfrak R}
@@ -147,7 +155,7 @@
 
 \begin{tabular}{rl}
 
-vorgelegt von: & Richard Herrmann \textcolor{red}{\textbf{(Martikelnummer)}}\\%\@author\\
+vorgelegt von: & Richard Herrmann (3660598)\\%\@author\\
 			   & Justus Kopp (3659597)\\
 			   & Bill Thaute \textcolor{red}{\textbf{(Martikelnummer)}}\\
 %geboren am: & \@geburtsdatum{} in \@geburtsort{}

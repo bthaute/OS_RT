@@ -1,4 +1,4 @@
-%% Creator: Inkscape 0.48.3.1, www.inkscape.org
+%% Creator: Inkscape inkscape 0.91, www.inkscape.org
 %% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
 %% Accompanies image file 'Implementierung.pdf' (pdf, eps, ps)
 %%
@@ -36,7 +36,7 @@
   }%
   \providecommand\rotatebox[2]{#2}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{322.59172021bp}%
+    \setlength{\unitlength}{330.23937079bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -48,15 +48,17 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.38131555)%
-    \put(0,0){\includegraphics[width=\unitlength]{Implementierung.pdf}}%
-    \put(0.3262099,0.15238186){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{PD- Regler}}}%
-    \put(0.27157383,0.29072274){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Vorsteuerung}}}%
-    \put(-0.00022063,0.18329979){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\theta_\mathrm{soll}, 
-\dot{\theta}_\mathrm{soll}$}}}%
-    \put(0.6827258,0.15207075){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Modell}}}%
-    \put(0.88244897,0.18313227){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\theta_\mathrm{ist}, 
-\dot{\theta}_\mathrm{ist}$}}}%
-    \put(0.15240499,0.34641996){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\ddot{\theta}_\mathrm{soll}$}}}%
+  \begin{picture}(1,0.37155605)%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{Implementierung.pdf}}%
+    \put(0.31887108,0.14888209){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{PD- Regler}}}%
+    \put(0.26550027,0.28401928){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Vorsteuerung}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{Implementierung.pdf}}%
+    \put(0,0.17908402){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\vect{\theta}_\mathrm{soll},\vectd{\theta}_\mathrm{soll}$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{Implementierung.pdf}}%
+    \put(0.66713082,0.14857818){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Modell}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{Implementierung.pdf}}%
+    \put(0.86222882,0.17892039){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\vect{\theta}_\mathrm{ist},\vectd{\theta}_\mathrm{ist}$}}}%
+    \put(0.14909112,0.33842667){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\vectdd{\theta}_\mathrm{soll}$}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{Implementierung.pdf}}%
   \end{picture}%
 \endgroup%

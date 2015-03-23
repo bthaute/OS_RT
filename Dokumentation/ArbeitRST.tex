@@ -78,7 +78,8 @@ loctolang={DE:ngerman,UK:english},abbreviations]{siunitx}
 %% Kurzfassung / Abstract
 %\kurzfassung{An dieser Stelle fügen Sie bitte eine deutsche Kurzfassung ein.}{Please insert the English abstract here.}
 %% Inhaltsverzeichnis
-%\pagestyle{empty}
+
+\addtocontents{toc}{\protect\thispagestyle{empty}}
 \tableofcontents
 \thispagestyle{empty}
 \listoffigures
@@ -95,8 +96,8 @@ loctolang={DE:ngerman,UK:english},abbreviations]{siunitx}
 \input{modellierungLast}
 \input{visualisierung}
 \input{Part_Justus}
-
-%%\input{DokArbeitRst}
+%
+%\input{DokArbeitRst}
 %\chapter[kurzer Titel]{Ausführlicher Kapiteltitel, der wirklich viel zu lang für das Inhaltsverzeichnis in dieser Dokumentvorlage ist}
 %\blindtext[6]
 %\chapter{Beispielkapitel}
