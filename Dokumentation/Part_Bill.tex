@@ -91,7 +91,7 @@ Aus Gründen der einfacheren symbolischen Handhabung und des einfacheren Steueru
 % Wahl der Koordinaten
 % Potentielle und Kinetische Koenergie
 % Euler Lagrange-Formalismus
-Abbildung \ref{fig:Skizze} stellt das Modell eines Verteilermasts mit zwei Armsegmenten dar. Der erste Index i beschreibt den physikalisch vorhandenen i-ten Teil des Auslegers. Der Index j steht für das j-te Element des i-ten Auslegers. Wobei j=2 die passiven Gelenke, welche die Biegung modellieren, beschreibt. Diese sind in der Skizze durch ein Federsymbol kenntlich gemacht. Die aktuierten Gelenke hingegen sind in grau dargestellt. In diese werden äußere Momente $\tau$ durch die hydraulischen Antriebe eingeprägt. Es werden Relativwinkel für die Winkel $\theta$ verwendet.\\
+Abbildung \ref{fig:Skizze} stellt das Modell eines Verteilermasts mit zwei Armsegmenten dar. Der erste Index $i$ beschreibt den physikalisch vorhandenen $i$-ten Teil des Auslegers. Der Index $j$ steht für das $j$-te Element des $i$-ten Auslegers. Wobei $j$=2 die passiven Gelenke, welche die Biegung modellieren, beschreibt. Diese sind in der Skizze durch ein Federsymbol kenntlich gemacht. Die aktuierten Gelenke hingegen sind in grau dargestellt. In diese werden äußere Momente $\vect{\tau}$ durch die hydraulischen Antriebe eingeprägt. Es werden Relativwinkel für die Winkel $\vect{\theta}$ verwendet.\\
 
 \paragraph{Zusammenfassung}
 Für die Modellierung der Durchbiegung eines Segments wird ein zusätzliches passives Gelenk mit konzentriertem Feder- und Dämpfungsparameter verwendet.\\
@@ -102,40 +102,40 @@ Außerdem wird angenommen, dass alle Winkel und Winkelgeschwindigkeiten über en
 \newpage
 \section{Herleitung der Bewegungsgleichung}
 Ziel ist es nun die nichtlinearen Bewegungsgleichungen mit den vorgestellten Modellannahmen zu ermitteln. Dabei wird der Euler-Lagrange-Formalismus verwendet.\\ 
-Zunächst werden geeignete Koordinaten für die Beschreibung der Schwerpunktlagen der Massen gesucht. Die Schwerpunkte der Teilmassen des i-ten Armsegments werden kartesisch beschrieben durch die Vektoren
+Zunächst werden geeignete Koordinaten für die Beschreibung der Schwerpunktlagen der Massen gesucht. Die Schwerpunkte der Teilmassen des $i$-ten Armsegments werden kartesisch beschrieben durch die Vektoren
 
 \begin{equation}
-\vect{r_\mathrm{i}}=(x_\mathrm{ij},y_\mathrm{ij})^T.
+\vect{r_{i}}=(x_{ij},y_{ij})^T.
 \end{equation}
 
-Die Gelenke sind über starre Stabelemente mit der Länge $a_\mathrm{ij}$ gekoppelt. Die Minimalkoordinaten des i-ten Armsegment entsprechen daher den Winkeln
+Die Gelenke sind über starre Stabelemente mit der Länge $a_{ij}$ gekoppelt. Die Minimalkoordinaten des $i$-ten Armsegment entsprechen daher den Winkeln
 \begin{equation}
 \vect{\theta} = (\theta_\mathrm{11},\theta_\mathrm{12},\theta_\mathrm{21},\theta_\mathrm{22})^T.
 \end{equation}
 
 Die Euler-Lagrange-Gleichungen 2.Art lauten
 \begin{equation}
-\dfrac{d}{dt}\dfrac{\partial L(\vect{\theta},\dot{\vect{\theta}})}{\partial \dot{\theta}_\mathrm{ij}}-\dfrac{\partial L(\vect{\theta},\dot{\vect{\theta}})}{\partial \theta_\mathrm{ij}}=\tau_\mathrm{i}-d_\mathrm{i}.
+\frac{\mathrm d}{\mathrm dt}\dfrac{\partial L(\vect{\theta},\vectd{\theta})}{\partial \dot{\theta}_{ij}}-\dfrac{\partial L(\vect{\theta},{\vectd{\theta}})}{\partial \theta_{ij}}=\tau_{i}-d_{i}.
 \label{eq:lagr}
 \end{equation}
 
 Die Lagrange-Funktionen sind
 \begin{equation}
-L(\vect{\theta},\dot{\vect{\theta}})=T(\vect{\theta},\dot{\vect{\theta}})-V(\vect{\theta}).
+L(\vect{\theta},{\vectd{\theta}})=T(\vect{\theta},{\vectd{\theta}})-V(\vect{\theta}).
 \end{equation}
 $T$ stellt hierbei die kinetische Koenergie und $V$ die potentielle Energie der Massen dar.
 Die kinetische Koenergie berechnet sich zu 
 \begin{equation}
-T = \sum \left( \dfrac{1}{2}\cdot m_\mathrm{ij}\cdot(v^2_{x,ij}+v^2_\mathrm{y,ij})+\dfrac{1}{2}\cdot J_{ij}\cdot\omega_\mathrm{ij}^2 \right).
+T = \sum \left( \dfrac{1}{2}\cdot m_{ij}\cdot(v^2_{x,ij}+v^2_{y,ij})+\dfrac{1}{2}\cdot J_{ij}\cdot\omega_{ij}^2 \right).
 \end{equation}
 Man erkennt einen translatorischen und einen rotatorischen Anteil.\\
 Die potentielle Energie berechnet sich zu 
 
 \begin{equation}
-V = \sum \left( m_\mathrm{ij}\cdot g \cdot y_\mathrm{ij} + k_i \cdot \theta_\mathrm{ij} \right).
+V = \sum \left( m_{ij}\cdot \mathrm{g} \cdot y_{ij} + k_i \cdot \theta_{ij} \right).
 \end{equation}
 
-Die kartesischen Schwerpunktkoordinaten lassen sich über die bekannten Armsegmentlängen $a_\mathrm{ij}$, Schwerpunktlängen $l_\mathrm{ij}$ und die Gelenkwinkel $q_\mathrm{ij}$ berechnen. Exemplarisch ergibt sich damit für die ersten zwei Masseelemente aus Abbildung \ref{fig:Skizze}:
+Die kartesischen Schwerpunktkoordinaten lassen sich über die bekannten Armsegmentlängen $a_{ij}$, Schwerpunktlängen $l_{ij}$ und die Gelenkwinkel $q_{ij}$ berechnen. Exemplarisch ergibt sich damit für die ersten zwei Masseelemente aus Abbildung \ref{fig:Skizze}:
 
 \begin{align*}
 x_\mathrm{11} &= l_\mathrm{11}\cdot \cos(\theta_\mathrm{11}) \\
@@ -148,12 +148,12 @@ y_\mathrm{12} &= a_\mathrm{11}\cdot \sin(\theta_\mathrm{11})+l_\mathrm{12}\cdot\
 Man erhält dabei durch Lösung von (\ref{eq:lagr}) ein System nichtlinearer Bewegungsgleichungen, welches die allgemeine Form
 
 \begin{equation}
-\vect{M}(\vect{\theta})\cdot\ddot{\vect{\theta}}+\vect{C}(\vect{\theta},\dot{\vect{\theta}})\cdot\dot{\vect{\theta}}+\vect{K}\cdot\vect{\theta}+\vect{g}(\vect{\theta})=\vect{\tau}
+\vect{M}(\vect{\theta})\cdot{\vectdd{\theta}}+\vect{C}(\vect{\theta},{\vectd{\theta}})\cdot{\vectd{\theta}}+\vect{K}\cdot\vect{\theta}+\vect{g}(\vect{\theta})=\vect{\tau}
 \label{eq:BWGL}
 \end{equation}
 
 besitzt.\\
-Dabei stellt $\vect{M}(\vect{\theta})$ die Massenmatrix, der Term $\vect{C}(\vect{\theta},\dot{\vect{\theta}})$ Zentrifugalkräfte, $\vect{K}\cdot\vect{\theta}$ die elastischen Fesselungskräfte und $\vect{g}(\vect{\theta})$ Gravitationskräfte dar.
+Dabei stellt $\vect{M}(\vect{\theta})$ die Massenmatrix, der Term $\vect{C}(\vect{\theta},{\vectd{\theta}})$ Zentrifugalkräfte, $\vect{K}\cdot\vect{\theta}$ die elastischen Fesselungskräfte und $\vect{g}(\vect{\theta})$ Gravitationskräfte dar.
 
 \section{Aufstellen des Zustandsraummodells}
 \label{abs:aufstellen_Zustandsmodell}
@@ -171,12 +171,12 @@ sowie der Vektor für die Eingangsgrößen
 \vect{u} = (\tau_1, \tau_2)^T
 \end{align}
 eingeführt.\\
-Für Simulationen muss Gleichung (\ref{eq:BWGL}) nach $\ddot{\vect{\theta}}$ umgestellt werden, da die Simulation die Bewegungsgleichungen über eine numerische Integration löst.
+Für Simulationen muss Gleichung (\ref{eq:BWGL}) nach ${\vectdd{\theta}}$ umgestellt werden, da die Simulation die Bewegungsgleichungen über eine numerische Integration löst.
 
 \begin{align*}
-\vect{M} \cdot \ddot{\vect{\theta}}		 &= \vect{\tau}-\vect{C} \dot{\vect{\theta}}-\vect{K} \vect{\theta}-\vect{g} 			\\
-\vect{M}^{-1}\cdot \vect{M} \cdot \ddot{\vect{\theta}} &= \vect{M}^{-1}(\vect{\tau}-\vect{C} \dot{\vect{\theta}}-\vect{K}\vect{\theta}-\vect{g})	\\
-\ddot{\vect{\theta}}				 &= \vect{M}^{-1}(\vect{\tau}-\vect{C}\dot{\vect{\theta}}-\vect{K}\vect{\theta}-\vect{g})
+\vect{M} \cdot {\vectdd{\theta}}		 &= \vect{\tau}-\vect{C} {\vectd{\theta}}-\vect{K} \vect{\theta}-\vect{g} 			\\
+\vect{M}^{-1}\cdot \vect{M} \cdot {\vectdd{\theta}} &= \vect{M}^{-1}(\vect{\tau}-\vect{C} {\vectd{\theta}}-\vect{K}\vect{\theta}-\vect{g})	\\
+{\vectdd{\theta}}				 &= \vect{M}^{-1}(\vect{\tau}-\vect{C}{\vectd{\theta}}-\vect{K}\vect{\theta}-\vect{g})
 \end{align*}
 
 Dies entspricht nach Umschreiben mit Hilfe der eingeführten Zustandsgrößen:
@@ -192,14 +192,14 @@ Dies entspricht nach Umschreiben mit Hilfe der eingeführten Zustandsgrößen:
 \subsection{Unvollständig aktuiertes Modell}
 Da Winkelgeschwindigkeiten und -beschleunigungen in der Ruhelage verschwinden, wird 
 \begin{equation}\label{eq:uva_winkel}
-\ddot{\vect{\theta}} = \dot{\vect{\theta}} \stackrel{!}{=} \vect{0}.
+{\vectdd{\theta}} = {\vectd{\theta}} \stackrel{!}{=} \vect{0}.
 \end{equation}
 gefordert.\\
 Für die Winkel der aktiven Gelenke ergibt sich damit in der Ruhelage
 \begin{align}\label{eq:uva_momente}
 \begin{aligned}
-\theta_\mathrm{11} = \theta^e_\mathrm{11}\\
-\theta_\mathrm{21} = \theta^e_\mathrm{21}.
+\theta_\mathrm{11} = \theta^\mathrm{e}_\mathrm{11}\\
+\theta_\mathrm{21} = \theta^\mathrm{e}_\mathrm{21}.
 \end{aligned}
 \end{align}
 
@@ -213,23 +213,23 @@ angenommen. Es handelt sich in diesem Fall um ein vollständig aktuiertes Modell
 Es gelten zunächst genauso Gleichung (\ref{eq:uva_winkel}) und (\ref{eq:uva_momente}). Allerdings gilt Gleichung (\ref{eq:uva_winkel_passiv}) nun nicht mehr. Es muss jetzt das nichtlineare Gleichungssystem  
 
 \begin{equation}
-M(\vect{\theta})\cdot\ddot{\vect{\theta}}+C(\vect{\theta},\dot{\vect{\theta}})\cdot\dot{\vect{\theta}}+K\cdot\vect{\theta}+g(\vect{\theta}) - \vect{\tau} = \vect{0} 
+M(\vect{\theta})\cdot{\vectdd{\theta}}+C(\vect{\theta},{\vectd{\theta}})\cdot{\vectd{\theta}}+K\cdot\vect{\theta}+g(\vect{\theta}) - \vect{\tau} = \vect{0} 
 \end{equation}
 
-nach $\tau^e_\mathrm{11}$, $\tau^e_\mathrm{21}$, $\theta^e_\mathrm{12}$ und $\theta^e_\mathrm{22}$ aufgelöst werden.
+nach $\tau^\mathrm{e}_\mathrm{11}$, $\tau^\mathrm{e}_\mathrm{21}$, $\theta^\mathrm{e}_\mathrm{12}$ und $\theta^\mathrm{e}_\mathrm{22}$ aufgelöst werden.
 
 \section{Linearisierung}
 Die Bewegungsgleichung liegt nach der Umformung von Abschnitt \ref{abs:aufstellen_Zustandsmodell} in der Form 
 
 \begin{equation}
-\ddot{\vect{\theta}} = \vect{f}(\vect{\theta},\dot{\vect{\theta}},\vect{\tau})
+{\vectdd{\theta}} = \vect{f}(\vect{\theta},{\vectd{\theta}},\vect{\tau})
 \end{equation}
 
 vor. Sie wird über die Glieder erster Ordnung einer Taylorreihe um die Ruhelage herum approximiert. 
 \begin{equation}
-\ddot{\widetilde{\vect{\theta}}} = \left. \dfrac{\partial \vect{f}}{\partial \vect{\theta}}\right|_{AP} \widetilde{\vect{\theta}} + 
-\left. \dfrac{\partial \vect{f}}{\partial \dot{\vect{\theta}}}\right|_{AP} \dot{\widetilde{\vect{\theta}}} + 
-\left. \dfrac{\partial \vect{f}}{\partial \vect{\tau}}\right|_{AP} \widetilde{\vect{\tau}} 
+{{\vectddt{\theta}}} = \left. \dfrac{\partial \vect{f}}{\partial \vect{\theta}}\right|_{AP} {\vectt{\theta}} + 
+\left. \dfrac{\partial \vect{f}}{\partial {\vectd{\theta}}}\right|_{AP} {{\vectdt{\theta}}} + 
+\left. \dfrac{\partial \vect{f}}{\partial \vect{\tau}}\right|_{AP} {\vectt{\tau}} 
 \end{equation}
 
 Mit Hilfe der eingeführten Zustandsvariablen erhält man das folgende System: 
@@ -241,7 +241,7 @@ Mit Hilfe der eingeführten Zustandsvariablen erhält man das folgende System:
 = 
 \left( \begin{array}{c|c}
 \vect{0} & \vect{I} \\ \hline
--\overline{\vect{M}}^{-1}\overline{\vect{K}} & \overline{\vect{M}}^{-1}\overline{\vect{C}}
+-{\vecto{M}}^{-1}{\vecto{K}} & {\vecto{M}}^{-1}{\vecto{C}}
 \end{array} \right) 
 \left( \begin{array}{c}
 \vect{x_\mathrm{1}} \\ \hline
@@ -249,7 +249,7 @@ Mit Hilfe der eingeführten Zustandsvariablen erhält man das folgende System:
 \end{array}\right) +
 \left( \begin{array}{c}
 \vect{0} \\ \hline
--\overline{{\vect{M}}}^{-1}
+-{{\vecto{M}}}^{-1}
 \end{array} \right) 
 \left( \begin{array}{c}
 \vect{u_1} \\ \hline

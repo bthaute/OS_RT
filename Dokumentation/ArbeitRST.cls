@@ -157,7 +157,7 @@
 
 vorgelegt von: & Richard Herrmann (3660598)\\%\@author\\
 			   & Justus Kopp (3659597)\\
-			   & Bill Thaute \textcolor{red}{\textbf{(Martikelnummer)}}\\
+			   & Bill Thaute (3710911)\\
 %geboren am: & \@geburtsdatum{} in \@geburtsort{}
 \end{tabular}
 
